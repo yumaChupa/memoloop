@@ -1,0 +1,43 @@
+name: memoloop
+description: "memoloop"
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.5+1 #更新したらflutter cleanとflutter pub get, pod installを実行
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  path_provider: ^2.1.2
+  flutter_card_swiper: ^7.0.2
+  google_fonts: ^6.1.0
+  share_plus: ^11.0.0
+  googleapis_auth: ^1.4.1
+  http: ^1.0.0
+  audioplayers: ^6.5.0
+  connectivity_plus: ^6.0.3
+  uuid: ^4.5.1
+  firebase_core: ^3.14.0
+  cloud_firestore: ^5.6.9
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/img/memoloop_icon01.png"
+
+flutter:
+  assets:
+    - assets/data/
+    - assets/img/
+    - assets/keys/tts_service.json
+
+  uses-material-design: true

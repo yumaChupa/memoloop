@@ -1,0 +1,947 @@
+[
+  {
+    "index": 1,
+    "Japanese": "一口食べる",
+    "English": "take a bite",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 2,
+    "Japanese": "怪しい",
+    "English": "That's sketchy",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 3,
+    "Japanese": "怯える",
+    "English": "get frightened",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 4,
+    "Japanese": "問題を起こす",
+    "English": "make waves",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 5,
+    "Japanese": "急ごう",
+    "English": "Step on it.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 6,
+    "Japanese": "手こずる",
+    "English": "have a hard time",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 7,
+    "Japanese": "もういくね",
+    "English": "I'm off",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 8,
+    "Japanese": "寝る",
+    "English": "get some sleep",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 9,
+    "Japanese": "返す",
+    "English": "give it back",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 10,
+    "Japanese": "全力を尽くせ！",
+    "English": "Give it your all!",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 11,
+    "Japanese": "気だるい",
+    "English": "languid",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 12,
+    "Japanese": "取り乱す",
+    "English": "get upset",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 13,
+    "Japanese": "一か八かやってみる",
+    "English": "take a chance",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 14,
+    "Japanese": "しくった",
+    "English": "Shoot",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 15,
+    "Japanese": "似ている",
+    "English": "take after",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 16,
+    "Japanese": "濡れる",
+    "English": "get wet",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 17,
+    "Japanese": "準備する",
+    "English": "get ready",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 18,
+    "Japanese": "二度寝した",
+    "English": "I went back to sleep",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 19,
+    "Japanese": "参加するよ",
+    "English": "Count me in.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 20,
+    "Japanese": "わかる(have)",
+    "English": "have a clue",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 21,
+    "Japanese": "軽視する",
+    "English": "take lightly",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 22,
+    "Japanese": "嫌じゃなければ",
+    "English": "If you don't mind",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 23,
+    "Japanese": "電話に出る",
+    "English": "get a call",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 24,
+    "Japanese": "一休みする",
+    "English": "have a rest",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 25,
+    "Japanese": "仲直りする",
+    "English": "make up",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 26,
+    "Japanese": "どうもありがとう",
+    "English": "Many thanks",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 27,
+    "Japanese": "からかう",
+    "English": "make fun of",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 28,
+    "Japanese": "検討する",
+    "English": "go over it",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 29,
+    "Japanese": "どっちでもいいよ",
+    "English": "Both are good",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 30,
+    "Japanese": "黙って",
+    "English": "Zip your lip.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 31,
+    "Japanese": "どうしよう",
+    "English": "I'm lost",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 32,
+    "Japanese": "オファーをする",
+    "English": "make an offer",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 33,
+    "Japanese": "どうして？",
+    "English": "How come?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 34,
+    "Japanese": "取り外す",
+    "English": "take it off",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 35,
+    "Japanese": "分解する",
+    "English": "take apart",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 36,
+    "Japanese": "何となく",
+    "English": "Just because.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 37,
+    "Japanese": "手術する",
+    "English": "have an operation",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 38,
+    "Japanese": "間に合う",
+    "English": "make it",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 39,
+    "Japanese": "例えば？",
+    "English": "Like what?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 40,
+    "Japanese": "引き継ぐ",
+    "English": "take it over",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 41,
+    "Japanese": "風邪をひく",
+    "English": "get a cold",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 42,
+    "Japanese": "話し合う",
+    "English": "have a talk",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 43,
+    "Japanese": "選択肢がある",
+    "English": "have an option",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 44,
+    "Japanese": "家に帰る",
+    "English": "get home",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 45,
+    "Japanese": "ぜひ！",
+    "English": "By all means",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 46,
+    "Japanese": "お大事に",
+    "English": "Take care",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 47,
+    "Japanese": "みる",
+    "English": "have a look",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 48,
+    "Japanese": "わからない",
+    "English": "I have no idea",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 49,
+    "Japanese": "頭痛がする",
+    "English": "have a headache",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 50,
+    "Japanese": "自信がある",
+    "English": "have confidence",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 51,
+    "Japanese": "できれば",
+    "English": "If possible",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 52,
+    "Japanese": "着替える",
+    "English": "get changed",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 53,
+    "Japanese": "散歩する",
+    "English": "take a walk",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 54,
+    "Japanese": "久しぶり",
+    "English": "It's been a while",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 55,
+    "Japanese": "ふりをする",
+    "English": "make believe",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 56,
+    "Japanese": "もしよければ",
+    "English": "If you want",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 57,
+    "Japanese": "もうやってられない",
+    "English": "I'm done!",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 58,
+    "Japanese": "早く良くなってね",
+    "English": "Get well soon!",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 59,
+    "Japanese": "小便する",
+    "English": "make water",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 60,
+    "Japanese": "座る",
+    "English": "have a seat",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 61,
+    "Japanese": "難しい",
+    "English": "have difficulty",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 62,
+    "Japanese": "私機嫌が悪い",
+    "English": "I am in a bad mood",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 63,
+    "Japanese": "クビになる",
+    "English": "get fired",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 64,
+    "Japanese": "もう一度言って？",
+    "English": "Come again",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 65,
+    "Japanese": "酔っ払う",
+    "English": "get drunk",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 66,
+    "Japanese": "〇〇を思い切り楽しむ",
+    "English": "make the most of 〇〇",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 67,
+    "Japanese": "シャワーを浴びる",
+    "English": "take a shower",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 68,
+    "Japanese": "暗くなる",
+    "English": "get dark",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 69,
+    "Japanese": "怪我ない？",
+    "English": "Are you injured?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 70,
+    "Japanese": "機会を得る",
+    "English": "get a chance",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 71,
+    "Japanese": "決断する",
+    "English": "make a decision",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 72,
+    "Japanese": "意味をなす",
+    "English": "make sense",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 73,
+    "Japanese": "落ち着いて",
+    "English": "calm down",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 74,
+    "Japanese": "お腹が空く",
+    "English": "get hungry",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 75,
+    "Japanese": "コメントする",
+    "English": "make a comment",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 76,
+    "Japanese": "間違える",
+    "English": "make a mistake",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 77,
+    "Japanese": "危ない！",
+    "English": "watch out!",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 78,
+    "Japanese": "結婚する",
+    "English": "get married",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 79,
+    "Japanese": "メモを取る",
+    "English": "take notes",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 80,
+    "Japanese": "影響がある",
+    "English": "have an effect",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 81,
+    "Japanese": "怒る",
+    "English": "get angry",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 82,
+    "Japanese": "試験を受ける",
+    "English": "take an exam",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 83,
+    "Japanese": "道に迷う",
+    "English": "get lost",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 84,
+    "Japanese": "確かめる、必ず〇〇する",
+    "English": "make sure",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 85,
+    "Japanese": "気軽に行こうよ",
+    "English": "Take it easy",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 86,
+    "Japanese": "離婚する",
+    "English": "get divorced",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 87,
+    "Japanese": "薬を飲む",
+    "English": "take medicine",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 88,
+    "Japanese": "寝坊した",
+    "English": "I overslept.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 89,
+    "Japanese": "休憩する",
+    "English": "take a break",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 90,
+    "Japanese": "きも",
+    "English": "Eww",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 91,
+    "Japanese": "昼寝をする",
+    "English": "take a nap",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 92,
+    "Japanese": "評判",
+    "English": "reputation",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 93,
+    "Japanese": "かゆい",
+    "English": "itchy",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 94,
+    "Japanese": "可能性",
+    "English": "possibility",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 95,
+    "Japanese": "さっき",
+    "English": "just now",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 96,
+    "Japanese": "要求",
+    "English": "request",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 97,
+    "Japanese": "一言言う",
+    "English": "have a word",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 98,
+    "Japanese": "大事にする",
+    "English": "make much of",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 99,
+    "Japanese": "もうちょっとやったのに",
+    "English": "I almost had it!",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 100,
+    "Japanese": "需要",
+    "English": "demand",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 101,
+    "Japanese": "専門知識",
+    "English": "expertise",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 102,
+    "Japanese": "変だ",
+    "English": "weird / odd",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 103,
+    "Japanese": "さすが！",
+    "English": "As expected",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 104,
+    "Japanese": "へ向かう",
+    "English": "I head to ",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 105,
+    "Japanese": "いい雰囲気",
+    "English": "have a nice vibe",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 106,
+    "Japanese": "気まずい",
+    "English": "awkward",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 107,
+    "Japanese": "まじで、ほんまに",
+    "English": "literally",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 108,
+    "Japanese": "〇〇に向き合う",
+    "English": "face",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 109,
+    "Japanese": "何となく",
+    "English": "Just because.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 110,
+    "Japanese": "意外と",
+    "English": "than I thought",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 111,
+    "Japanese": "どうしたらいい？",
+    "English": "What should I do?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 112,
+    "Japanese": "お先どうぞ",
+    "English": "Go ahead",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 113,
+    "Japanese": "気にしないで",
+    "English": "Don't sweat it.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 114,
+    "Japanese": "それなら",
+    "English": "In that case,",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 115,
+    "Japanese": "〇〇しないで、",
+    "English": "Instead of ",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 116,
+    "Japanese": "行かなきゃ",
+    "English": "Gotta go.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 117,
+    "Japanese": "音上げて",
+    "English": "Turn it up",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 118,
+    "Japanese": "同感",
+    "English": "I’m with you.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 119,
+    "Japanese": "別に",
+    "English": "Nah",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 120,
+    "Japanese": "注目の話題",
+    "English": "hot topic",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 121,
+    "Japanese": "柔軟な考え方",
+    "English": "open mind",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 122,
+    "Japanese": "優しい嘘",
+    "English": "white lie",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 123,
+    "Japanese": "街の男",
+    "English": "local guy",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 124,
+    "Japanese": "たまたま〇〇する",
+    "English": "happen to 〇〇",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 125,
+    "Japanese": "一応言っておく",
+    "English": "just saying",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 126,
+    "Japanese": "念の為にね",
+    "English": "Just in case.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 127,
+    "Japanese": "取り返す",
+    "English": "get it back",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 128,
+    "Japanese": "やり遂げる",
+    "English": "go through with it",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 129,
+    "Japanese": "全体的に、総じて",
+    "English": "altogether",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 130,
+    "Japanese": "火をつける",
+    "English": "light the fire",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 131,
+    "Japanese": "間違って",
+    "English": "by mistake",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 132,
+    "Japanese": "承知しました",
+    "English": "Noted.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 133,
+    "Japanese": "承知しました",
+    "English": "Certainly",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 134,
+    "Japanese": "もちろん！",
+    "English": "Absolutely!",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 135,
+    "Japanese": "まさにそう",
+    "English": "Exactly",
+    "done": 0,
+    "more": 0
+  }
+]

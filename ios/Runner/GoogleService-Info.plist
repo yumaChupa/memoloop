@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDHm8YB_ZNkqPlPXlS3Tge2CqhkaRVm7Rs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>191084660359</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.memoloop.memoloop</string>
+	<key>PROJECT_ID</key>
+	<string>memoloop-tts</string>
+	<key>STORAGE_BUCKET</key>
+	<string>memoloop-tts.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:191084660359:ios:5c8ecba665b6f2aecf9a22</string>
+</dict>
+</plist>

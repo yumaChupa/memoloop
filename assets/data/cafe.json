@@ -1,0 +1,72 @@
+[
+  {
+    "index": 1,
+    "Japanese": "Japanese",
+    "English": "English",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 2,
+    "Japanese": "2人です",
+    "English": "Do you have a  seat for two?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 3,
+    "Japanese": "もうちょっと時間ください",
+    "English": "Give me  a couple of minutes, please.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 4,
+    "Japanese": "レシートは必要ですか？",
+    "English": "Do you need a receipt?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 5,
+    "Japanese": "はい、ください。/いいえ、大丈夫です",
+    "English": "Yes, please. / I’m good.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 6,
+    "Japanese": "(注文時)〇〇お願いします",
+    "English": "Can I get 〇〇?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 7,
+    "Japanese": "(注文時)〇〇もお願いします",
+    "English": "Can I also get 〇〇?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 8,
+    "Japanese": "お会計お願いします",
+    "English": "Can I get the bill?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 9,
+    "Japanese": "トイレ行ってくる",
+    "English": "I need to go to washroom.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 10,
+    "Japanese": "私はこれにします",
+    "English": "I’ll have this.",
+    "done": 0,
+    "more": 0
+  }
+]

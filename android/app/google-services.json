@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "191084660359",
+    "project_id": "memoloop-tts",
+    "storage_bucket": "memoloop-tts.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191084660359:android:e99cb34775147e1ccf9a22",
+        "android_client_info": {
+          "package_name": "com.memoloop.memoloop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUXrORiYEPMy4v1HdPImpmX1M_ESWCmGk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"ios":{"default":{"projectId":"memoloop-tts","appId":"1:191084660359:ios:5c8ecba665b6f2aecf9a22","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"memoloop-tts","configurations":{"ios":"1:191084660359:ios:5c8ecba665b6f2aecf9a22"}}}}}}

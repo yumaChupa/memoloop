@@ -1,0 +1,639 @@
+[
+  {
+    "index": 1,
+    "Japanese": "私のこと待っててくれてもよかったのに",
+    "English": "You could have waited for me.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 2,
+    "Japanese": "もう少しで諦めるところだった",
+    "English": "I was about to give up.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 3,
+    "Japanese": "将来スポーツができなくなる",
+    "English": "I might not be able to play sports in the future.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 4,
+    "Japanese": "〇〇が間違いなわけないね",
+    "English": "〇〇 can’t go wrong.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 5,
+    "Japanese": "外出する気分じゃないいな",
+    "English": "I don't feel like going out.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 6,
+    "Japanese": "もしうまくいかなかったらどうする？",
+    "English": "What if it doesn't work?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 7,
+    "Japanese": "バスを逃しそうだった",
+    "English": "I almost missed the bus.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 8,
+    "Japanese": "脚どうしたの！？",
+    "English": "What happened to your leg?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 9,
+    "Japanese": "当時料理にハマっていた",
+    "English": "I was into cooking at that time.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 10,
+    "Japanese": "もう寝る時間だ",
+    "English": "It's time to go to bed.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 11,
+    "Japanese": "面接に合格するのに苦労したよ",
+    "English": "I struggled to pass the job interview.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 12,
+    "Japanese": "早めに出発した方がいいかも",
+    "English": "You might wanna leave early.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 13,
+    "Japanese": "ずっとやってみたかった",
+    "English": "I've always wanted to try it.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 14,
+    "Japanese": "私たちは一度電話で話したことがある",
+    "English": "We've talked on the phone once.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 15,
+    "Japanese": "ここから最も近い食料品店はどこ？",
+    "English": "Where is the nearest grocery store?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 16,
+    "Japanese": "早起きにはもう慣れた",
+    "English": "I've gotten used to getting up early.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 17,
+    "Japanese": "今は洋画を見ることに夢中です",
+    "English": "I'm crazy about watching English movies.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 18,
+    "Japanese": "完全に無料です",
+    "English": "It's totally free.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 19,
+    "Japanese": "むしろここで住みたい",
+    "English": "I'd rather live here.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 20,
+    "Japanese": "ルームシェアでもマンションでも大丈夫",
+    "English": "Whether it's a shared house or a condo, it's fine.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 21,
+    "Japanese": "ドアを閉めていただけませんか？",
+    "English": "Would you mind closing the door?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 22,
+    "Japanese": "ドアを閉めてもいいですか？",
+    "English": "Do you mind if I close the door?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 23,
+    "Japanese": "面接は思っていたより簡単だった",
+    "English": "The interview was easier than I expected.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 24,
+    "Japanese": "〇〇を探してる（口語）",
+    "English": "I'm after 〇〇.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 25,
+    "Japanese": "もっと英語力があれば仕事取れたかも",
+    "English": "I could have gotten the job if I were able to speak English.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 26,
+    "Japanese": "パーティーのことはどうなってる？",
+    "English": "What happened to the party?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 27,
+    "Japanese": "ちょっと緊張してる",
+    "English": "I'm kind of nervous.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 28,
+    "Japanese": "英語が話せるようになるためには、",
+    "English": "To get good at English,",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 29,
+    "Japanese": "面接に落ちるのはもううんざり",
+    "English": "I'm tired of failing the interview.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 30,
+    "Japanese": "ランチでもしながら話そう",
+    "English": "Let's talk about it over lunch.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 31,
+    "Japanese": "ダイエットしようと思ってるよ",
+    "English": "I'm thinking of going on a diet.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 32,
+    "Japanese": "今それを言っても仕方がない",
+    "English": "It doesn't help saying that now.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 33,
+    "Japanese": "締め切りに間に合えば大丈夫",
+    "English": "As long as it's finished within the deadline, it's fine.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 34,
+    "Japanese": "一回聞いたことある気がする",
+    "English": "I feel like I've heard it before.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 35,
+    "Japanese": "短髪に合いそう",
+    "English": "You would look good with short hair.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 36,
+    "Japanese": "甘いものは食べずには居られない",
+    "English": "I can't help eating sweets.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 37,
+    "Japanese": "現金持ってたりしない？",
+    "English": "Do you happen to have any cash?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 38,
+    "Japanese": "もっとお金があれば、もっと旅行しただろうなぁ",
+    "English": "I would have traveled more if I had had more money.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 39,
+    "Japanese": "この部屋についてどう思いますか",
+    "English": "What do you think of this room?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 40,
+    "Japanese": "彼を待った方がいいんじゃないかなぁ",
+    "English": "I'd say we should wait for him.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 41,
+    "Japanese": "もっと英語を話す練習をするべきだった",
+    "English": "I should have practiced speaking English more.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 42,
+    "Japanese": "iPhone置き忘れてきたかも",
+    "English": "I might have left my iPhone.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 43,
+    "Japanese": "ゲームにハマってる",
+    "English": "I'm addicted to the video game.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 44,
+    "Japanese": "部屋探しがうまく行っていない",
+    "English": "I'm having trouble finding a place to live.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 45,
+    "Japanese": "心配せずにはいられない",
+    "English": "I can't help worrying.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 46,
+    "Japanese": "待つのは大丈夫ですよ",
+    "English": "I don't mind waiting.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 47,
+    "Japanese": "ごめん間に合うかどうかわからない",
+    "English": "Sorry, I'm not sure if I can make it.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 48,
+    "Japanese": "締切まで後3日ってまじ？",
+    "English": "I can't believe there are only 3 days left until the deadline.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 49,
+    "Japanese": "昨日の晩何があったか聞いたか知らないけど",
+    "English": "I don't know if you have heard what happened last night.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 50,
+    "Japanese": "忘れずに明日持ってきてね",
+    "English": "Make sure to bring it tomorrow",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 51,
+    "Japanese": "彼来るんかな?",
+    "English": "I wonder if he's coming.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 52,
+    "Japanese": "同僚にやらせます",
+    "English": "I'll have my colleague do it.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 53,
+    "Japanese": "もしこれがバレたらどうしようか",
+    "English": "What if this gets found out?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 54,
+    "Japanese": "僕らこんなに仲良いなんて不思議だね",
+    "English": "It's funny how close we are.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 55,
+    "Japanese": "関西に帰るとしたら少なくとも3年後かな",
+    "English": "If I were to get back to Kansai, that would be at least 3 years.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 56,
+    "Japanese": "これってどんな料理ですか？",
+    "English": "What kind of food is this?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 57,
+    "Japanese": "レギュラーサイズのコーヒーをください",
+    "English": "I'll have a regular hot coffee, please.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 58,
+    "Japanese": "大金を稼ぐより知識を追い求めたい",
+    "English": "I want to pursue knowledge rather than make a whole lot of money.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 59,
+    "Japanese": "何してんの？って感じだった",
+    "English": "I was like, \"What is he doing.\"",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 60,
+    "Japanese": "練習すればするほど、ダンスが楽しくなっていく",
+    "English": "The more you practice, the more fun dancing becomes.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 61,
+    "Japanese": "高いからといった必ずしもオシャレとは限らない",
+    "English": "Expensive clothes are not necessarily fashionable.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 62,
+    "Japanese": "高いからといっていい服とは限らない",
+    "English": "Just because it's expensive doesn't mean it's good clothing.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 63,
+    "Japanese": "何でサッカー始めたの？（使役）",
+    "English": "What made you start soccer?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 64,
+    "Japanese": "京都に6年間住んでた",
+    "English": "I used to live in Kyoto for 6 years.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 65,
+    "Japanese": "全く知らなかった",
+    "English": "I didn't know that at all.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 66,
+    "Japanese": "思ってたより簡単だね",
+    "English": "It is not as hard as I expected.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 67,
+    "Japanese": "普段は1日8時間くらい働いている",
+    "English": "I usually spend about 8 hours a day working.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 68,
+    "Japanese": "英語を話すのに慣れました",
+    "English": "I'm already used to speaking English.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 69,
+    "Japanese": "勉強のことになると",
+    "English": "When it comes to studying,",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 70,
+    "Japanese": "歌ってリフレッシュしたい気分",
+    "English": "I feel like singing to refresh myself.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 71,
+    "Japanese": "お皿洗いお願いしてもいい？",
+    "English": "Do you mind doing the dishes?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 72,
+    "Japanese": "高校を卒業して10年になる",
+    "English": "It's been 10 years since I graduated from high school.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 73,
+    "Japanese": "その時間にラーメン屋さん空いてるかわからない",
+    "English": "I don't know if the ramen restaurant is open at that time.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 74,
+    "Japanese": "将来海外で働くために英語も勉強をしています",
+    "English": "I'm studying English so that I can work in other country in the future.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 75,
+    "Japanese": "その日雨降ったらどうしようか",
+    "English": "What if it rains that day?",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 76,
+    "Japanese": "彼は6pmから働くことになっている",
+    "English": "He’s supposed to work from 6pm.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 77,
+    "Japanese": "明日返してもらえるとありがたい",
+    "English": "If you could return it tomorrow, that would be great.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 78,
+    "Japanese": "今朝寒すぎて布団から出れなかった",
+    "English": "It was so cold this morning that I couldn't get out of bed.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 79,
+    "Japanese": "どれくらい時間かかるわからない",
+    "English": "I don't know how long it takes.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 80,
+    "Japanese": "ただ疲れてるだけ",
+    "English": "It's just that I'm tired.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 81,
+    "Japanese": "最近外食する機会がない",
+    "English": "I don't get to go out to eat recently.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 82,
+    "Japanese": "彼が時間通りに来るわけがない",
+    "English": "There is no way he is coming on time.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 83,
+    "Japanese": "多分明日までにはできる",
+    "English": "I'll probably make it by tomorrow.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 84,
+    "Japanese": "久しぶりにジャケット買った",
+    "English": "I bought a jacket for the first time in ages.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 85,
+    "Japanese": "だからそれ嫌いなんだよ",
+    "English": "That's why I really hate it.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 86,
+    "Japanese": "多ければ多いほどいい",
+    "English": "The more, the better.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 87,
+    "Japanese": "この映画は見る価値あるよ",
+    "English": "This movie is worth watching.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 88,
+    "Japanese": "もしそうなったら",
+    "English": "In which case,",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 89,
+    "Japanese": "日本人のいいところは謙虚なところ",
+    "English": "One good thing about Japanese people is their humility.",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 90,
+    "Japanese": "嫌いって意味じゃなくて",
+    "English": "It's not that I hate it,",
+    "done": 0,
+    "more": 0
+  },
+  {
+    "index": 91,
+    "Japanese": "あの飲み会やばかったよな!?",
+    "English": "Do you remember how crazy the drinking party was?",
+    "done": 0,
+    "more": 0
+  }
+]
