@@ -32,7 +32,7 @@ Future<List<Map<String, dynamic>>> getProblemSet(String filename) async {
 ////////////////////////////////////////////////
 // ローカルの問題セットjsonをFirebaseにアップロード(return;)
 ////////////////////////////////////////////////
-Future<void> uploadProblemSetWithReset(String title, String filename) async {
+Future<void> uploadProblemSetWithReset(String title, String filename, {List<String> tags = const []}) async {
   final dir = await getApplicationDocumentsDirectory();
   final file = File('${dir.path}/$filename.json');
 
@@ -53,8 +53,19 @@ Future<void> uploadProblemSetWithReset(String title, String filename) async {
   }
   await batchDelete.commit();
 
+  // 既存のdownloadCountを保持
+  final existingDoc = await setRef.get();
+  final existingData = existingDoc.data();
+  final currentDownloads = existingData?['downloadCount'] ?? 0;
+
   // 2. sets コレクションに基本情報登録
-  await setRef.set({'title': title, 'filename': filename, 'updatedAt': now});
+  await setRef.set({
+    'title': title,
+    'filename': filename,
+    'updatedAt': now,
+    'tags': tags,
+    'downloadCount': currentDownloads,
+  });
 
   // 3. questions 再アップロード
   final batchUpload = firestore.batch();
@@ -80,6 +91,21 @@ Future<List<Map<String, dynamic>>> getSetsList() async {
 }
 
 
+
+
+////////////////////////////////////////////////
+// ダウンロード数をインクリメント
+////////////////////////////////////////////////
+Future<void> incrementDownloadCount(String filename) async {
+  try {
+    final setRef = firestore.collection('sets').doc(filename);
+    await setRef.update({
+      'downloadCount': FieldValue.increment(1),
+    });
+  } catch (e) {
+    print('Failed to increment download count: $e');
+  }
+}
 
 
 //////////////////////////////////////////
@@ -117,7 +143,9 @@ Future<void> uploadFilesInit(Map<String, dynamic> title_filename) async {
     'filename': filename,
     'title': title,
     'updatedAt': updatedAt,
-  });
+    'tags': title_filename['tags'] ?? [],
+    'downloadCount': 0,
+  }, SetOptions(merge: true));
 
   // 3. questions 再アップロード
   final batchUpload = firestore.batch();

@@ -13,14 +13,35 @@ class _OverviewSelectState extends State<OverviewSelect> {
   //////////////
   ////変数定義///
   //////////////
-  late List<Map<String, String>> title_filenames;
   Offset? _tapPosition;
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+  String? _selectedTag;
 
-  void initState() {
-    super.initState();
-    setState(() {
-      title_filenames = globals.title_filenames;
-    });
+  Set<String> get _allTags {
+    final tags = <String>{};
+    for (var item in globals.title_filenames) {
+      final itemTags = (item['tags'] as List<dynamic>?)?.cast<String>() ?? [];
+      tags.addAll(itemTags);
+    }
+    return tags;
+  }
+
+  List<Map<String, dynamic>> get _filteredTitleFilenames {
+    var list = globals.title_filenames.toList();
+    if (_searchQuery.isNotEmpty) {
+      list = list.where((item) {
+        final title = (item['title'] ?? '').toString().toLowerCase();
+        return title.contains(_searchQuery.toLowerCase());
+      }).toList();
+    }
+    if (_selectedTag != null) {
+      list = list.where((item) {
+        final tags = (item['tags'] as List<dynamic>?)?.cast<String>() ?? [];
+        return tags.contains(_selectedTag);
+      }).toList();
+    }
+    return list;
   }
 
   ////////////////////////
@@ -36,27 +57,28 @@ class _OverviewSelectState extends State<OverviewSelect> {
   }
 
   // 長押しで共有・削除メニュー表示
-  Future<void> _showMenu(int index) async {
+  Future<void> _showMenu(Map<String, dynamic> item) async {
     final screenSize = MediaQuery.of(context).size;
-    final dx = screenSize.width - 300; // 画面右寄りに固定（右端から10px内側）
-    double dy = _tapPosition!.dy; // 指の位置より20px下
+    final dx = screenSize.width - 300;
+    double dy = _tapPosition!.dy;
 
-    // 画面下端より下に行かないように調整（メニュー高さ約100と想定）
     if (dy + 100 > screenSize.height) {
       dy = _tapPosition!.dy - 100;
       if (dy < 0) dy = 0;
     }
 
-    // 変数selectedをshowMenuへの操作から取得
     final selected = await showMenu<String>(
       context: context,
       position: RelativeRect.fromLTRB(dx, dy, 10, screenSize.height - dy),
       color: Colors.white,
-      // 背景色白
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8), // 角丸
+        borderRadius: BorderRadius.circular(8),
       ),
       items: [
+        PopupMenuItem(
+          value: 'tags',
+          child: Text('タグ編集', style: TextStyle(fontWeight: FontWeight.bold)),
+        ),
         PopupMenuItem(
           value: 'share',
           child: Text('共有', style: TextStyle(fontWeight: FontWeight.bold)),
@@ -75,10 +97,49 @@ class _OverviewSelectState extends State<OverviewSelect> {
       ],
     );
 
-    if (selected == 'share') {
-      await shareFile(context, title_filenames[index]['filename'] ?? '');
+    if (selected == 'tags') {
+      final currentTags = (item['tags'] as List<dynamic>?)?.cast<String>() ?? [];
+      final tagsController = TextEditingController(text: currentTags.join(', '));
+      final newTags = await showDialog<List<String>>(
+        context: context,
+        builder: (_) => AlertDialog(
+          backgroundColor: Colors.grey[50],
+          title: Text('タグ編集', style: TextStyle(fontSize: 18)),
+          content: TextField(
+            controller: tagsController,
+            decoration: InputDecoration(
+              hintText: 'カンマ区切りでタグを入力',
+              hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('キャンセル'),
+            ),
+            TextButton(
+              onPressed: () {
+                final tags = tagsController.text
+                    .split(',')
+                    .map((t) => t.trim())
+                    .where((t) => t.isNotEmpty)
+                    .toList();
+                Navigator.pop(context, tags);
+              },
+              child: Text('保存'),
+            ),
+          ],
+        ),
+      );
+      if (newTags != null) {
+        setState(() {
+          item['tags'] = newTags;
+        });
+        await saveTitleFilenames();
+      }
+    } else if (selected == 'share') {
+      await shareFile(context, item['filename']?.toString() ?? '');
     } else if (selected == 'upload') {
-      // 公開前に確認ダイアログ
       final confirmed = await showDialog<bool>(
         context: context,
         builder:
@@ -98,9 +159,11 @@ class _OverviewSelectState extends State<OverviewSelect> {
             ),
       );
       if (confirmed == true) {
+        final tags = (item['tags'] as List<dynamic>?)?.cast<String>() ?? [];
         uploadProblemSetWithReset(
-          title_filenames[index]["title"]!,
-          title_filenames[index]["filename"]!,
+          item["title"]!.toString(),
+          item["filename"]!.toString(),
+          tags: tags,
         );
       }
     } else if (selected == 'delete') {
@@ -124,16 +187,11 @@ class _OverviewSelectState extends State<OverviewSelect> {
             ),
       );
       if (confirm == true) {
-        await deleteFile(
-          title_filenames[index]['filename'] ?? '',
-        ); //ローカルディレクトリから該当ファイルを削除
+        await deleteFile(item['filename']?.toString() ?? '');
         setState(() {
-          globals.title_filenames.removeAt(
-            index,
-          ); //title_filenamesから該当問題セットを削除。globalsを置き換え
-          title_filenames = List.from(
-            globals.title_filenames,
-          ); //削除後のglobals.title_filenamesを呼び出し
+          globals.title_filenames.removeWhere(
+            (e) => e['filename'] == item['filename'],
+          );
         });
         await saveTitleFilenames();
       }
@@ -150,59 +208,126 @@ class _OverviewSelectState extends State<OverviewSelect> {
         title: const Text("Listview"),
         scrolledUnderElevation: 0.2,
       ),
-      body: ListView.builder(
-        itemCount: title_filenames.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTapDown: _storePosition,
-            onLongPress: () => _showMenu(index),
-            child: Container(
-              margin: EdgeInsets.symmetric(vertical: 6),
-              decoration: BoxDecoration(color: Color(0xFFFFE6CA)),
-              child: ListTile(
-                key: ValueKey(title_filenames[index]["filename"]),
-                dense: true,
-                minVerticalPadding: 28,
-                contentPadding: EdgeInsets.symmetric(horizontal: 48),
-
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      title_filenames[index]["title"].toString(),
-                      style: TextStyle(
-                        color: Colors.grey[900],
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      updatedAtTrans(
-                        title_filenames[index]['updatedAt'].toString(),
-                      ),
-                      style: TextStyle(color: Colors.grey[900], fontSize: 12),
-                    ),
-                  ],
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: TextField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                  hintText: '検索...',
+                  prefixIcon: Icon(Icons.search),
+                  suffixIcon: _searchQuery.isNotEmpty
+                      ? IconButton(
+                          icon: Icon(Icons.clear),
+                          onPressed: () {
+                            _searchController.clear();
+                            setState(() => _searchQuery = '');
+                          },
+                        )
+                      : null,
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 ),
-
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) => OverviewScreen(
-                            title_filename: title_filenames[index],
-                          ),
+                onChanged: (value) => setState(() => _searchQuery = value),
+              ),
+            ),
+            if (_allTags.isNotEmpty)
+              SizedBox(
+                height: 40,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  children: _allTags.map((tag) {
+                    final isSelected = _selectedTag == tag;
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: FilterChip(
+                        label: Text(tag, style: TextStyle(fontSize: 12)),
+                        selected: isSelected,
+                        onSelected: (selected) {
+                          setState(() {
+                            _selectedTag = selected ? tag : null;
+                          });
+                        },
+                        selectedColor: Colors.orange[200],
+                        backgroundColor: Colors.grey[200],
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _filteredTitleFilenames.length,
+                itemBuilder: (context, index) {
+                  final item = _filteredTitleFilenames[index];
+                  return GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTapDown: _storePosition,
+                    onLongPress: () => _showMenu(item),
+                    child: Container(
+                      margin: EdgeInsets.symmetric(vertical: 6),
+                      decoration: BoxDecoration(color: Color(0xFFFFE6CA)),
+                      child: ListTile(
+                        key: ValueKey(item["filename"]),
+                        dense: true,
+                        minVerticalPadding: 20,
+                        contentPadding: EdgeInsets.symmetric(horizontal: 48),
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              item["title"].toString(),
+                              style: TextStyle(
+                                color: Colors.grey[900],
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              updatedAtTrans(item['updatedAt'].toString()),
+                              style: TextStyle(color: Colors.grey[900], fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        subtitle: ((item['tags'] as List<dynamic>?)?.isNotEmpty == true)
+                            ? Padding(
+                                padding: const EdgeInsets.only(top: 4),
+                                child: Wrap(
+                                  spacing: 4,
+                                  children: (item['tags'] as List<dynamic>)
+                                      .cast<String>()
+                                      .map((tag) => Chip(
+                                            label: Text(tag, style: TextStyle(fontSize: 11)),
+                                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                            visualDensity: VisualDensity.compact,
+                                            padding: EdgeInsets.zero,
+                                          ))
+                                      .toList(),
+                                ),
+                              )
+                            : null,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OverviewScreen(title_filename: item),
+                            ),
+                          ).then((_) {
+                            setState(() {});
+                          });
+                        },
+                      ),
                     ),
-                  ).then((_) {
-                    setState(() {}); // → globals.title_filenamesが更新された内容で再描画される
-                  });
+                  );
                 },
               ),
             ),
-          );
-        },
+          ],
+        ),
       ),
     );
   }

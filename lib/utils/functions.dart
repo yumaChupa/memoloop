@@ -48,9 +48,15 @@ Future<void> loadTitleFilenames() async {
   if (await file.exists()) {
     // ファイルが存在する場合 → 読み込んでglobalsに代入
     final jsonStr = await file.readAsString();
-    globals.title_filenames = List<Map<String, String>>.from(
-      (jsonDecode(jsonStr) as List).map((e) => Map<String, String>.from(e)),
+    globals.title_filenames = List<Map<String, dynamic>>.from(
+      (jsonDecode(jsonStr) as List).map((e) => Map<String, dynamic>.from(e)),
     );
+    // 既存データにtagsがない場合のマイグレーション
+    for (var item in globals.title_filenames) {
+      if (!item.containsKey('tags')) {
+        item['tags'] = <String>[];
+      }
+    }
   } else {
     // 初回起動時 → globalsの値を保存
     final jsonStr = jsonEncode(globals.title_filenames);

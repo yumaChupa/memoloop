@@ -89,11 +89,16 @@ class _AddScreenState extends State<AddScreen> {
           context,
         ).showSnackBar(SnackBar(content: Text("すでに追加されています")));
       } else {
-        globals.title_filenames.add(
-          widget.title_filename.map((k, v) => MapEntry(k, v.toString())),
-        );
-        updateAndSortByDate(globals.title_filenames);
+        final newItem = <String, dynamic>{
+          'title': widget.title_filename['title']?.toString() ?? '',
+          'filename': widget.title_filename['filename']?.toString() ?? '',
+          'updatedAt': widget.title_filename['updatedAt']?.toString() ?? '',
+          'tags': (widget.title_filename['tags'] as List<dynamic>?)?.cast<String>() ?? <String>[],
+        };
+        globals.title_filenames.add(newItem);
+        updateAndSortByDate(newItem);
         await saveContents(contents, filename);
+        await incrementDownloadCount(filename);
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text("問題セットを保存しました")));
@@ -114,6 +119,20 @@ class _AddScreenState extends State<AddScreen> {
           title: Text(widget.title_filename["title"] ?? ""),
           scrolledUnderElevation: 0.2,
           actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 4),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.download, size: 16, color: Colors.grey[600]),
+                  SizedBox(width: 2),
+                  Text(
+                    '${widget.title_filename['downloadCount'] ?? 0}',
+                    style: TextStyle(fontSize: 13, color: Colors.grey[600]),
+                  ),
+                ],
+              ),
+            ),
             IconButton(icon: Icon(Icons.download), onPressed: showAddDialog),
           ],
         ),

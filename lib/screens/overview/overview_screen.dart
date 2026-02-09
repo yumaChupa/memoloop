@@ -59,9 +59,11 @@ class _OverviewScreenState extends State<OverviewScreen> {
             backgroundColor: Colors.grey[50],
             title: Text("フレーズを更新", style: TextStyle(fontSize: 20)),
             // タイトル非表示
-            content: SizedBox(
-              width: 500,
-              child: Column(
+            content: GestureDetector(
+              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+              child: SizedBox(
+                width: 500,
+                child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -81,6 +83,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                     ),
                   ),
                 ],
+                ),
               ),
             ),
 

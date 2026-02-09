@@ -38,7 +38,9 @@ class _CreateState extends State<Create> {
 
       child: Scaffold(
         appBar: AppBar(title: Text(widget.title_filename["title"])),
-        body: Center(
+        body: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: Center(
           child: Container(
             alignment: Alignment.center,
             padding: EdgeInsets.all(20),
@@ -121,6 +123,7 @@ class _CreateState extends State<Create> {
               ],
             ),
           ),
+        ),
         ),
       ),
     );
