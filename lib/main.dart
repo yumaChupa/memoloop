@@ -22,10 +22,23 @@ import 'screens/add/add_select.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initTtsClient(); // TTS初期化
-  await Firebase.initializeApp();  //firebase初期化
-  await firebaseInit(globals.title_filenames);  //firebaseにデータ保存用、開発時、db変更時に一度だけ。
   await loadTitleFilenames(); // 必ずMyApp実行前に呼び出す
   runApp(const MyApp());
+
+  // Firebase初期化をバックグラウンドで実行
+  _initFirebaseInBackground();
+}
+
+/// Firebaseをバックグラウンドで初期化する
+Future<void> _initFirebaseInBackground() async {
+  try {
+    await Firebase.initializeApp();
+    await firebaseInit(globals.title_filenames);
+    globals.isFirebaseReady = true;
+    debugPrint('Firebase initialized successfully in background');
+  } catch (e) {
+    debugPrint('Firebase initialization failed: $e');
+  }
 }
 
 class MyApp extends StatelessWidget {

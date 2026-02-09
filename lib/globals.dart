@@ -2,6 +2,9 @@ import 'package:uuid/uuid.dart';
 
 final uuid = Uuid().v4();
 
+// Firebase初期化状態の管理
+bool isFirebaseReady = false;
+
 List<Map<String, String>> title_filenames = [
   {
     "title": "動作の表現",
