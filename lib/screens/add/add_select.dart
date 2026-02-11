@@ -19,16 +19,6 @@ class _AddSelectState extends State<AddSelect> {
   String? _selectedTag;
   _AddSortOrder _sortOrder = _AddSortOrder.date;
 
-  Set<String> get _allTags {
-    if (isLoading) return {};
-    final tags = <String>{};
-    for (var item in title_filenames_fs) {
-      final itemTags = (item['tags'] as List<dynamic>?)?.cast<String>() ?? [];
-      tags.addAll(itemTags);
-    }
-    return tags;
-  }
-
   List<Map<String, dynamic>> get _filteredSets {
     var list = title_filenames_fs.toList();
     if (_searchQuery.isNotEmpty) {
@@ -107,112 +97,119 @@ class _AddSelectState extends State<AddSelect> {
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: TextField(
-                    controller: _searchController,
-                    decoration: InputDecoration(
-                      hintText: '検索...',
-                      prefixIcon: Icon(Icons.search),
-                      suffixIcon: _searchQuery.isNotEmpty
-                          ? IconButton(
-                              icon: Icon(Icons.clear),
-                              onPressed: () {
-                                _searchController.clear();
-                                setState(() => _searchQuery = '');
-                              },
-                            )
-                          : null,
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    ),
-                    onChanged: (value) => setState(() => _searchQuery = value),
-                  ),
-                ),
-                if (_allTags.isNotEmpty)
-                  SizedBox(
-                    height: 40,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      children: _allTags.map((tag) {
-                        final isSelected = _selectedTag == tag;
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 8),
-                          child: FilterChip(
-                            label: Text(tag, style: TextStyle(fontSize: 12)),
-                            selected: isSelected,
-                            onSelected: (selected) {
-                              setState(() {
-                                _selectedTag = selected ? tag : null;
-                              });
-                            },
-                            selectedColor: Colors.green[200],
-                            backgroundColor: Colors.grey[200],
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: _filteredSets.length,
-                    itemBuilder: (context, index) {
-                      final item = _filteredSets[index];
-                      return Container(
-                        margin: EdgeInsets.symmetric(vertical: 6),
-                        decoration: BoxDecoration(color: Color(0xFFDDFFDD)),
-                        child: ListTile(
-                          key: ValueKey(item["filename"]),
-                          dense: true,
-                          minVerticalPadding: 20,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 48),
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                item["title"].toString(),
-                                style: TextStyle(
-                                  color: Colors.grey[900],
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                updatedAtTrans(item['updatedAt'].toString()),
-                                style: TextStyle(
-                                  color: Colors.grey[900],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                          subtitle: Padding(
-                            padding: const EdgeInsets.only(top: 4),
-                            child: Row(
-                              children: [
-                                Icon(Icons.download, size: 14, color: Colors.grey[600]),
-                                SizedBox(width: 2),
-                                Text(
-                                  '${item['downloadCount'] ?? 0}',
-                                  style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-                                ),
-                              ],
-                            ),
-                          ),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => AddScreen(title_filename: item),
-                              ),
-                            ).then((_) {
-                              setState(() {});
+                SizedBox(
+                  height: 40,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    children: globals.availableTags.map((tag) {
+                      final isSelected = _selectedTag == tag;
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: FilterChip(
+                          label: Text(tag, style: TextStyle(fontSize: 12)),
+                          selected: isSelected,
+                          onSelected: (selected) {
+                            setState(() {
+                              _selectedTag = selected ? tag : null;
                             });
                           },
+                          selectedColor: Colors.green[200],
+                          backgroundColor: Colors.grey[200],
                         ),
                       );
-                    },
+                    }).toList(),
+                  ),
+                ),
+                Expanded(
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          child: TextField(
+                            controller: _searchController,
+                            decoration: InputDecoration(
+                              hintText: '検索...',
+                              prefixIcon: Icon(Icons.search),
+                              suffixIcon: _searchQuery.isNotEmpty
+                                  ? IconButton(
+                                      icon: Icon(Icons.clear),
+                                      onPressed: () {
+                                        _searchController.clear();
+                                        setState(() => _searchQuery = '');
+                                      },
+                                    )
+                                  : null,
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                              contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                            ),
+                            onChanged: (value) => setState(() => _searchQuery = value),
+                          ),
+                        ),
+                      ),
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            final item = _filteredSets[index];
+                            return Container(
+                              margin: EdgeInsets.symmetric(vertical: 6),
+                              decoration: BoxDecoration(color: Color(0xFFDDFFDD)),
+                              child: ListTile(
+                                key: ValueKey(item["filename"]),
+                                dense: true,
+                                minVerticalPadding: 20,
+                                contentPadding: EdgeInsets.symmetric(horizontal: 48),
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      item["title"].toString(),
+                                      style: TextStyle(
+                                        color: Colors.grey[900],
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      updatedAtTrans(item['updatedAt'].toString()),
+                                      style: TextStyle(
+                                        color: Colors.grey[900],
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                subtitle: Padding(
+                                  padding: const EdgeInsets.only(top: 4),
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.download, size: 14, color: Colors.grey[600]),
+                                      SizedBox(width: 2),
+                                      Text(
+                                        '${item['downloadCount'] ?? 0}',
+                                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AddScreen(title_filename: item),
+                                    ),
+                                  ).then((_) {
+                                    setState(() {});
+                                  });
+                                },
+                              ),
+                            );
+                          },
+                          childCount: _filteredSets.length,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

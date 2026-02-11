@@ -18,15 +18,6 @@ class _OverviewSelectState extends State<OverviewSelect> {
   String _searchQuery = '';
   String? _selectedTag;
 
-  Set<String> get _allTags {
-    final tags = <String>{};
-    for (var item in globals.title_filenames) {
-      final itemTags = (item['tags'] as List<dynamic>?)?.cast<String>() ?? [];
-      tags.addAll(itemTags);
-    }
-    return tags;
-  }
-
   List<Map<String, dynamic>> get _filteredTitleFilenames {
     var list = globals.title_filenames.toList();
     if (_searchQuery.isNotEmpty) {
@@ -99,36 +90,46 @@ class _OverviewSelectState extends State<OverviewSelect> {
 
     if (selected == 'tags') {
       final currentTags = (item['tags'] as List<dynamic>?)?.cast<String>() ?? [];
-      final tagsController = TextEditingController(text: currentTags.join(', '));
+      final editingTags = currentTags.toSet();
       final newTags = await showDialog<List<String>>(
         context: context,
-        builder: (_) => AlertDialog(
-          backgroundColor: Colors.grey[50],
-          title: Text('タグ編集', style: TextStyle(fontSize: 18)),
-          content: TextField(
-            controller: tagsController,
-            decoration: InputDecoration(
-              hintText: 'カンマ区切りでタグを入力',
-              hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+        builder: (_) => StatefulBuilder(
+          builder: (context, setDialogState) => AlertDialog(
+            backgroundColor: Colors.grey[50],
+            title: Text('タグ編集', style: TextStyle(fontSize: 18)),
+            content: Wrap(
+              spacing: 8,
+              runSpacing: 4,
+              children: globals.availableTags.map((tag) {
+                final isSelected = editingTags.contains(tag);
+                return FilterChip(
+                  label: Text(tag, style: TextStyle(fontSize: 13)),
+                  selected: isSelected,
+                  onSelected: (selected) {
+                    setDialogState(() {
+                      if (selected) {
+                        editingTags.add(tag);
+                      } else {
+                        editingTags.remove(tag);
+                      }
+                    });
+                  },
+                  selectedColor: Colors.orange[200],
+                  backgroundColor: Colors.grey[200],
+                );
+              }).toList(),
             ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('キャンセル'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, editingTags.toList()),
+                child: Text('保存'),
+              ),
+            ],
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text('キャンセル'),
-            ),
-            TextButton(
-              onPressed: () {
-                final tags = tagsController.text
-                    .split(',')
-                    .map((t) => t.trim())
-                    .where((t) => t.isNotEmpty)
-                    .toList();
-                Navigator.pop(context, tags);
-              },
-              child: Text('保存'),
-            ),
-          ],
         ),
       );
       if (newTags != null) {
@@ -212,57 +213,60 @@ class _OverviewSelectState extends State<OverviewSelect> {
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: TextField(
-                controller: _searchController,
-                decoration: InputDecoration(
-                  hintText: '検索...',
-                  prefixIcon: Icon(Icons.search),
-                  suffixIcon: _searchQuery.isNotEmpty
-                      ? IconButton(
-                          icon: Icon(Icons.clear),
-                          onPressed: () {
-                            _searchController.clear();
-                            setState(() => _searchQuery = '');
-                          },
-                        )
-                      : null,
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                ),
-                onChanged: (value) => setState(() => _searchQuery = value),
+            SizedBox(
+              height: 40,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                children: globals.availableTags.map((tag) {
+                  final isSelected = _selectedTag == tag;
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: FilterChip(
+                      label: Text(tag, style: TextStyle(fontSize: 12)),
+                      selected: isSelected,
+                      onSelected: (selected) {
+                        setState(() {
+                          _selectedTag = selected ? tag : null;
+                        });
+                      },
+                      selectedColor: Colors.orange[200],
+                      backgroundColor: Colors.grey[200],
+                    ),
+                  );
+                }).toList(),
               ),
             ),
-            if (_allTags.isNotEmpty)
-              SizedBox(
-                height: 40,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  children: _allTags.map((tag) {
-                    final isSelected = _selectedTag == tag;
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: FilterChip(
-                        label: Text(tag, style: TextStyle(fontSize: 12)),
-                        selected: isSelected,
-                        onSelected: (selected) {
-                          setState(() {
-                            _selectedTag = selected ? tag : null;
-                          });
-                        },
-                        selectedColor: Colors.orange[200],
-                        backgroundColor: Colors.grey[200],
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ),
             Expanded(
-              child: ListView.builder(
-                itemCount: _filteredTitleFilenames.length,
-                itemBuilder: (context, index) {
+              child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      child: TextField(
+                        controller: _searchController,
+                        decoration: InputDecoration(
+                          hintText: '検索...',
+                          prefixIcon: Icon(Icons.search),
+                          suffixIcon: _searchQuery.isNotEmpty
+                              ? IconButton(
+                                  icon: Icon(Icons.clear),
+                                  onPressed: () {
+                                    _searchController.clear();
+                                    setState(() => _searchQuery = '');
+                                  },
+                                )
+                              : null,
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        ),
+                        onChanged: (value) => setState(() => _searchQuery = value),
+                      ),
+                    ),
+                  ),
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
                   final item = _filteredTitleFilenames[index];
                   return GestureDetector(
                     behavior: HitTestBehavior.translucent,
@@ -324,6 +328,10 @@ class _OverviewSelectState extends State<OverviewSelect> {
                     ),
                   );
                 },
+                      childCount: _filteredTitleFilenames.length,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
