@@ -105,17 +105,32 @@ class _AddSelectState extends State<AddSelect> {
                     children: globals.availableTags.map((tag) {
                       final isSelected = _selectedTag == tag;
                       return Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: FilterChip(
-                          label: Text(tag, style: TextStyle(fontSize: 12)),
-                          selected: isSelected,
-                          onSelected: (selected) {
+                        padding: const EdgeInsets.only(right: 16),
+                        child: GestureDetector(
+                          onTap: () {
                             setState(() {
-                              _selectedTag = selected ? tag : null;
+                              _selectedTag = isSelected ? null : tag;
                             });
                           },
-                          selectedColor: Colors.green[200],
-                          backgroundColor: Colors.grey[200],
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                tag,
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                                  color: isSelected ? Color(0xFF27AE60) : Colors.grey[500],
+                                ),
+                              ),
+                              SizedBox(height: 4),
+                              Container(
+                                height: 2,
+                                width: 24,
+                                color: isSelected ? Color(0xFF27AE60) : Colors.transparent,
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     }).toList(),
@@ -153,56 +168,80 @@ class _AddSelectState extends State<AddSelect> {
                           (context, index) {
                             final item = _filteredSets[index];
                             return Container(
-                              margin: EdgeInsets.symmetric(vertical: 6),
-                              decoration: BoxDecoration(color: Color(0xFFDDFFDD)),
-                              child: ListTile(
-                                key: ValueKey(item["filename"]),
-                                dense: true,
-                                minVerticalPadding: 20,
-                                contentPadding: EdgeInsets.symmetric(horizontal: 48),
-                                title: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      item["title"].toString(),
-                                      style: TextStyle(
-                                        color: Colors.grey[900],
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
+                              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.05),
+                                    blurRadius: 4,
+                                    offset: Offset(0, 1),
+                                  ),
+                                ],
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      left: BorderSide(color: Color(0xFF27AE60), width: 4),
+                                    ),
+                                  ),
+                                  child: ListTile(
+                                    key: ValueKey(item["filename"]),
+                                    dense: true,
+                                    minVerticalPadding: 16,
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                                    title: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Flexible(
+                                          child: Text(
+                                            item["title"].toString(),
+                                            style: TextStyle(
+                                              color: Colors.grey[850],
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                        SizedBox(width: 8),
+                                        Text(
+                                          updatedAtTrans(item['updatedAt'].toString()),
+                                          style: TextStyle(
+                                            color: Colors.grey[400],
+                                            fontSize: 11,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    subtitle: Padding(
+                                      padding: const EdgeInsets.only(top: 4),
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.download, size: 13, color: Colors.grey[400]),
+                                          SizedBox(width: 3),
+                                          Text(
+                                            '${item['downloadCount'] ?? 0}',
+                                            style: TextStyle(fontSize: 11, color: Colors.grey[400]),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    Text(
-                                      updatedAtTrans(item['updatedAt'].toString()),
-                                      style: TextStyle(
-                                        color: Colors.grey[900],
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                subtitle: Padding(
-                                  padding: const EdgeInsets.only(top: 4),
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.download, size: 14, color: Colors.grey[600]),
-                                      SizedBox(width: 2),
-                                      Text(
-                                        '${item['downloadCount'] ?? 0}',
-                                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-                                      ),
-                                    ],
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => AddScreen(title_filename: item),
+                                        ),
+                                      ).then((_) {
+                                        setState(() {});
+                                      });
+                                    },
                                   ),
                                 ),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => AddScreen(title_filename: item),
-                                    ),
-                                  ).then((_) {
-                                    setState(() {});
-                                  });
-                                },
                               ),
                             );
                           },
