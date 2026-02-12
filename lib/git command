@@ -1,6 +1,9 @@
-cd /Users/tanakayuma/.claude-worktrees/memoloop/gracious-bhaskara
+cd ~/.claude-worktrees/memoloop/gracious-bhaskara
 git add .
-git commit -m "feature: リスト表示のデザインをモダン化"
+git commit -m "feature: 出題順選択ドロップダウンボタンをモダン化"
 
-cd /Users/tanakayuma/AndroidStudioProjects/memoloop
-git merge claude/gracious-bhaskara -m "Merge claude changes into main"
+cd ~/AndroidStudioProjects/memoloop
+git checkout main
+git merge claude/gracious-bhaskara -m "merge claudecode into main"
+
+git diff claude/gracious-bhaskara
