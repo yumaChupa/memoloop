@@ -64,10 +64,10 @@ List<Map<String, dynamic>> title_filenames = [
 
 // 選択可能なタグ一覧（追加する場合はここにStringを追加するだけ）
 const List<String> availableTags = [
-  'IT',
   'ドラマ・映画',
   '日常会話',
   '英単語',
+  'IT',
 ];
 
 enum QuizOrder { original, wrongFirst, random }

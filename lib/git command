@@ -1,0 +1,6 @@
+cd /Users/tanakayuma/.claude-worktrees/memoloop/gracious-bhaskara
+git add .
+git commit -m "feature: リスト表示のデザインをモダン化"
+
+cd /Users/tanakayuma/AndroidStudioProjects/memoloop
+git merge claude/gracious-bhaskara -m "Merge claude changes into main"
