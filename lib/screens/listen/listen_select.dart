@@ -42,6 +42,26 @@ class _ListenSelectState extends State<ListenSelect> {
   ////////////////
   ///// UI /////
   ///////////////
+  Widget _buildOrderChip(globals.QuizOrder order, IconData icon) {
+    final isActive = globals.currentOrder == order;
+    return GestureDetector(
+      onTap: () => setState(() => globals.currentOrder = order),
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 200),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          color: isActive ? Color(0xFF9B59B6) : Colors.transparent,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Icon(
+          icon,
+          size: 16,
+          color: isActive ? Colors.white : Colors.grey[500],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,33 +71,21 @@ class _ListenSelectState extends State<ListenSelect> {
 
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 16), // 右端に隙間
-            child: DropdownButton<globals.QuizOrder>(
-              value: globals.currentOrder,
-              underline: SizedBox(),
-              dropdownColor: Colors.grey[100],
-              icon: SizedBox.shrink(),
-              onChanged: (value) {
-                if (value != null) {
-                  setState(() {
-                    globals.currentOrder = value;
-                  });
-                }
-              },
-              items: [
-                DropdownMenuItem(
-                  value: globals.QuizOrder.original,
-                  child: Text('default'),
-                ),
-                DropdownMenuItem(
-                  value: globals.QuizOrder.wrongFirst,
-                  child: Text('mistakes'),
-                ),
-                DropdownMenuItem(
-                  value: globals.QuizOrder.random,
-                  child: Text('shuffle'),
-                ),
-              ],
+            padding: const EdgeInsets.only(right: 12),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _buildOrderChip(globals.QuizOrder.original, Icons.sort_by_alpha),
+                  _buildOrderChip(globals.QuizOrder.wrongFirst, Icons.priority_high),
+                  _buildOrderChip(globals.QuizOrder.random, Icons.shuffle),
+                ],
+              ),
             ),
           ),
         ],
