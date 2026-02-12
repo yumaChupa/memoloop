@@ -221,17 +221,32 @@ class _OverviewSelectState extends State<OverviewSelect> {
                 children: globals.availableTags.map((tag) {
                   final isSelected = _selectedTag == tag;
                   return Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: FilterChip(
-                      label: Text(tag, style: TextStyle(fontSize: 12)),
-                      selected: isSelected,
-                      onSelected: (selected) {
+                    padding: const EdgeInsets.only(right: 16),
+                    child: GestureDetector(
+                      onTap: () {
                         setState(() {
-                          _selectedTag = selected ? tag : null;
+                          _selectedTag = isSelected ? null : tag;
                         });
                       },
-                      selectedColor: Colors.orange[200],
-                      backgroundColor: Colors.grey[200],
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            tag,
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                              color: isSelected ? Color(0xFFE8913A) : Colors.grey[500],
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Container(
+                            height: 2,
+                            width: 24,
+                            color: isSelected ? Color(0xFFE8913A) : Colors.transparent,
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }).toList(),
@@ -273,57 +288,83 @@ class _OverviewSelectState extends State<OverviewSelect> {
                     onTapDown: _storePosition,
                     onLongPress: () => _showMenu(item),
                     child: Container(
-                      margin: EdgeInsets.symmetric(vertical: 6),
-                      decoration: BoxDecoration(color: Color(0xFFFFE6CA)),
-                      child: ListTile(
-                        key: ValueKey(item["filename"]),
-                        dense: true,
-                        minVerticalPadding: 20,
-                        contentPadding: EdgeInsets.symmetric(horizontal: 48),
-                        title: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              item["title"].toString(),
-                              style: TextStyle(
-                                color: Colors.grey[900],
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      margin: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.05),
+                            blurRadius: 4,
+                            offset: Offset(0, 1),
+                          ),
+                        ],
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border(
+                              left: BorderSide(color: Color(0xFFE8913A), width: 4),
                             ),
-                            Text(
-                              updatedAtTrans(item['updatedAt'].toString()),
-                              style: TextStyle(color: Colors.grey[900], fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        subtitle: ((item['tags'] as List<dynamic>?)?.isNotEmpty == true)
-                            ? Padding(
-                                padding: const EdgeInsets.only(top: 4),
-                                child: Wrap(
-                                  spacing: 4,
-                                  children: (item['tags'] as List<dynamic>)
-                                      .cast<String>()
-                                      .map((tag) => Chip(
-                                            label: Text(tag, style: TextStyle(fontSize: 11)),
-                                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                            visualDensity: VisualDensity.compact,
-                                            padding: EdgeInsets.zero,
-                                          ))
-                                      .toList(),
+                          ),
+                          child: ListTile(
+                            key: ValueKey(item["filename"]),
+                            dense: true,
+                            minVerticalPadding: 16,
+                            contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    item["title"].toString(),
+                                    style: TextStyle(
+                                      color: Colors.grey[850],
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
-                              )
-                            : null,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => OverviewScreen(title_filename: item),
+                                SizedBox(width: 8),
+                                Text(
+                                  updatedAtTrans(item['updatedAt'].toString()),
+                                  style: TextStyle(color: Colors.grey[400], fontSize: 11),
+                                ),
+                              ],
                             ),
-                          ).then((_) {
-                            setState(() {});
-                          });
-                        },
+                            subtitle: ((item['tags'] as List<dynamic>?)?.isNotEmpty == true)
+                                ? Padding(
+                                    padding: const EdgeInsets.only(top: 6),
+                                    child: Wrap(
+                                      spacing: 6,
+                                      children: (item['tags'] as List<dynamic>)
+                                          .cast<String>()
+                                          .map((tag) => Text(
+                                                '#$tag',
+                                                style: TextStyle(
+                                                  fontSize: 11,
+                                                  color: Color(0xFFE8913A),
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ))
+                                          .toList(),
+                                    ),
+                                  )
+                                : null,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => OverviewScreen(title_filename: item),
+                                ),
+                              ).then((_) {
+                                setState(() {});
+                              });
+                            },
+                          ),
+                        ),
                       ),
                     ),
                   );
