@@ -51,10 +51,16 @@ Future<void> loadTitleFilenames() async {
     globals.title_filenames = List<Map<String, dynamic>>.from(
       (jsonDecode(jsonStr) as List).map((e) => Map<String, dynamic>.from(e)),
     );
-    // 既存データにtagsがない場合のマイグレーション
+    // 既存データのマイグレーション
     for (var item in globals.title_filenames) {
       if (!item.containsKey('tags')) {
         item['tags'] = <String>[];
+      }
+      if (!item.containsKey('completionCount')) {
+        item['completionCount'] = 0;
+      }
+      if (!item.containsKey('avgTimePerQuestion')) {
+        item['avgTimePerQuestion'] = 0.0;
       }
     }
   } else {

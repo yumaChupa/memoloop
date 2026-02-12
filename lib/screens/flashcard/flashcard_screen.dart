@@ -256,6 +256,15 @@ class _FlashCardState extends State<FlashCard> {
                       contents,
                       widget.title_filename["filename"],
                     );
+                    // 統計情報を更新
+                    if (contents.isNotEmpty) {
+                      final prevCount = (widget.title_filename['completionCount'] ?? 0) as int;
+                      final newCount = prevCount + 1;
+                      final newAvg = answerDuration.inSeconds / contents.length;
+                      widget.title_filename['completionCount'] = newCount;
+                      widget.title_filename['avgTimePerQuestion'] = newAvg;
+                      await saveTitleFilenames();
+                    }
                   },
                   numberOfCardsDisplayed:
                       contents.isEmpty

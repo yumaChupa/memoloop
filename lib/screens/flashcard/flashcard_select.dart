@@ -41,6 +41,13 @@ class _FlashCardSelectState extends State<FlashCardSelect> {
   /////////////////////
   //////// UI ////////
   ////////////////////
+  String _formatAvgTime(dynamic seconds) {
+    if (seconds == null || seconds == 0) return '-';
+    final s = (seconds as num).toDouble();
+    if (s < 60) return '${s.toStringAsFixed(1)}s/問';
+    return '${(s / 60).toStringAsFixed(1)}m/問';
+  }
+
   Widget _buildOrderChip(globals.QuizOrder order, String? label, IconData icon) {
     final isActive = globals.currentOrder == order;
     return GestureDetector(
@@ -152,7 +159,9 @@ class _FlashCardSelectState extends State<FlashCardSelect> {
                                   },
                                 )
                               : null,
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade200)),
+                          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade200)),
+                          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade300)),
                           contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                         ),
                         onChanged: (value) => setState(() => _searchQuery = value),
@@ -187,7 +196,7 @@ class _FlashCardSelectState extends State<FlashCardSelect> {
                               child: ListTile(
                                 key: ValueKey(item["filename"]),
                                 dense: true,
-                                minVerticalPadding: 20,
+                                minVerticalPadding: 16,
                                 contentPadding: EdgeInsets.symmetric(horizontal: 20),
                                 title: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -209,6 +218,26 @@ class _FlashCardSelectState extends State<FlashCardSelect> {
                                       style: TextStyle(color: Colors.grey[400], fontSize: 11),
                                     ),
                                   ],
+                                ),
+                                subtitle: Padding(
+                                  padding: const EdgeInsets.only(top: 6),
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.replay, size: 13, color: Colors.grey[400]),
+                                      SizedBox(width: 3),
+                                      Text(
+                                        '${item['completionCount'] ?? 0}回',
+                                        style: TextStyle(fontSize: 11, color: Colors.grey[400]),
+                                      ),
+                                      SizedBox(width: 12),
+                                      Icon(Icons.timer_outlined, size: 13, color: Colors.grey[400]),
+                                      SizedBox(width: 3),
+                                      Text(
+                                        _formatAvgTime(item['avgTimePerQuestion']),
+                                        style: TextStyle(fontSize: 11, color: Colors.grey[400]),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 onTap: () {
                                   Navigator.push(
