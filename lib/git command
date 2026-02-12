@@ -1,9 +1,15 @@
 cd ~/.claude-worktrees/memoloop/gracious-bhaskara
 git add .
-git commit -m "feature: 出題順選択ドロップダウンボタンをモダン化"
+git commit -m "feature: 検索窓の枠線を薄く、flashcard_selectで回答回数・正答率を表示"
 
 cd ~/AndroidStudioProjects/memoloop
 git checkout main
+git push
 git merge claude/gracious-bhaskara -m "merge claudecode into main"
 
 git diff claude/gracious-bhaskara
+
+
+# mainにマージ後、claude/gracious~~を最新化
+cd ~/.claude-worktrees/memoloop/gracious-bhaskara
+git merge main
