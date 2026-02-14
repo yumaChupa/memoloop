@@ -13,6 +13,7 @@ List<Map<String, dynamic>> title_filenames = [
     "tags": <String>[],
     "completionCount": 0,
     "avgTimePerQuestion": 0.0,
+    "isMine": false,
   },
   {
     "title": "挨拶・反応",
@@ -21,6 +22,7 @@ List<Map<String, dynamic>> title_filenames = [
     "tags": <String>[],
     "completionCount": 0,
     "avgTimePerQuestion": 0.0,
+    "isMine": false,
   },
   {
     "title": "日常会話で使える短い表現",
@@ -29,6 +31,7 @@ List<Map<String, dynamic>> title_filenames = [
     "tags": <String>[],
     "completionCount": 0,
     "avgTimePerQuestion": 0.0,
+    "isMine": false,
   },
   {
     "title": "表現の型",
@@ -37,6 +40,7 @@ List<Map<String, dynamic>> title_filenames = [
     "tags": <String>[],
     "completionCount": 0,
     "avgTimePerQuestion": 0.0,
+    "isMine": false,
   },
   {
     "title": "カフェ・レストラン",
@@ -45,6 +49,7 @@ List<Map<String, dynamic>> title_filenames = [
     "tags": <String>[],
     "completionCount": 0,
     "avgTimePerQuestion": 0.0,
+    "isMine": false,
   },
   {
     "title": "味・食感",
@@ -53,6 +58,7 @@ List<Map<String, dynamic>> title_filenames = [
     "tags": <String>[],
     "completionCount": 0,
     "avgTimePerQuestion": 0.0,
+    "isMine": false,
   },
   {
     "title": "感触",
@@ -61,6 +67,7 @@ List<Map<String, dynamic>> title_filenames = [
     "tags": <String>[],
     "completionCount": 0,
     "avgTimePerQuestion": 0.0,
+    "isMine": false,
   },
   // {
   //   "title": "fallout",

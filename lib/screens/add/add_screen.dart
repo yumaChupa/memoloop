@@ -94,6 +94,7 @@ class _AddScreenState extends State<AddScreen> {
           'filename': widget.title_filename['filename']?.toString() ?? '',
           'updatedAt': widget.title_filename['updatedAt']?.toString() ?? '',
           'tags': (widget.title_filename['tags'] as List<dynamic>?)?.cast<String>() ?? <String>[],
+          'isMine': false,
         };
         globals.title_filenames.add(newItem);
         updateAndSortByDate(newItem);

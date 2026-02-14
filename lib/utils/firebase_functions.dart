@@ -8,6 +8,10 @@ import 'package:memoloop/globals.dart' as globals;
 
 final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+// レート制限: 最後のアップロード時刻を保持
+DateTime? _lastUploadTime;
+const _uploadCooldown = Duration(seconds: 30);
+
 ////////////////////////////////////////////////
 ////// Firebaseから問題セットを取得して返す(filename→return question)
 ////////////////////////////////////////////////
@@ -32,11 +36,21 @@ Future<List<Map<String, dynamic>>> getProblemSet(String filename) async {
 ////////////////////////////////////////////////
 // ローカルの問題セットjsonをFirebaseにアップロード(return;)
 ////////////////////////////////////////////////
-Future<void> uploadProblemSetWithReset(String title, String filename, {List<String> tags = const []}) async {
+/// 問題セットをアップロード。レート制限に引っかかった場合は残り秒数を返す。成功時はnull。
+Future<int?> uploadProblemSetWithReset(String title, String filename, {List<String> tags = const []}) async {
+  // レート制限チェック
+  if (_lastUploadTime != null) {
+    final elapsed = DateTime.now().difference(_lastUploadTime!);
+    if (elapsed < _uploadCooldown) {
+      final remaining = _uploadCooldown.inSeconds - elapsed.inSeconds;
+      return remaining;
+    }
+  }
+
   final dir = await getApplicationDocumentsDirectory();
   final file = File('${dir.path}/$filename.json');
 
-  if (!await file.exists()) return;
+  if (!await file.exists()) return null;
 
   final jsonStr = await file.readAsString();
   final List<dynamic> questions = jsonDecode(jsonStr);
@@ -74,6 +88,9 @@ Future<void> uploadProblemSetWithReset(String title, String filename, {List<Stri
     batchUpload.set(docRef, q);
   }
   await batchUpload.commit();
+
+  _lastUploadTime = DateTime.now();
+  return null;
 }
 
 

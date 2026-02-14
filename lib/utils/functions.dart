@@ -62,6 +62,9 @@ Future<void> loadTitleFilenames() async {
       if (!item.containsKey('avgTimePerQuestion')) {
         item['avgTimePerQuestion'] = 0.0;
       }
+      if (!item.containsKey('isMine')) {
+        item['isMine'] = false;
+      }
     }
   } else {
     // 初回起動時 → globalsの値を保存

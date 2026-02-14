@@ -115,7 +115,15 @@ class _createSelectState extends State<createSelect> {
               onPressed: () {
                 final title = controller.text.trim();
                 if (title.isNotEmpty) {
-                  final filename = md5.convert(utf8.encode(title+globals.uuid)).toString();
+                  // タイトルから安全なスラッグを生成（日本語OK、絵文字とFirestore禁止文字を除去）
+                  final slug = title
+                      .replaceAll(RegExp(r'[\u{1F000}-\u{1FFFF}]', unicode: true), '') // 絵文字除去
+                      .replaceAll(RegExp(r'[/\.\s]'), '_')   // パス区切り・ドット・空白→_
+                      .replaceAll(RegExp(r'_+'), '_')          // 連続_を1つに
+                      .replaceAll(RegExp(r'^_|_$'), '');       // 先頭末尾の_を除去
+                  final truncatedSlug = slug.length > 20 ? slug.substring(0, 20) : slug;
+                  final shortHash = md5.convert(utf8.encode(title + globals.uuid)).toString().substring(0, 8);
+                  final filename = '${truncatedSlug}_$shortHash';
                   final update_now = DateTime.now().toIso8601String();
 
                   final newItem = <String, dynamic>{
@@ -123,6 +131,7 @@ class _createSelectState extends State<createSelect> {
                     "filename": filename,
                     "updatedAt": update_now,
                     "tags": selectedTags.toList(),
+                    "isMine": true,
                   };
 
                   setState(() {

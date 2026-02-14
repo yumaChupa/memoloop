@@ -141,6 +141,12 @@ class _OverviewSelectState extends State<OverviewSelect> {
     } else if (selected == 'share') {
       await shareFile(context, item['filename']?.toString() ?? '');
     } else if (selected == 'upload') {
+      if (item['isMine'] != true) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('ダウンロードした問題セットは公開できません')),
+        );
+        return;
+      }
       final confirmed = await showDialog<bool>(
         context: context,
         builder:
@@ -161,11 +167,16 @@ class _OverviewSelectState extends State<OverviewSelect> {
       );
       if (confirmed == true) {
         final tags = (item['tags'] as List<dynamic>?)?.cast<String>() ?? [];
-        uploadProblemSetWithReset(
+        final remaining = await uploadProblemSetWithReset(
           item["title"]!.toString(),
           item["filename"]!.toString(),
           tags: tags,
         );
+        if (remaining != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('アップロードの間隔が短すぎます。${remaining}秒後に再試行してください')),
+          );
+        }
       }
     } else if (selected == 'delete') {
       final confirm = await showDialog<bool>(
