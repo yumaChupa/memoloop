@@ -283,7 +283,7 @@ class _FlashCardState extends State<FlashCard> {
                       child: Card(
                         color: Color(0xFFFFFFFF),
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.redAccent, width: 4),
+                          side: BorderSide(color: Color(0xFFE05555), width: 4),
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: SizedBox(

@@ -235,7 +235,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                             SizedBox(height: 10),
                             Divider(
                               thickness: 1,
-                              color: Colors.orange[900],
+                              color: Color(0xFFE8913A),
                               height: 1,
                             ),
                           ],

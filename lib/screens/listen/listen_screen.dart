@@ -158,6 +158,10 @@ class _ListenScreenState extends State<ListenScreen> {
                   children: [
                     Expanded(
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF9B59B6),
+                          foregroundColor: Colors.white,
+                        ),
                         onPressed: _start,
                         child: const Text('再生'),
                       ),
@@ -165,6 +169,10 @@ class _ListenScreenState extends State<ListenScreen> {
                     const SizedBox(width: 20),
                     Expanded(
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey[300],
+                          foregroundColor: Colors.black87,
+                        ),
                         onPressed: _stop,
                         child: const Text('停止'),
                       ),

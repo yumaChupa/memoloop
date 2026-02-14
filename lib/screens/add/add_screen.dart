@@ -166,7 +166,7 @@ class _AddScreenState extends State<AddScreen> {
                       ),
                     ),
                     SizedBox(height: 10),
-                    Divider(thickness: 1, color: Colors.green, height: 1),
+                    Divider(thickness: 1, color: Color(0xFF27AE60), height: 1),
                   ],
                 ),
               ),
