@@ -53,7 +53,7 @@ class _CreateState extends State<Create> {
                   padding: EdgeInsets.all(40),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Color(0xFF3E80ED), width: 6),
+                    border: Border.all(color: Color(0xFF4A90D9), width: 4),
                   ),
                   child: TextFormField(
                     minLines: 1,    // 初期1行
@@ -75,7 +75,7 @@ class _CreateState extends State<Create> {
                   padding: EdgeInsets.all(40),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Color(0xFF3E80ED), width: 6),
+                    border: Border.all(color: Color(0xFF4A90D9), width: 4),
                   ),
                   child: TextFormField(
                     minLines: 1,    // 初期1行
