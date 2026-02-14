@@ -71,10 +71,6 @@ class _OverviewSelectState extends State<OverviewSelect> {
           child: Text('タグ編集', style: TextStyle(fontWeight: FontWeight.bold)),
         ),
         PopupMenuItem(
-          value: 'share',
-          child: Text('共有', style: TextStyle(fontWeight: FontWeight.bold)),
-        ),
-        PopupMenuItem(
           value: 'upload',
           child: Text('公開', style: TextStyle(fontWeight: FontWeight.bold)),
         ),
@@ -138,8 +134,6 @@ class _OverviewSelectState extends State<OverviewSelect> {
         });
         await saveTitleFilenames();
       }
-    } else if (selected == 'share') {
-      await shareFile(context, item['filename']?.toString() ?? '');
     } else if (selected == 'upload') {
       if (item['isMine'] != true) {
         ScaffoldMessenger.of(context).showSnackBar(
