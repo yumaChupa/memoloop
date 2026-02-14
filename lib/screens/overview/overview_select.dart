@@ -47,7 +47,7 @@ class _OverviewSelectState extends State<OverviewSelect> {
     _tapPosition = details.globalPosition;
   }
 
-  // 長押しで共有・削除メニュー表示
+  // 長押しでタグ編集・公開・削除
   Future<void> _showMenu(Map<String, dynamic> item) async {
     final screenSize = MediaQuery.of(context).size;
     final dx = screenSize.width - 300;
