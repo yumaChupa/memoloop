@@ -67,8 +67,8 @@ class _OverviewSelectState extends State<OverviewSelect> {
       ),
       items: [
         PopupMenuItem(
-          value: 'tags',
-          child: Text('タグ編集', style: TextStyle(fontWeight: FontWeight.bold)),
+          value: 'edit',
+          child: Text('編集', style: TextStyle(fontWeight: FontWeight.bold)),
         ),
         PopupMenuItem(
           value: 'upload',
@@ -84,36 +84,68 @@ class _OverviewSelectState extends State<OverviewSelect> {
       ],
     );
 
-    if (selected == 'tags') {
+    if (selected == 'edit') {
+      final titleController = TextEditingController(text: item['title']?.toString() ?? '');
       final currentTags = (item['tags'] as List<dynamic>?)?.cast<String>() ?? [];
       final editingTags = currentTags.toSet();
-      final newTags = await showDialog<List<String>>(
+      final result = await showDialog<Map<String, dynamic>>(
         context: context,
         builder: (_) => StatefulBuilder(
           builder: (context, setDialogState) => AlertDialog(
             backgroundColor: Colors.grey[50],
-            title: Text('タグ編集', style: TextStyle(fontSize: 18)),
-            content: Wrap(
-              spacing: 8,
-              runSpacing: 4,
-              children: globals.availableTags.map((tag) {
-                final isSelected = editingTags.contains(tag);
-                return FilterChip(
-                  label: Text(tag, style: TextStyle(fontSize: 13)),
-                  selected: isSelected,
-                  onSelected: (selected) {
-                    setDialogState(() {
-                      if (selected) {
-                        editingTags.add(tag);
-                      } else {
-                        editingTags.remove(tag);
-                      }
-                    });
-                  },
-                  selectedColor: Colors.orange[200],
-                  backgroundColor: Colors.grey[200],
-                );
-              }).toList(),
+            title: Text('編集', style: TextStyle(fontSize: 18)),
+            content: GestureDetector(
+              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+              child: Container(
+                width: 560,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      color: Colors.white,
+                      child: TextFormField(
+                        controller: titleController,
+                        decoration: const InputDecoration(
+                          hintText: 'タイトルを入力',
+                          hintStyle: TextStyle(color: Colors.grey, fontSize: 18),
+                          border: InputBorder.none,
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
+                          ),
+                        ),
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    SizedBox(height: 12),
+                    Text('タグ', style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+                    SizedBox(height: 6),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 4,
+                      children: globals.availableTags.map((tag) {
+                        final isSelected = editingTags.contains(tag);
+                        return FilterChip(
+                          label: Text(tag, style: TextStyle(fontSize: 13)),
+                          selected: isSelected,
+                          onSelected: (selected) {
+                            setDialogState(() {
+                              if (selected) {
+                                editingTags.add(tag);
+                              } else {
+                                editingTags.remove(tag);
+                              }
+                            });
+                          },
+                          selectedColor: Colors.orange[200],
+                          backgroundColor: Colors.grey[200],
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
+              ),
             ),
             actions: [
               TextButton(
@@ -121,16 +153,24 @@ class _OverviewSelectState extends State<OverviewSelect> {
                 child: Text('キャンセル'),
               ),
               TextButton(
-                onPressed: () => Navigator.pop(context, editingTags.toList()),
+                onPressed: () {
+                  final newTitle = titleController.text.trim();
+                  if (newTitle.isEmpty) return;
+                  Navigator.pop(context, {
+                    'title': newTitle,
+                    'tags': editingTags.toList(),
+                  });
+                },
                 child: Text('保存'),
               ),
             ],
           ),
         ),
       );
-      if (newTags != null) {
+      if (result != null) {
         setState(() {
-          item['tags'] = newTags;
+          item['title'] = result['title'];
+          item['tags'] = result['tags'];
         });
         await saveTitleFilenames();
       }
