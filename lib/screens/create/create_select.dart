@@ -88,6 +88,7 @@ class _createSelectState extends State<createSelect> {
                       return FilterChip(
                         label: Text(tag, style: TextStyle(fontSize: 13)),
                         selected: isSelected,
+                        showCheckmark: false,
                         onSelected: (selected) {
                           setDialogState(() {
                             if (selected) {
@@ -170,8 +171,38 @@ class _createSelectState extends State<createSelect> {
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: SizedBox(
+                height: 36,
+                child: TextField(
+                  controller: _searchController,
+                  style: TextStyle(fontSize: 13),
+                  decoration: InputDecoration(
+                    hintText: '検索...',
+                    hintStyle: TextStyle(fontSize: 13),
+                    prefixIcon: Icon(Icons.search, size: 18),
+                    prefixIconConstraints: BoxConstraints(minWidth: 36),
+                    suffixIcon: _searchQuery.isNotEmpty
+                        ? IconButton(
+                            icon: Icon(Icons.clear, size: 16),
+                            onPressed: () {
+                              _searchController.clear();
+                              setState(() => _searchQuery = '');
+                            },
+                          )
+                        : null,
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade200)),
+                    enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade200)),
+                    focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade300)),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                  ),
+                  onChanged: (value) => setState(() => _searchQuery = value),
+                ),
+              ),
+            ),
             SizedBox(
-              height: 40,
+              height: 36,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -212,32 +243,6 @@ class _createSelectState extends State<createSelect> {
             Expanded(
               child: CustomScrollView(
                 slivers: [
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      child: TextField(
-                        controller: _searchController,
-                        decoration: InputDecoration(
-                          hintText: '検索...',
-                          prefixIcon: Icon(Icons.search),
-                          suffixIcon: _searchQuery.isNotEmpty
-                              ? IconButton(
-                                  icon: Icon(Icons.clear),
-                                  onPressed: () {
-                                    _searchController.clear();
-                                    setState(() => _searchQuery = '');
-                                  },
-                                )
-                              : null,
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade200)),
-                          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade200)),
-                          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade300)),
-                          contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                        ),
-                        onChanged: (value) => setState(() => _searchQuery = value),
-                      ),
-                    ),
-                  ),
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {

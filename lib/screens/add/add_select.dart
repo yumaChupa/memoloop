@@ -58,7 +58,28 @@ class _AddSelectState extends State<AddSelect> {
         isLoading = false;
       });
     });
-    // firebaseInit(globals.title_filenames);
+  }
+
+  Widget _buildSortTab(String label, _AddSortOrder order) {
+    final isActive = _sortOrder == order;
+    return GestureDetector(
+      onTap: () => setState(() => _sortOrder = order),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+        decoration: BoxDecoration(
+          color: isActive ? Color(0xFF27AE60) : Colors.grey[200],
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+            color: isActive ? Colors.white : Colors.grey[600],
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -72,103 +93,107 @@ class _AddSelectState extends State<AddSelect> {
           appBar: AppBar(
             title: const Text("Add"),
             scrolledUnderElevation: 0.2,
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: DropdownButton<_AddSortOrder>(
-                  value: _sortOrder,
-                  underline: SizedBox(),
-                  dropdownColor: Colors.grey[100],
-                  icon: Icon(Icons.sort),
-                  onChanged: (value) {
-                    if (value != null) {
-                      setState(() => _sortOrder = value);
-                    }
-                  },
-                  items: [
-                    DropdownMenuItem(value: _AddSortOrder.date, child: Text('新しい順')),
-                    DropdownMenuItem(value: _AddSortOrder.downloads, child: Text('DL数順')),
-                  ],
-                ),
-              ),
-            ],
           ),
           body: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: Column(
               children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  child: SizedBox(
+                    height: 36,
+                    child: TextField(
+                      controller: _searchController,
+                      style: TextStyle(fontSize: 13),
+                      decoration: InputDecoration(
+                        hintText: '検索...',
+                        hintStyle: TextStyle(fontSize: 13),
+                        prefixIcon: Icon(Icons.search, size: 18),
+                        prefixIconConstraints: BoxConstraints(minWidth: 36),
+                        suffixIcon: _searchQuery.isNotEmpty
+                            ? IconButton(
+                                icon: Icon(Icons.clear, size: 16),
+                                onPressed: () {
+                                  _searchController.clear();
+                                  setState(() => _searchQuery = '');
+                                },
+                              )
+                            : null,
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade200)),
+                        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade200)),
+                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade300)),
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                      ),
+                      onChanged: (value) => setState(() => _searchQuery = value),
+                    ),
+                  ),
+                ),
+                // タグフィルター + ソート切り替え
                 SizedBox(
-                  height: 40,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    children: globals.availableTags.map((tag) {
-                      final isSelected = _selectedTag == tag;
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 16),
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _selectedTag = isSelected ? null : tag;
-                            });
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                tag,
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                                  color: isSelected ? Color(0xFF27AE60) : Colors.grey[500],
+                  height: 36,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          padding: const EdgeInsets.only(left: 16),
+                          children: globals.availableTags.map((tag) {
+                            final isSelected = _selectedTag == tag;
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _selectedTag = isSelected ? null : tag;
+                                  });
+                                },
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      tag,
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                                        color: isSelected ? Color(0xFF27AE60) : Colors.grey[500],
+                                      ),
+                                    ),
+                                    SizedBox(height: 4),
+                                    Container(
+                                      height: 2,
+                                      width: 24,
+                                      color: isSelected ? Color(0xFF27AE60) : Colors.transparent,
+                                    ),
+                                  ],
                                 ),
                               ),
-                              SizedBox(height: 4),
-                              Container(
-                                height: 2,
-                                width: 24,
-                                color: isSelected ? Color(0xFF27AE60) : Colors.transparent,
-                              ),
-                            ],
-                          ),
+                            );
+                          }).toList(),
                         ),
-                      );
-                    }).toList(),
+                      ),
+                      // ソート切り替えタブ
+                      Container(
+                        padding: const EdgeInsets.only(right: 16),
+                        child: Row(
+                          children: [
+                            _buildSortTab('New', _AddSortOrder.date),
+                            SizedBox(width: 8),
+                            _buildSortTab('DL', _AddSortOrder.downloads),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Expanded(
                   child: CustomScrollView(
                     slivers: [
-                      SliverToBoxAdapter(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          child: TextField(
-                            controller: _searchController,
-                            decoration: InputDecoration(
-                              hintText: '検索...',
-                              prefixIcon: Icon(Icons.search),
-                              suffixIcon: _searchQuery.isNotEmpty
-                                  ? IconButton(
-                                      icon: Icon(Icons.clear),
-                                      onPressed: () {
-                                        _searchController.clear();
-                                        setState(() => _searchQuery = '');
-                                      },
-                                    )
-                                  : null,
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade200)),
-                              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade200)),
-                              focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade300)),
-                              contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                            ),
-                            onChanged: (value) => setState(() => _searchQuery = value),
-                          ),
-                        ),
-                      ),
                       SliverList(
                         delegate: SliverChildBuilderDelegate(
                           (context, index) {
                             final item = _filteredSets[index];
+                            final questionCount = item['questionCount'] ?? 0;
+                            final downloadCount = item['downloadCount'] ?? 0;
                             return Container(
                               margin: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
                               decoration: BoxDecoration(
@@ -195,38 +220,35 @@ class _AddSelectState extends State<AddSelect> {
                                     dense: true,
                                     minVerticalPadding: 16,
                                     contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                                    title: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Flexible(
-                                          child: Text(
-                                            item["title"].toString(),
-                                            style: TextStyle(
-                                              color: Colors.grey[850],
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                        SizedBox(width: 8),
-                                        Text(
-                                          updatedAtTrans(item['updatedAt'].toString()),
-                                          style: TextStyle(
-                                            color: Colors.grey[400],
-                                            fontSize: 11,
-                                          ),
-                                        ),
-                                      ],
+                                    title: Text(
+                                      item["title"].toString(),
+                                      style: TextStyle(
+                                        color: Colors.grey[850],
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                     subtitle: Padding(
-                                      padding: const EdgeInsets.only(top: 4),
+                                      padding: const EdgeInsets.only(top: 6),
                                       child: Row(
                                         children: [
-                                          Icon(Icons.download, size: 13, color: Colors.grey[400]),
-                                          SizedBox(width: 3),
                                           Text(
-                                            '${item['downloadCount'] ?? 0}',
+                                            updatedAtTrans(item['updatedAt'].toString()),
+                                            style: TextStyle(fontSize: 11, color: Colors.grey[400]),
+                                          ),
+                                          SizedBox(width: 12),
+                                          Icon(Icons.download, size: 13, color: Colors.grey[400]),
+                                          SizedBox(width: 2),
+                                          Text(
+                                            '$downloadCount',
+                                            style: TextStyle(fontSize: 11, color: Colors.grey[400]),
+                                          ),
+                                          SizedBox(width: 12),
+                                          Icon(Icons.quiz_outlined, size: 13, color: Colors.grey[400]),
+                                          SizedBox(width: 2),
+                                          Text(
+                                            '$questionCount',
                                             style: TextStyle(fontSize: 11, color: Colors.grey[400]),
                                           ),
                                         ],

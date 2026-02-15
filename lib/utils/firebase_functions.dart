@@ -79,6 +79,7 @@ Future<int?> uploadProblemSetWithReset(String title, String filename, {List<Stri
     'updatedAt': now,
     'tags': tags,
     'downloadCount': currentDownloads,
+    'questionCount': questions.length,
   });
 
   // 3. questions 再アップロード
