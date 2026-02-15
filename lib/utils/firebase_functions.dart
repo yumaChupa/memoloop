@@ -10,7 +10,7 @@ final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 // レート制限: 最後のアップロード時刻を保持
 DateTime? _lastUploadTime;
-const _uploadCooldown = Duration(seconds: 30);
+const _uploadCooldown = Duration(seconds: 20);
 
 ////////////////////////////////////////////////
 ////// Firebaseから問題セットを取得して返す(filename→return question)
@@ -38,7 +38,7 @@ Future<List<Map<String, dynamic>>> getProblemSet(String filename) async {
 ////////////////////////////////////////////////
 /// 問題セットをアップロード。レート制限に引っかかった場合は残り秒数を返す。
 /// 容量制限超過時は -1 を返す。成功時はnull。
-const int maxQuestionCount = 200;
+const int maxQuestionCount = 310;
 
 Future<int?> uploadProblemSetWithReset(String title, String filename, {List<String> tags = const []}) async {
   // レート制限チェック
