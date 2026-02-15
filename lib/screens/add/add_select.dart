@@ -93,6 +93,18 @@ class _AddSelectState extends State<AddSelect> {
           appBar: AppBar(
             title: const Text("Add"),
             scrolledUnderElevation: 0.2,
+            actions: [
+              Container(
+                padding: const EdgeInsets.only(right: 16),
+                child: Row(
+                  children: [
+                    _buildSortTab('New', _AddSortOrder.date),
+                    SizedBox(width: 8),
+                    _buildSortTab('DL', _AddSortOrder.downloads),
+                  ],
+                ),
+              ),
+            ],
           ),
           body: GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -131,59 +143,46 @@ class _AddSelectState extends State<AddSelect> {
                 // タグフィルター + ソート切り替え
                 SizedBox(
                   height: 36,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          padding: const EdgeInsets.only(left: 16),
-                          children: globals.availableTags.map((tag) {
-                            final isSelected = _selectedTag == tag;
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 16),
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _selectedTag = isSelected ? null : tag;
-                                  });
-                                },
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      tag,
-                                      style: TextStyle(
-                                        fontSize: 13,
-                                        fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                                        color: isSelected ? Color(0xFF27AE60) : Colors.grey[500],
-                                      ),
+                  child:
+                    Expanded(
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        padding: const EdgeInsets.only(left: 16),
+                        children: globals.availableTags.map((tag) {
+                          final isSelected = _selectedTag == tag;
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 16),
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _selectedTag = isSelected ? null : tag;
+                                });
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    tag,
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                                      color: isSelected ? Color(0xFF27AE60) : Colors.grey[500],
                                     ),
-                                    SizedBox(height: 4),
-                                    Container(
-                                      height: 2,
-                                      width: 24,
-                                      color: isSelected ? Color(0xFF27AE60) : Colors.transparent,
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Container(
+                                    height: 2,
+                                    width: 24,
+                                    color: isSelected ? Color(0xFF27AE60) : Colors.transparent,
+                                  ),
+                                ],
                               ),
-                            );
-                          }).toList(),
-                        ),
+                            ),
+                          );
+                        }).toList(),
                       ),
-                      // ソート切り替えタブ
-                      Container(
-                        padding: const EdgeInsets.only(right: 16),
-                        child: Row(
-                          children: [
-                            _buildSortTab('New', _AddSortOrder.date),
-                            SizedBox(width: 8),
-                            _buildSortTab('DL', _AddSortOrder.downloads),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                      //
                 ),
                 Expanded(
                   child: CustomScrollView(

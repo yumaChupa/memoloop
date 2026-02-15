@@ -1,10 +1,8 @@
 // 1. Dart標準ライブラリ
-import 'dart:convert';
 import 'dart:io';
 
 // 2. Flutter SDKのパッケージ
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
 
 // 3. サードパーティパッケージ
 import 'package:path_provider/path_provider.dart';
@@ -13,7 +11,6 @@ import 'package:path_provider/path_provider.dart';
 import '../../globals.dart' as globals;
 import '../../utils/functions.dart';
 import '../../utils/firebase_functions.dart';
-import 'package:memoloop/screens/create/create_screen.dart';
 
 class AddScreen extends StatefulWidget {
   final Map<String, dynamic> titleFilename;
