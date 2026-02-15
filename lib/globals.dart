@@ -69,18 +69,6 @@ List<Map<String, dynamic>> title_filenames = [
     "avgTimePerQuestion": 0.0,
     "isMine": false,
   },
-  // {
-  //   "title": "fallout",
-  //   "filename": "fallout",
-  //   "updatedAt": "2025-07-01T00:00:00.000",
-  //   "tags": <String>[],
-  // },
-  // {
-  //   "title": "フレンズ-s1-",
-  //   "filename": "friends_s1",
-  //   "updatedAt": "2025-07-02T00:00:00.000",
-  //   "tags": <String>[],
-  // },
 ];
 
 // 選択可能なタグ一覧（追加する場合はここにStringを追加するだけ）
@@ -89,6 +77,7 @@ const List<String> availableTags = [
   '日常会話',
   '英単語',
   'IT',
+  '短文'
 ];
 
 enum QuizOrder { original, wrongFirst, random }
