@@ -120,20 +120,6 @@ class _AddScreenState extends State<AddScreen> {
           title: Text(widget.title_filename["title"] ?? ""),
           scrolledUnderElevation: 0.2,
           actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 4),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.download, size: 16, color: Colors.grey[600]),
-                  SizedBox(width: 2),
-                  Text(
-                    '${widget.title_filename['downloadCount'] ?? 0}',
-                    style: TextStyle(fontSize: 13, color: Colors.grey[600]),
-                  ),
-                ],
-              ),
-            ),
             IconButton(icon: Icon(Icons.download), onPressed: showAddDialog),
           ],
         ),
