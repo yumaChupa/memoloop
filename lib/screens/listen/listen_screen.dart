@@ -1,15 +1,18 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 import 'package:memoloop/globals.dart' as globals;
 import 'package:memoloop/utils/functions.dart';
-import 'package:memoloop/utils/tts_function.dart'; // speakText関数を含むファイル
+import 'package:memoloop/utils/tts_function.dart';
+
+enum AudioState { idle, loading, playing, stopping }
 
 class ListenScreen extends StatefulWidget {
-  final Map<String, dynamic> title_filename;
+  final Map<String, dynamic> titleFilename;
 
-  const ListenScreen({super.key, required this.title_filename});
+  const ListenScreen({super.key, required this.titleFilename});
 
   @override
   State<ListenScreen> createState() => _ListenScreenState();
@@ -20,9 +23,10 @@ class _ListenScreenState extends State<ListenScreen> {
   ///// 1.変数定義 /////
   ///////////////////////
   int currentIndex = -1;
-  bool isPlaying = false;
+  AudioState _audioState = AudioState.idle;
   String displayedText = "";
   List<Map<String, dynamic>> contents = [];
+  AudioPlayer? _currentPlayer;
 
   ////////////////////////
   ///// 2.ライフサイクル /////
@@ -30,7 +34,7 @@ class _ListenScreenState extends State<ListenScreen> {
   @override
   void initState() {
     super.initState();
-    loadJson(widget.title_filename["filename"]).then((data) {
+    loadJson(widget.titleFilename["filename"]).then((data) {
       setState(() {
         contents = List<Map<String, dynamic>>.from(data);
         switch (globals.currentOrder) {
@@ -56,6 +60,12 @@ class _ListenScreenState extends State<ListenScreen> {
     });
   }
 
+  @override
+  void dispose() {
+    _currentPlayer?.dispose();
+    super.dispose();
+  }
+
   ////////////////////////
   ///// 3.ロジック /////
   ///////////////////////
@@ -63,7 +73,7 @@ class _ListenScreenState extends State<ListenScreen> {
     bool finished = false;
 
     for (int i = currentIndex + 1; i < contents.length; i++) {
-      if (!isPlaying || !mounted) break;
+      if (_audioState == AudioState.stopping || !mounted) break;
 
       final textEn = contents[i]["English"].toString();
       final textJp = contents[i]["Japanese"].toString();
@@ -71,12 +81,30 @@ class _ListenScreenState extends State<ListenScreen> {
       if (mounted) {
         setState(() {
           currentIndex = i;
-          displayedText = ""; // 読み上げ前にリセット
+          displayedText = "";
+          _audioState = AudioState.loading;
         });
       }
 
-      await speakText(textJp); // Google Cloud TTS APIで読み上げ
-      // await Future.delayed(const Duration(milliseconds: 0));  //delayなくてもawait終了待ってたら良いdelayに。
+      // 新しいPlayerを作成し、外部停止を可能にする
+      _currentPlayer?.dispose();
+      _currentPlayer = AudioPlayer();
+
+      try {
+        if (_audioState == AudioState.stopping || !mounted) break;
+
+        if (mounted) {
+          setState(() => _audioState = AudioState.playing);
+        }
+
+        await speakText(textJp, player: _currentPlayer!);
+      } catch (_) {
+        // 停止によるエラーは無視
+        if (_audioState == AudioState.stopping) break;
+        rethrow;
+      }
+
+      if (_audioState == AudioState.stopping || !mounted) break;
 
       if (mounted) {
         setState(() {
@@ -84,39 +112,62 @@ class _ListenScreenState extends State<ListenScreen> {
         });
       }
 
-      await Future.delayed(const Duration(milliseconds: 2500));
+      // 2.5秒待機（停止時は即座に抜ける）
+      for (int ms = 0; ms < 25; ms++) {
+        if (_audioState == AudioState.stopping || !mounted) break;
+        await Future.delayed(const Duration(milliseconds: 100));
+      }
 
       if (i == contents.length - 1) {
         finished = true;
       }
     }
 
-    if (mounted && finished) {
+    _currentPlayer?.dispose();
+    _currentPlayer = null;
+
+    if (mounted) {
       setState(() {
-        isPlaying = false;
-        currentIndex = -1;
-        displayedText = "";
+        _audioState = AudioState.idle;
+        if (finished) {
+          currentIndex = -1;
+          displayedText = "";
+        }
       });
     }
   }
 
   Future<void> _start() async {
-    if (isPlaying) return;
+    if (_audioState != AudioState.idle) return;
     if (contents.isEmpty) return;
 
     setState(() {
-      isPlaying = true;
+      _audioState = AudioState.loading;
     });
 
     await _speakSequence();
   }
 
-  void _stop() {
-    // Google TTS APIの停止処理は非同期でないため不要
+  Future<void> _stop() async {
+    if (_audioState == AudioState.idle || _audioState == AudioState.stopping) return;
+
     setState(() {
-      isPlaying = false;
-      // currentIndex と displayedText は保持し再開可能に
+      _audioState = AudioState.stopping;
     });
+
+    // 再生中のオーディオを即座に停止
+    try {
+      await _currentPlayer?.stop();
+    } catch (_) {}
+  }
+
+  void _onButtonPressed() {
+    if (_audioState == AudioState.idle) {
+      _start();
+    } else if (_audioState == AudioState.playing) {
+      _stop();
+    }
+    // loading, stopping 時はボタン無効
   }
 
   ////////////////
@@ -125,16 +176,25 @@ class _ListenScreenState extends State<ListenScreen> {
   @override
   Widget build(BuildContext context) {
     int displayIndex = max(0, currentIndex);
+
+    // ボタンの表示状態を決定
+    final bool buttonEnabled = _audioState == AudioState.idle || _audioState == AudioState.playing;
+    final bool isIdle = _audioState == AudioState.idle;
+    final bool isLoading = _audioState == AudioState.loading;
+
     return PopScope(
       canPop: true,
       onPopInvoked: (didPop) async {
-        updateAndSortByDate(widget.title_filename);
-        saveContents(contents, widget.title_filename["filename"]);
+        if (_audioState != AudioState.idle) {
+          await _stop();
+        }
+        updateAndSortByDate(widget.titleFilename);
+        saveContents(contents, widget.titleFilename["filename"]);
         setState(() {});
         return;
       },
       child: Scaffold(
-        appBar: AppBar(title: Text(widget.title_filename["title"])),
+        appBar: AppBar(title: Text(widget.titleFilename["title"])),
         body: Center(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -154,30 +214,28 @@ class _ListenScreenState extends State<ListenScreen> {
                   ),
                 ),
 
-                Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFF9B59B6),
-                          foregroundColor: Colors.white,
-                        ),
-                        onPressed: _start,
-                        child: const Text('再生'),
-                      ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: isIdle ? Color(0xFF9B59B6) : Colors.grey[300],
+                      foregroundColor: isIdle ? Colors.white : Colors.black87,
+                      disabledBackgroundColor: Colors.grey[200],
+                      disabledForegroundColor: Colors.grey[400],
                     ),
-                    const SizedBox(width: 20),
-                    Expanded(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.grey[300],
-                          foregroundColor: Colors.black87,
-                        ),
-                        onPressed: _stop,
-                        child: const Text('停止'),
-                      ),
-                    ),
-                  ],
+                    onPressed: buttonEnabled ? _onButtonPressed : null,
+                    icon: isLoading
+                        ? SizedBox(
+                            width: 16,
+                            height: 16,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Colors.grey[400],
+                            ),
+                          )
+                        : Icon(isIdle ? Icons.play_arrow : Icons.stop),
+                    label: Text(isIdle ? '再生' : isLoading ? '読み込み中...' : _audioState == AudioState.stopping ? '停止中...' : '停止'),
+                  ),
                 ),
               ],
             ),

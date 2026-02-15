@@ -16,9 +16,9 @@ import '../../utils/firebase_functions.dart';
 import 'package:memoloop/screens/create/create_screen.dart';
 
 class AddScreen extends StatefulWidget {
-  final Map<String, dynamic> title_filename;
+  final Map<String, dynamic> titleFilename;
 
-  AddScreen({required this.title_filename});
+  AddScreen({required this.titleFilename});
 
   @override
   State<AddScreen> createState() => _AddScreenState();
@@ -32,7 +32,7 @@ class _AddScreenState extends State<AddScreen> {
   void initState() {
     super.initState();
 
-    filename = widget.title_filename["filename"];
+    filename = widget.titleFilename["filename"];
     getProblemSet(filename).then((data) async {
       setState(() {
         contents = data;
@@ -56,7 +56,7 @@ class _AddScreenState extends State<AddScreen> {
       }
     }
     print("////////////////");
-    print(globals.title_filenames);
+    print(globals.titleFilenames);
     print("");
   }
 
@@ -80,8 +80,8 @@ class _AddScreenState extends State<AddScreen> {
     );
 
     if (added == true) {
-      final newFilename = widget.title_filename['filename'].toString();
-      final exists = globals.title_filenames.any(
+      final newFilename = widget.titleFilename['filename'].toString();
+      final exists = globals.titleFilenames.any(
         (e) => e['filename'] == newFilename,
       );
       if (exists) {
@@ -90,13 +90,13 @@ class _AddScreenState extends State<AddScreen> {
         ).showSnackBar(SnackBar(content: Text("すでに追加されています")));
       } else {
         final newItem = <String, dynamic>{
-          'title': widget.title_filename['title']?.toString() ?? '',
-          'filename': widget.title_filename['filename']?.toString() ?? '',
-          'updatedAt': widget.title_filename['updatedAt']?.toString() ?? '',
-          'tags': (widget.title_filename['tags'] as List<dynamic>?)?.cast<String>() ?? <String>[],
+          'title': widget.titleFilename['title']?.toString() ?? '',
+          'filename': widget.titleFilename['filename']?.toString() ?? '',
+          'updatedAt': widget.titleFilename['updatedAt']?.toString() ?? '',
+          'tags': (widget.titleFilename['tags'] as List<dynamic>?)?.cast<String>() ?? <String>[],
           'isMine': false,
         };
-        globals.title_filenames.add(newItem);
+        globals.titleFilenames.add(newItem);
         updateAndSortByDate(newItem);
         await saveContents(contents, filename);
         await incrementDownloadCount(filename);
@@ -112,12 +112,12 @@ class _AddScreenState extends State<AddScreen> {
     return PopScope(
       canPop: true,
       onPopInvoked: (didPop) async {
-        updateAndSortByDate(widget.title_filename);
-        saveContents(contents, widget.title_filename["filename"]);
+        updateAndSortByDate(widget.titleFilename);
+        saveContents(contents, widget.titleFilename["filename"]);
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title_filename["title"] ?? ""),
+          title: Text(widget.titleFilename["title"] ?? ""),
           scrolledUnderElevation: 0.2,
           actions: [
             IconButton(icon: Icon(Icons.download), onPressed: showAddDialog),

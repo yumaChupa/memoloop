@@ -40,7 +40,7 @@ Future<void> saveContents(List<Map<String, dynamic>> contents, String filename) 
 }
 
 
-// title_filenamesを読み込み。アプリ起動時に動かす。
+// titleFilenamesを読み込み。アプリ起動時に動かす。
 Future<void> loadTitleFilenames() async {
   final dir = await getApplicationDocumentsDirectory();
   final file = File('${dir.path}/title_filenames.json');
@@ -48,11 +48,11 @@ Future<void> loadTitleFilenames() async {
   if (await file.exists()) {
     // ファイルが存在する場合 → 読み込んでglobalsに代入
     final jsonStr = await file.readAsString();
-    globals.title_filenames = List<Map<String, dynamic>>.from(
+    globals.titleFilenames = List<Map<String, dynamic>>.from(
       (jsonDecode(jsonStr) as List).map((e) => Map<String, dynamic>.from(e)),
     );
     // 既存データのマイグレーション
-    for (var item in globals.title_filenames) {
+    for (var item in globals.titleFilenames) {
       if (!item.containsKey('tags')) {
         item['tags'] = <String>[];
       }
@@ -68,22 +68,22 @@ Future<void> loadTitleFilenames() async {
     }
   } else {
     // 初回起動時 → globalsの値を保存
-    final jsonStr = jsonEncode(globals.title_filenames);
+    final jsonStr = jsonEncode(globals.titleFilenames);
     await file.writeAsString(jsonStr);
   }
 }
 
-//title_filenamesの最終更新日時を更新
-void updateAndSortByDate(title_filename) {
+//titleFilenamesの最終更新日時を更新
+void updateAndSortByDate(titleFilename) {
   final now = DateTime.now().toIso8601String();
-  int index = globals.title_filenames.indexWhere((item) => item == title_filename);
+  int index = globals.titleFilenames.indexWhere((item) => item == titleFilename);
   if (index==-1) {
     false;
   }else{
-    globals.title_filenames[index]["updatedAt"] = now;
+    globals.titleFilenames[index]["updatedAt"] = now;
   }
   //最終更新日時でソート（降順）
-  globals.title_filenames.sort((a, b) {
+  globals.titleFilenames.sort((a, b) {
     final aDate = DateTime.tryParse(a["updatedAt"] ?? "") ?? DateTime(1970);
     final bDate = DateTime.tryParse(b["updatedAt"] ?? "") ?? DateTime(1970);
     return bDate.compareTo(aDate);
@@ -91,12 +91,12 @@ void updateAndSortByDate(title_filename) {
   saveTitleFilenames();
 }
 
-// title_filenamesをローカルファイルに保存・反映
+// titleFilenamesをローカルファイルに保存・反映
 Future<void> saveTitleFilenames() async {
   final dir = await getApplicationDocumentsDirectory();
   final file = File('${dir.path}/title_filenames.json');
 
-  final jsonStr = jsonEncode(globals.title_filenames);
+  final jsonStr = jsonEncode(globals.titleFilenames);
   await file.writeAsString(jsonStr);
 }
 

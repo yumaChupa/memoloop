@@ -14,9 +14,9 @@ import 'package:memoloop/screens/create/create_screen.dart';
 
 // ステートフル
 class FlashCard extends StatefulWidget {
-  final Map<String, dynamic> title_filename;
+  final Map<String, dynamic> titleFilename;
 
-  FlashCard({required this.title_filename});
+  FlashCard({required this.titleFilename});
 
   @override
   State<FlashCard> createState() => _FlashCardState();
@@ -56,28 +56,28 @@ class _FlashCardState extends State<FlashCard> {
   @override
   void initState() {
     super.initState();
-    loadJson(widget.title_filename["filename"]).then((data) {
+    loadJson(widget.titleFilename["filename"]).then((data) {
       setState(() {
         ////  出題順を変更（moreが多い順、次にdoneが少ない順） ////
         contents = List<Map<String, dynamic>>.from(data);
         switch (globals.currentOrder) {
           case globals.QuizOrder.original:
             contents.sort((a, b) {
-              int a_index = a["index"];
-              int b_index = b["index"];
-              return a_index.compareTo(b_index);
+              int aIndex = a["index"];
+              int bIndex = b["index"];
+              return aIndex.compareTo(bIndex);
             });
             break; // 並び替えなし
           case globals.QuizOrder.wrongFirst:
             contents.sort((a, b) {
-              int a_total = a["more"] + a["done"];
-              int b_total = b["more"] + b["done"];
-              double a_acc = a["done"] / (a["done"] + a["more"] + 1);
-              double b_acc = b["done"] / (b["done"] + b["more"] + 1);
+              int aTotal = a["more"] + a["done"];
+              int bTotal = b["more"] + b["done"];
+              double aAcc = a["done"] / (a["done"] + a["more"] + 1);
+              double bAcc = b["done"] / (b["done"] + b["more"] + 1);
 
-              int cmp = a_acc.compareTo(b_acc);
+              int cmp = aAcc.compareTo(bAcc);
               if (cmp != 0) return cmp;
-              return a_total.compareTo(b_total);
+              return aTotal.compareTo(bTotal);
             });
             break;
           case globals.QuizOrder.random:
@@ -160,7 +160,7 @@ class _FlashCardState extends State<FlashCard> {
     // contentsがからの時
     if (contents.isEmpty) {
       return Scaffold(
-        appBar: AppBar(title: Text(widget.title_filename["title"])),
+        appBar: AppBar(title: Text(widget.titleFilename["title"])),
         body: Center(
           child: TextButton(
             style: TextButton.styleFrom(
@@ -176,7 +176,7 @@ class _FlashCardState extends State<FlashCard> {
                 MaterialPageRoute(
                   builder:
                       (context) =>
-                          Create(title_filename: widget.title_filename),
+                          Create(titleFilename: widget.titleFilename),
                 ),
               );
             },
@@ -192,14 +192,14 @@ class _FlashCardState extends State<FlashCard> {
     return PopScope(
       canPop: true,
       onPopInvoked: (didPop) async {
-        updateAndSortByDate(widget.title_filename);
-        saveContents(contents, widget.title_filename["filename"]);
+        updateAndSortByDate(widget.titleFilename);
+        saveContents(contents, widget.titleFilename["filename"]);
         setState(() {});
         return;
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title_filename["title"]),
+          title: Text(widget.titleFilename["title"]),
           actions: [
             IconButton(
               icon: Icon(Icons.help_outline),
@@ -254,15 +254,15 @@ class _FlashCardState extends State<FlashCard> {
                     });
                     await saveContents(
                       contents,
-                      widget.title_filename["filename"],
+                      widget.titleFilename["filename"],
                     );
                     // 統計情報を更新
                     if (contents.isNotEmpty) {
-                      final prevCount = (widget.title_filename['completionCount'] ?? 0) as int;
+                      final prevCount = (widget.titleFilename['completionCount'] ?? 0) as int;
                       final newCount = prevCount + 1;
                       final newAvg = answerDuration.inSeconds / contents.length;
-                      widget.title_filename['completionCount'] = newCount;
-                      widget.title_filename['avgTimePerQuestion'] = newAvg;
+                      widget.titleFilename['completionCount'] = newCount;
+                      widget.titleFilename['avgTimePerQuestion'] = newAvg;
                       await saveTitleFilenames();
                     }
                   },

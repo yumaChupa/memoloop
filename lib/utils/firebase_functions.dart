@@ -36,7 +36,10 @@ Future<List<Map<String, dynamic>>> getProblemSet(String filename) async {
 ////////////////////////////////////////////////
 // ローカルの問題セットjsonをFirebaseにアップロード(return;)
 ////////////////////////////////////////////////
-/// 問題セットをアップロード。レート制限に引っかかった場合は残り秒数を返す。成功時はnull。
+/// 問題セットをアップロード。レート制限に引っかかった場合は残り秒数を返す。
+/// 容量制限超過時は -1 を返す。成功時はnull。
+const int maxQuestionCount = 200;
+
 Future<int?> uploadProblemSetWithReset(String title, String filename, {List<String> tags = const []}) async {
   // レート制限チェック
   if (_lastUploadTime != null) {
@@ -54,6 +57,12 @@ Future<int?> uploadProblemSetWithReset(String title, String filename, {List<Stri
 
   final jsonStr = await file.readAsString();
   final List<dynamic> questions = jsonDecode(jsonStr);
+
+  // 容量制限チェック
+  if (questions.length > maxQuestionCount) {
+    return -1;
+  }
+
   final now = DateTime.now().toIso8601String();
 
   final setRef = firestore.collection('sets').doc(filename);
@@ -82,11 +91,14 @@ Future<int?> uploadProblemSetWithReset(String title, String filename, {List<Stri
     'questionCount': questions.length,
   });
 
-  // 3. questions 再アップロード
+  // 3. questions 再アップロード（done/moreはローカル専用のため除外）
   final batchUpload = firestore.batch();
   for (var q in questions) {
-    final docRef = questionsRef.doc(q['index'].toString());
-    batchUpload.set(docRef, q);
+    final cleaned = Map<String, dynamic>.from(q)
+      ..remove('done')
+      ..remove('more');
+    final docRef = questionsRef.doc(cleaned['index'].toString());
+    batchUpload.set(docRef, cleaned);
   }
   await batchUpload.commit();
 
@@ -131,17 +143,17 @@ Future<void> incrementDownloadCount(String filename) async {
 //////////////////////////////////////////
 
 // Firebaseの初期化（開発時一回のみ）
-Future<void> firebaseInit(List<Map<String, dynamic>> title_filenames) async {
-  for (var title_filename in title_filenames) {
-    await uploadFilesInit(title_filename);
+Future<void> firebaseInit(List<Map<String, dynamic>> titleFilenames) async {
+  for (var titleFilename in titleFilenames) {
+    await uploadFilesInit(titleFilename);
   }
   return;
 }
 
-Future<void> uploadFilesInit(Map<String, dynamic> title_filename) async {
-  final filename = title_filename["filename"];
-  final title = title_filename["title"];
-  final updatedAt = title_filename["updatedAt"];
+Future<void> uploadFilesInit(Map<String, dynamic> titleFilename) async {
+  final filename = titleFilename["filename"];
+  final title = titleFilename["title"];
+  final updatedAt = titleFilename["updatedAt"];
 
   final dir = await getApplicationDocumentsDirectory();
   final file = File('${dir.path}/$filename.json');
@@ -161,7 +173,7 @@ Future<void> uploadFilesInit(Map<String, dynamic> title_filename) async {
     'filename': filename,
     'title': title,
     'updatedAt': updatedAt,
-    'tags': title_filename['tags'] ?? [],
+    'tags': titleFilename['tags'] ?? [],
     'downloadCount': 0,
   }, SetOptions(merge: true));
 

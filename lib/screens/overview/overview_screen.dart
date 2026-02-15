@@ -15,9 +15,9 @@ import '../../utils/functions.dart';
 import 'package:memoloop/screens/create/create_screen.dart';
 
 class OverviewScreen extends StatefulWidget {
-  final Map<String, dynamic> title_filename;
+  final Map<String, dynamic> titleFilename;
 
-  OverviewScreen({required this.title_filename});
+  OverviewScreen({required this.titleFilename});
 
   @override
   State<OverviewScreen> createState() => _OverviewScreenState();
@@ -32,7 +32,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
   @override
   void initState() {
     super.initState();
-    filename = widget.title_filename["filename"];
+    filename = widget.titleFilename["filename"];
     loadJson(filename).then((data) {
       setState(() {
         contents = data;
@@ -146,13 +146,13 @@ class _OverviewScreenState extends State<OverviewScreen> {
     return PopScope(
       canPop: true,
       onPopInvoked: (didPop) async {
-        updateAndSortByDate(widget.title_filename);
-        saveContents(contents, widget.title_filename["filename"]);
+        updateAndSortByDate(widget.titleFilename);
+        saveContents(contents, widget.titleFilename["filename"]);
         // return;
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title_filename["title"] ?? ""),
+          title: Text(widget.titleFilename["title"] ?? ""),
           scrolledUnderElevation: 0.2,
         ),
         body:
@@ -176,7 +176,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                         MaterialPageRoute(
                           builder:
                               (context) =>
-                                  Create(title_filename: widget.title_filename),
+                                  Create(titleFilename: widget.titleFilename),
                         ),
                       );
                     },

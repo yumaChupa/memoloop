@@ -12,7 +12,7 @@ class AddSelect extends StatefulWidget {
 enum _AddSortOrder { date, downloads }
 
 class _AddSelectState extends State<AddSelect> {
-  late List<Map<String, dynamic>> title_filenames_fs;
+  late List<Map<String, dynamic>> titleFilenamesFs;
   bool isLoading = true;
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
@@ -20,7 +20,7 @@ class _AddSelectState extends State<AddSelect> {
   _AddSortOrder _sortOrder = _AddSortOrder.date;
 
   List<Map<String, dynamic>> get _filteredSets {
-    var list = title_filenames_fs.toList();
+    var list = titleFilenamesFs.toList();
     if (_searchQuery.isNotEmpty) {
       list = list.where((item) {
         final title = (item['title'] ?? '').toString().toLowerCase();
@@ -54,7 +54,7 @@ class _AddSelectState extends State<AddSelect> {
     super.initState();
     getSetsList().then((setsList) {
       setState(() {
-        title_filenames_fs = setsList;
+        titleFilenamesFs = setsList;
         isLoading = false;
       });
     });
@@ -258,7 +258,7 @@ class _AddSelectState extends State<AddSelect> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => AddScreen(title_filename: item),
+                                          builder: (context) => AddScreen(titleFilename: item),
                                         ),
                                       ).then((_) {
                                         setState(() {});

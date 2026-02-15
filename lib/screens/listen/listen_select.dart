@@ -18,7 +18,7 @@ class _ListenSelectState extends State<ListenSelect> {
   String? _selectedTag;
 
   List<Map<String, dynamic>> get _filteredTitleFilenames {
-    var list = globals.title_filenames.toList();
+    var list = globals.titleFilenames.toList();
     if (_searchQuery.isNotEmpty) {
       list = list.where((item) {
         final title = (item['title'] ?? '').toString().toLowerCase();
@@ -221,7 +221,7 @@ class _ListenSelectState extends State<ListenSelect> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ListenScreen(title_filename: item),
+                                      builder: (context) => ListenScreen(titleFilename: item),
                                     ),
                                   ).then((_) {
                                     setState(() {});

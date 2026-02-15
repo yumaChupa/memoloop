@@ -19,7 +19,7 @@ class _createSelectState extends State<createSelect> {
   String? _selectedTag;
 
   List<Map<String, dynamic>> get _filteredTitleFilenames {
-    var list = globals.title_filenames.toList();
+    var list = globals.titleFilenames.toList();
     if (_searchQuery.isNotEmpty) {
       list = list.where((item) {
         final title = (item['title'] ?? '').toString().toLowerCase();
@@ -125,18 +125,18 @@ class _createSelectState extends State<createSelect> {
                   final truncatedSlug = slug.length > 20 ? slug.substring(0, 20) : slug;
                   final shortHash = md5.convert(utf8.encode(title + globals.uuid)).toString().substring(0, 8);
                   final filename = '${truncatedSlug}_$shortHash';
-                  final update_now = DateTime.now().toIso8601String();
+                  final updateNow = DateTime.now().toIso8601String();
 
                   final newItem = <String, dynamic>{
                     "title": title,
                     "filename": filename,
-                    "updatedAt": update_now,
+                    "updatedAt": updateNow,
                     "tags": selectedTags.toList(),
                     "isMine": true,
                   };
 
                   setState(() {
-                    globals.title_filenames.add(newItem);
+                    globals.titleFilenames.add(newItem);
                   });
 
                   createNewfile(filename);
@@ -298,7 +298,7 @@ class _createSelectState extends State<createSelect> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Create(title_filename: item),
+                                      builder: (context) => Create(titleFilename: item),
                                     ),
                                   ).then((_) {
                                     setState(() {});

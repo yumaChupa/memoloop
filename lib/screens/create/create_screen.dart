@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:memoloop/utils/functions.dart';
 
 class Create extends StatefulWidget {
-  late final Map<String, dynamic> title_filename;
+  late final Map<String, dynamic> titleFilename;
 
-  Create({required this.title_filename});
+  Create({required this.titleFilename});
 
   @override
   State<Create> createState() => _CreateState();
@@ -20,7 +20,7 @@ class _CreateState extends State<Create> {
   @override
   void initState() {
     super.initState();
-    filename = widget.title_filename["filename"];
+    filename = widget.titleFilename["filename"];
     loadJson(filename).then((data) {
       contents = data;
     });
@@ -31,13 +31,13 @@ class _CreateState extends State<Create> {
     return PopScope(
       canPop: true,
       onPopInvoked: (didPop) async {
-         updateAndSortByDate(widget.title_filename);
-        saveContents(contents, widget.title_filename["filename"]);
+         updateAndSortByDate(widget.titleFilename);
+        saveContents(contents, widget.titleFilename["filename"]);
         return;
       },
 
       child: Scaffold(
-        appBar: AppBar(title: Text(widget.title_filename["title"])),
+        appBar: AppBar(title: Text(widget.titleFilename["title"])),
         body: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Center(

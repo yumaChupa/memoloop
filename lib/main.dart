@@ -33,7 +33,7 @@ void main() async {
 Future<void> _initFirebaseInBackground() async {
   try {
     await Firebase.initializeApp();
-    await firebaseInit(globals.title_filenames);
+    await firebaseInit(globals.titleFilenames);
     globals.isFirebaseReady = true;
     debugPrint('Firebase initialized successfully in background');
   } catch (e) {

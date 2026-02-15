@@ -19,7 +19,7 @@ class _OverviewSelectState extends State<OverviewSelect> {
   String? _selectedTag;
 
   List<Map<String, dynamic>> get _filteredTitleFilenames {
-    var list = globals.title_filenames.toList();
+    var list = globals.titleFilenames.toList();
     if (_searchQuery.isNotEmpty) {
       list = list.where((item) {
         final title = (item['title'] ?? '').toString().toLowerCase();
@@ -208,8 +208,11 @@ class _OverviewSelectState extends State<OverviewSelect> {
           tags: tags,
         );
         if (remaining != null) {
+          final message = remaining == -1
+              ? '問題数が${maxQuestionCount}問を超えています。公開できる問題数は${maxQuestionCount}問までです'
+              : 'アップロードの間隔が短すぎます。${remaining}秒後に再試行してください';
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('アップロードの間隔が短すぎます。${remaining}秒後に再試行してください')),
+            SnackBar(content: Text(message)),
           );
         }
       }
@@ -236,7 +239,7 @@ class _OverviewSelectState extends State<OverviewSelect> {
       if (confirm == true) {
         await deleteFile(item['filename']?.toString() ?? '');
         setState(() {
-          globals.title_filenames.removeWhere(
+          globals.titleFilenames.removeWhere(
             (e) => e['filename'] == item['filename'],
           );
         });
@@ -409,7 +412,7 @@ class _OverviewSelectState extends State<OverviewSelect> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => OverviewScreen(title_filename: item),
+                                  builder: (context) => OverviewScreen(titleFilename: item),
                                 ),
                               ).then((_) {
                                 setState(() {});

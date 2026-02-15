@@ -18,7 +18,7 @@ class _FlashCardSelectState extends State<FlashCardSelect> {
   String? _selectedTag;
 
   List<Map<String, dynamic>> get _filteredTitleFilenames {
-    var list = globals.title_filenames.toList();
+    var list = globals.titleFilenames.toList();
     if (_searchQuery.isNotEmpty) {
       list = list.where((item) {
         final title = (item['title'] ?? '').toString().toLowerCase();
@@ -247,7 +247,7 @@ class _FlashCardSelectState extends State<FlashCardSelect> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => FlashCard(title_filename: item),
+                                      builder: (context) => FlashCard(titleFilename: item),
                                     ),
                                   ).then((_) {
                                     setState(() {});

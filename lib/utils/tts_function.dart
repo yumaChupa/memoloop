@@ -19,7 +19,8 @@ Future<void> initTtsClient() async {
   _ttsClient = await clientViaServiceAccount(accountCredentials, scopes);
 }
 
-Future<void> speakText(String text) async {
+/// TTS音声を再生する。[player]を渡すと外部から停止制御が可能。
+Future<void> speakText(String text, {AudioPlayer? player}) async {
   try {
     _ttsClient;
   } catch (_) {
@@ -50,9 +51,9 @@ Future<void> speakText(String text) async {
     final filePath = '${tempDir.path}/tts_audio.mp3';
     await File(filePath).writeAsBytes(audioBytes);
 
-    final player = AudioPlayer();
-    await player.play(DeviceFileSource(filePath));
-    await player.onPlayerComplete.first;
+    final p = player ?? AudioPlayer();
+    await p.play(DeviceFileSource(filePath));
+    await p.onPlayerComplete.first;
   } else {
     throw Exception("TTS failed: ${response.body}");
   }
