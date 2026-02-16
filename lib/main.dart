@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
           mainButton(
-            color: Colors.greenAccent.shade200,
+            color: Color(0xFF61D685),
             text: 'Add',
             onPressed: () {
               Navigator.push(
@@ -183,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
           mainButton(
-            color: Colors.purpleAccent.shade100,
+            color: Color(0xFFEB89E6),
             text: 'Audio',
             onPressed: () async {
               final connectivityResult =

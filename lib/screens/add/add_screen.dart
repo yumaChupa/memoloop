@@ -1,8 +1,10 @@
 // 1. Dart標準ライブラリ
+import 'dart:convert';
 import 'dart:io';
 
 // 2. Flutter SDKのパッケージ
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 // 3. サードパーティパッケージ
 import 'package:path_provider/path_provider.dart';
@@ -11,6 +13,7 @@ import 'package:path_provider/path_provider.dart';
 import '../../globals.dart' as globals;
 import '../../utils/functions.dart';
 import '../../utils/firebase_functions.dart';
+import 'package:memoloop/screens/create/create_screen.dart';
 
 class AddScreen extends StatefulWidget {
   final Map<String, dynamic> titleFilename;
@@ -110,12 +113,12 @@ class _AddScreenState extends State<AddScreen> {
     return PopScope(
       canPop: true,
       onPopInvoked: (didPop) async {
-        updateAndSortByDate(widget.titleFilename);
-        saveContents(contents, widget.titleFilename["filename"]);
+        updateAndSortByDate(widget.title_filename);
+        saveContents(contents, widget.title_filename["filename"]);
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.titleFilename["title"] ?? ""),
+          title: Text(widget.title_filename["title"] ?? ""),
           scrolledUnderElevation: 0.2,
           actions: [
             IconButton(icon: Icon(Icons.download), onPressed: showAddDialog),
