@@ -46,10 +46,10 @@ class _OverviewScreenState extends State<OverviewScreen> {
   void showEditDialog(BuildContext context, int index) {
     final original = contents[index];
     TextEditingController japaneseController = TextEditingController(
-      text: original["Japanese"],
+      text: original["Answer"],
     );
     TextEditingController englishController = TextEditingController(
-      text: original["English"],
+      text: original["Question"],
     );
 
     showDialog(
@@ -126,8 +126,8 @@ class _OverviewScreenState extends State<OverviewScreen> {
               TextButton(
                 onPressed: () {
                   setState(() {
-                    contents[index]["Japanese"] = japaneseController.text;
-                    contents[index]["English"] = englishController.text;
+                    contents[index]["Answer"] = japaneseController.text;
+                    contents[index]["Question"] = englishController.text;
                   });
                   Navigator.pop(context);
                 },
@@ -214,7 +214,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 24),
                               child: Text(
-                                item["Japanese"] ?? "",
+                                item["Answer"] ?? "",
                                 style: TextStyle(
                                   color: Colors.black87,
                                   fontSize: 16,
@@ -225,7 +225,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 24),
                               child: Text(
-                                item["English"] ?? "",
+                                item["Question"] ?? "",
                                 style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.black87,

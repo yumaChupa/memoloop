@@ -12,20 +12,47 @@ import 'package:memoloop/globals.dart' as globals;
 /////////////////
 // データ処理系 ///
 /////////////////
+void _renameKey(Map<String, dynamic> map, String oldKey, String newKey) {
+  if (map.containsKey(oldKey) && !map.containsKey(newKey)) {
+    map[newKey] = map[oldKey];
+    map.remove(oldKey);
+  }
+}
+
 Future<List<Map<String, dynamic>>> loadJson(String filename) async {
   final dir = await getApplicationDocumentsDirectory();
-  final localFile = File('${dir.path}/$filename.json');
+  final dataDir = Directory('${dir.path}/data');
+  if (!await dataDir.exists()) {
+    await dataDir.create(recursive: true);
+  }
+  final localFile = File('${dataDir.path}/$filename.json');
 
-  // ファイルがなければ assets からコピー
+  // ファイルがなければ assets からコピー（キー変換付き）
   if (!await localFile.exists()) {
     final jsonStr = await rootBundle.loadString('assets/data/$filename.json');
-    await localFile.writeAsString(jsonStr);
+    final List<dynamic> rawData = jsonDecode(jsonStr);
+    for (var item in rawData) {
+      if (item is Map<String, dynamic>) {
+        _renameKey(item, 'Japanese', 'Answer');
+        _renameKey(item, 'English', 'Question');
+        _renameKey(item, 'done', 'good');
+        _renameKey(item, 'more', 'bad');
+      }
+    }
+    await localFile.writeAsString(jsonEncode(rawData));
   }
 
-  // ローカルから読み込み
+  // ローカルから読み込み（防御的にキー変換）
   final jsonStr = await localFile.readAsString();
   final List<dynamic> data = jsonDecode(jsonStr);
-  return List<Map<String, dynamic>>.from(data);
+  final result = List<Map<String, dynamic>>.from(data);
+  for (var item in result) {
+    _renameKey(item, 'Japanese', 'Answer');
+    _renameKey(item, 'English', 'Question');
+    _renameKey(item, 'done', 'good');
+    _renameKey(item, 'more', 'bad');
+  }
+  return result;
 }
 
 
@@ -33,7 +60,7 @@ Future<List<Map<String, dynamic>>> loadJson(String filename) async {
 // 変更をローカルファイルに保存・反映
 Future<void> saveContents(List<Map<String, dynamic>> contents, String filename) async {
   final dir = await getApplicationDocumentsDirectory();
-  final file = File('${dir.path}/$filename.json');
+  final file = File('${dir.path}/data/$filename.json');
 
   final jsonStr = jsonEncode(contents);
   await file.writeAsString(jsonStr);
@@ -102,8 +129,11 @@ Future<void> saveTitleFilenames() async {
 
 Future<void> createNewfile(filename) async{
   final dir = await getApplicationDocumentsDirectory();
-  final file = File('${dir.path}/$filename.json');
-  // 空の List<Map<String, dynamic>> を JSON 文字列にして書き込む
+  final dataDir = Directory('${dir.path}/data');
+  if (!await dataDir.exists()) {
+    await dataDir.create(recursive: true);
+  }
+  final file = File('${dataDir.path}/$filename.json');
   final emptyContent = jsonEncode(<Map<String, dynamic>>[]);
   await file.writeAsString(emptyContent);
 }
@@ -120,13 +150,13 @@ void deleteQuizItem(List<Map<String, dynamic>> quizList, int indexToRemove) {
 void editQuizItem(
     List<Map<String, dynamic>> quizList,
     int indexToEdit,
-    String newJapanese,
-    String newEnglish,
+    String newAnswer,
+    String newQuestion,
     ) {
   for (var item in quizList) {
     if (item['index'] == indexToEdit) {
-      item['Japanese'] = newJapanese;
-      item['English'] = newEnglish;
+      item['Answer'] = newAnswer;
+      item['Question'] = newQuestion;
       break;
     }
   }
@@ -136,8 +166,8 @@ void editQuizItem(
 // 問題の追加
 void addQuizItem(
     List<Map<String, dynamic>> quizList,
-    String japanese,
-    String english,
+    String answer,
+    String question,
     ) {
   int nextIndex = quizList.isNotEmpty
       ? (quizList.map((e) => e['index'] as int).reduce((a, b) => a > b ? a : b) + 1)
@@ -145,17 +175,17 @@ void addQuizItem(
 
   quizList.add({
     'index': nextIndex,
-    'Japanese': japanese,
-    'English': english,
-    'done': 0,
-    'more': 0,
+    'Answer': answer,
+    'Question': question,
+    'good': 0,
+    'bad': 0,
   });
 }
 
 //問題セットの共有（作成した問題をファイルで保存するため）
 Future<void> shareFile(BuildContext context, String filename) async {
   final directory = await getApplicationDocumentsDirectory();
-  final path = '${directory.path}/$filename.json';
+  final path = '${directory.path}/data/$filename.json';
   final file = File(path);
 
   if (await file.exists()) {
@@ -170,7 +200,7 @@ Future<void> shareFile(BuildContext context, String filename) async {
 // 問題ファイル削除関数
 Future<void> deleteFile(String filename) async {
   final dir = await getApplicationDocumentsDirectory();
-  final file = File('${dir.path}/$filename.json');
+  final file = File('${dir.path}/data/$filename.json');
   if (await file.exists()) {
     await file.delete();
   }

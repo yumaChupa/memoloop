@@ -10,7 +10,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:memoloop/globals.dart' as globals;
 import 'package:memoloop/utils/functions.dart';
 import 'package:memoloop/utils/tts_function.dart';
-import 'package:memoloop/utils/firebase_functions.dart'; // 未使用ならコメントアウトのままでOK
+import 'package:memoloop/utils/migration.dart';
+import 'package:memoloop/utils/firebase_functions.dart';
 
 // プロジェクトのローカルファイル（アルファベット順）
 import 'screens/create/create_select.dart';
@@ -22,6 +23,7 @@ import 'screens/add/add_select.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initTtsClient(); // TTS初期化
+  await runMigrations(); // マイグレーション（schemaVersionで制御）
   await loadTitleFilenames(); // 必ずMyApp実行前に呼び出す
   runApp(const MyApp());
 

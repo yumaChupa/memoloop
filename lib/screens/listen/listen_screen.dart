@@ -43,10 +43,10 @@ class _ListenScreenState extends State<ListenScreen> {
             break;
           case globals.QuizOrder.wrongFirst:
             contents.sort((a, b) {
-              int aTotal = a["more"] + a["done"];
-              int bTotal = b["more"] + b["done"];
-              double aAcc = a["done"] / (aTotal + 1);
-              double bAcc = b["done"] / (bTotal + 1);
+              int aTotal = a["bad"] + a["good"];
+              int bTotal = b["bad"] + b["good"];
+              double aAcc = a["good"] / (aTotal + 1);
+              double bAcc = b["good"] / (bTotal + 1);
 
               int cmp = aAcc.compareTo(bAcc);
               return cmp != 0 ? cmp : aTotal.compareTo(bTotal);
@@ -75,8 +75,8 @@ class _ListenScreenState extends State<ListenScreen> {
     for (int i = currentIndex + 1; i < contents.length; i++) {
       if (_audioState == AudioState.stopping || !mounted) break;
 
-      final textEn = contents[i]["English"].toString();
-      final textJp = contents[i]["Japanese"].toString();
+      final textQuestion = contents[i]["Question"].toString();
+      final textAnswer = contents[i]["Answer"].toString();
 
       if (mounted) {
         setState(() {
@@ -97,7 +97,7 @@ class _ListenScreenState extends State<ListenScreen> {
           setState(() => _audioState = AudioState.playing);
         }
 
-        await speakText(textJp, player: _currentPlayer!);
+        await speakText(textAnswer, player: _currentPlayer!);
       } catch (_) {
         // 停止によるエラーは無視
         if (_audioState == AudioState.stopping) break;
@@ -108,7 +108,7 @@ class _ListenScreenState extends State<ListenScreen> {
 
       if (mounted) {
         setState(() {
-          displayedText = textEn;
+          displayedText = textQuestion;
         });
       }
 

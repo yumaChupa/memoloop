@@ -95,10 +95,10 @@ class _CreateState extends State<Create> {
                   onPressed: () {
                     final newItem = {
                       "index": contents.length + 1,
-                      "Japanese": _controllerJap.text,
-                      "English": _controllerEng.text,
-                      "done": 0,
-                      "more": 0,
+                      "Answer": _controllerJap.text,
+                      "Question": _controllerEng.text,
+                      "good": 0,
+                      "bad": 0,
                     };
                     setState(() {
                       contents.add(newItem);

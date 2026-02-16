@@ -51,7 +51,7 @@ Future<int?> uploadProblemSetWithReset(String title, String filename, {List<Stri
   }
 
   final dir = await getApplicationDocumentsDirectory();
-  final file = File('${dir.path}/$filename.json');
+  final file = File('${dir.path}/data/$filename.json');
 
   if (!await file.exists()) return null;
 
@@ -95,8 +95,8 @@ Future<int?> uploadProblemSetWithReset(String title, String filename, {List<Stri
   final batchUpload = firestore.batch();
   for (var q in questions) {
     final cleaned = Map<String, dynamic>.from(q)
-      ..remove('done')
-      ..remove('more');
+      ..remove('good')
+      ..remove('bad');
     final docRef = questionsRef.doc(cleaned['index'].toString());
     batchUpload.set(docRef, cleaned);
   }
@@ -156,7 +156,7 @@ Future<void> uploadFilesInit(Map<String, dynamic> titleFilename) async {
   final updatedAt = titleFilename["updatedAt"];
 
   final dir = await getApplicationDocumentsDirectory();
-  final file = File('${dir.path}/$filename.json');
+  final file = File('${dir.path}/data/$filename.json');
 
 
   if (!await file.exists()) return print(title+" not exists"); ;

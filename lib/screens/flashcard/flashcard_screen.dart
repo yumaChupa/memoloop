@@ -58,7 +58,7 @@ class _FlashCardState extends State<FlashCard> {
     super.initState();
     loadJson(widget.titleFilename["filename"]).then((data) {
       setState(() {
-        ////  出題順を変更（moreが多い順、次にdoneが少ない順） ////
+        ////  出題順を変更（badが多い順、次にgoodが少ない順） ////
         contents = List<Map<String, dynamic>>.from(data);
         switch (globals.currentOrder) {
           case globals.QuizOrder.original:
@@ -70,10 +70,10 @@ class _FlashCardState extends State<FlashCard> {
             break; // 並び替えなし
           case globals.QuizOrder.wrongFirst:
             contents.sort((a, b) {
-              int aTotal = a["more"] + a["done"];
-              int bTotal = b["more"] + b["done"];
-              double aAcc = a["done"] / (a["done"] + a["more"] + 1);
-              double bAcc = b["done"] / (b["done"] + b["more"] + 1);
+              int aTotal = a["bad"] + a["good"];
+              int bTotal = b["bad"] + b["good"];
+              double aAcc = a["good"] / (a["good"] + a["bad"] + 1);
+              double bAcc = b["good"] / (b["good"] + b["bad"] + 1);
 
               int cmp = aAcc.compareTo(bAcc);
               if (cmp != 0) return cmp;
@@ -116,10 +116,10 @@ class _FlashCardState extends State<FlashCard> {
     if (prev == null) return false;
     setState(() {
       if (dir == CardSwiperDirection.left) {
-        contents[prev]['done'] += 1;
+        contents[prev]['good'] += 1;
         countCorrect += 1;
       } else if (dir == CardSwiperDirection.right) {
-        contents[prev]['more'] += 1;
+        contents[prev]['bad'] += 1;
       }
       showAnswer[prev] = false;
       isSwipable = false;
@@ -316,7 +316,7 @@ class _FlashCardState extends State<FlashCard> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        card['Japanese'],
+                                        card['Answer'],
                                         style: TextStyle(
                                           fontSize: 19,
                                           fontWeight: FontWeight.w500,
@@ -325,7 +325,7 @@ class _FlashCardState extends State<FlashCard> {
                                       SizedBox(height: 16),
                                       showAnswer[index]
                                           ? Text(
-                                            card['English'],
+                                            card['Question'],
                                             style: TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.w700,
@@ -339,7 +339,7 @@ class _FlashCardState extends State<FlashCard> {
                                   top: 250,
                                   right: 10,
                                   child: Text(
-                                    'Correct: ${card['done']}   Wrong: ${card['more']}',
+                                    'Correct: ${card['good']}   Wrong: ${card['bad']}',
                                     style: TextStyle(fontSize: 14),
                                   ),
                                 ),

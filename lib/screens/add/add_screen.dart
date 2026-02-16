@@ -41,12 +41,13 @@ class _AddScreenState extends State<AddScreen> {
 
   Future<void> printJsonFiles() async {
     final dir = await getApplicationDocumentsDirectory();
-    if (!await dir.exists()) {
-      print('ディレクトリが存在しません: ${dir.path}');
+    final dataDir = Directory('${dir.path}/data');
+    if (!await dataDir.exists()) {
+      print('ディレクトリが存在しません: ${dataDir.path}');
       return;
     }
 
-    final entities = dir.listSync();
+    final entities = dataDir.listSync();
     for (var entity in entities) {
       if (entity is File && entity.path.endsWith('.json')) {
         print(entity.path);
@@ -137,14 +138,14 @@ class _AddScreenState extends State<AddScreen> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 24),
                       child: Text(
-                        item["Japanese"] ?? "",
+                        item["Answer"] ?? item["Japanese"] ?? "",
                         style: TextStyle(color: Colors.black87, fontSize: 16),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 24),
                       child: Text(
-                        item["English"] ?? "",
+                        item["Question"] ?? item["English"] ?? "",
                         style: TextStyle(fontSize: 18, color: Colors.black87),
                       ),
                     ),
