@@ -160,12 +160,16 @@ class _FlashCardState extends State<FlashCard> {
     // contentsがからの時
     if (contents.isEmpty) {
       return Scaffold(
-        appBar: AppBar(title: Text(widget.titleFilename["title"])),
+        appBar: AppBar(
+          title: Text(widget.titleFilename["title"]),
+          scrolledUnderElevation: 0.2,
+        ),
         body: Center(
-          child: TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: Colors.grey[300],
-              padding: EdgeInsets.symmetric(vertical: 18, horizontal: 22),
+          child: ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xFFE05555),
+              foregroundColor: Colors.white,
+              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(100),
               ),
@@ -180,9 +184,10 @@ class _FlashCardState extends State<FlashCard> {
                 ),
               );
             },
-            child: const Text(
+            icon: Icon(Icons.add),
+            label: const Text(
               '"create"で問題を作成',
-              style: TextStyle(color: Colors.black87, fontSize: 16),
+              style: TextStyle(fontSize: 16),
             ),
           ),
         ),
@@ -200,6 +205,7 @@ class _FlashCardState extends State<FlashCard> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.titleFilename["title"]),
+          scrolledUnderElevation: 0.2,
           actions: [
             IconButton(
               icon: Icon(Icons.help_outline),
@@ -398,19 +404,36 @@ class _FlashCardState extends State<FlashCard> {
                         Row(
                           children: [
                             Expanded(
-                              child: ElevatedButton(
+                              child: OutlinedButton.icon(
+                                style: OutlinedButton.styleFrom(
+                                  foregroundColor: Colors.black87,
+                                  minimumSize: Size.fromHeight(60),
+                                  side: BorderSide(color: Colors.grey[400]!),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(24),
+                                  ),
+                                ),
                                 onPressed: () {
                                   Navigator.pop(context);
                                   Navigator.pop(context);
                                 },
-                                child: Text('ホームに戻る'),
+                                icon: Icon(Icons.home_outlined),
+                                label: Text('ホームに戻る'),
                               ),
                             ),
-                            SizedBox(width: 20),
+                            SizedBox(width: 16),
                             Expanded(
-                              child: ElevatedButton(
+                              child: ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Color(0xFFE05555),
+                                  foregroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(24),
+                                  ),
+                                ),
                                 onPressed: resetCards,
-                                child: Text('もう一度'),
+                                icon: Icon(Icons.refresh),
+                                label: Text('もう一度'),
                               ),
                             ),
                           ],

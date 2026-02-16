@@ -194,7 +194,10 @@ class _ListenScreenState extends State<ListenScreen> {
         return;
       },
       child: Scaffold(
-        appBar: AppBar(title: Text(widget.titleFilename["title"])),
+        appBar: AppBar(
+          title: Text(widget.titleFilename["title"]),
+          scrolledUnderElevation: 0.2,
+        ),
         body: Center(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -222,6 +225,9 @@ class _ListenScreenState extends State<ListenScreen> {
                       foregroundColor: isIdle ? Colors.white : Colors.black87,
                       disabledBackgroundColor: Colors.grey[200],
                       disabledForegroundColor: Colors.grey[400],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
                     ),
                     onPressed: buttonEnabled ? _onButtonPressed : null,
                     icon: isLoading

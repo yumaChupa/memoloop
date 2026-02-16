@@ -159,12 +159,13 @@ class _OverviewScreenState extends State<OverviewScreen> {
             (contents.isEmpty)
                 // contentsの中身がない時
                 ? Center(
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: Colors.grey[300],
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFFE8913A),
+                      foregroundColor: Colors.white,
                       padding: EdgeInsets.symmetric(
-                        vertical: 18,
-                        horizontal: 22,
+                        vertical: 16,
+                        horizontal: 24,
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100),
@@ -180,9 +181,10 @@ class _OverviewScreenState extends State<OverviewScreen> {
                         ),
                       );
                     },
-                    child: const Text(
+                    icon: Icon(Icons.add),
+                    label: const Text(
                       '"create"で問題を作成',
-                      style: TextStyle(color: Colors.black87, fontSize: 16),
+                      style: TextStyle(fontSize: 16),
                     ),
                   ),
                 )

@@ -37,7 +37,10 @@ class _CreateState extends State<Create> {
       },
 
       child: Scaffold(
-        appBar: AppBar(title: Text(widget.titleFilename["title"])),
+        appBar: AppBar(
+          title: Text(widget.titleFilename["title"]),
+          scrolledUnderElevation: 0.2,
+        ),
         body: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Center(
@@ -91,33 +94,32 @@ class _CreateState extends State<Create> {
                 ),
                 SizedBox(height: 20),
 
-                TextButton(
-                  onPressed: () {
-                    final newItem = {
-                      "index": contents.length + 1,
-                      "Answer": _controllerJap.text,
-                      "Question": _controllerEng.text,
-                      "good": 0,
-                      "bad": 0,
-                    };
-                    setState(() {
-                      contents.add(newItem);
-                      _controllerJap.text = "";
-                      _controllerEng.text = "";
-                    });
-                  },
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.grey[300],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF4A90D9),
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
+                      ),
                     ),
-                  ),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 36, vertical: 8),
-                    child: const Text(
-                      "作成",
-                      style: TextStyle(fontSize: 18, color: Colors.black87),
-                    ),
+                    onPressed: () {
+                      final newItem = {
+                        "index": contents.length + 1,
+                        "Answer": _controllerJap.text,
+                        "Question": _controllerEng.text,
+                        "good": 0,
+                        "bad": 0,
+                      };
+                      setState(() {
+                        contents.add(newItem);
+                        _controllerJap.text = "";
+                        _controllerEng.text = "";
+                      });
+                    },
+                    icon: Icon(Icons.add),
+                    label: const Text("作成"),
                   ),
                 ),
               ],
