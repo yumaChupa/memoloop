@@ -113,12 +113,12 @@ class _AddScreenState extends State<AddScreen> {
     return PopScope(
       canPop: true,
       onPopInvoked: (didPop) async {
-        updateAndSortByDate(widget.title_filename);
-        saveContents(contents, widget.title_filename["filename"]);
+        updateAndSortByDate(widget.titleFilename);
+        saveContents(contents, widget.titleFilename["filename"]);
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title_filename["title"] ?? ""),
+          title: Text(widget.titleFilename["title"] ?? ""),
           scrolledUnderElevation: 0.2,
           actions: [
             IconButton(icon: Icon(Icons.download), onPressed: showAddDialog),

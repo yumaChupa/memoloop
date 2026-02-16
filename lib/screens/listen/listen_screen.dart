@@ -221,7 +221,7 @@ class _ListenScreenState extends State<ListenScreen> {
                   width: double.infinity,
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: isIdle ? Color(0xFF9B59B6) : Colors.grey[300],
+                      backgroundColor: isIdle ? Color(0xFFBB79D6) : Colors.grey[300],
                       foregroundColor: isIdle ? Colors.white : Colors.black87,
                       disabledBackgroundColor: Colors.grey[200],
                       disabledForegroundColor: Colors.grey[400],
