@@ -99,8 +99,8 @@ class _ListenScreenState extends State<ListenScreen> {
 
         await speakText(textAnswer, player: _currentPlayer!);
       } catch (_) {
-        // 停止によるエラーは無視
-        if (_audioState == AudioState.stopping) break;
+        // 停止やdisposeによるエラーは無視して抜ける
+        if (_audioState == AudioState.stopping || !mounted) break;
         rethrow;
       }
 

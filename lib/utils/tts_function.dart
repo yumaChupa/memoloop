@@ -53,7 +53,14 @@ Future<void> speakText(String text, {AudioPlayer? player}) async {
 
     final p = player ?? AudioPlayer();
     await p.play(DeviceFileSource(filePath));
-    await p.onPlayerComplete.first;
+
+    // onPlayerComplete だけだと外部から stop() された時に永久に待ち続ける。
+    // onPlayerStateChanged で stopped を検知するか、完了イベントが来たら抜ける。
+    await Future.any([
+      p.onPlayerComplete.first,
+      p.onPlayerStateChanged
+          .firstWhere((s) => s == PlayerState.stopped || s == PlayerState.disposed),
+    ]);
   } else {
     throw Exception("TTS failed: ${response.body}");
   }
