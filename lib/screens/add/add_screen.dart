@@ -1,19 +1,8 @@
-// 1. Dart標準ライブラリ
-import 'dart:convert';
-import 'dart:io';
-
-// 2. Flutter SDKのパッケージ
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
-
-// 3. サードパーティパッケージ
-import 'package:path_provider/path_provider.dart';
-
-// 4. プロジェクト内部のパッケージ
 import '../../globals.dart' as globals;
 import '../../utils/functions.dart';
 import '../../utils/firebase_functions.dart';
-import 'package:memoloop/screens/create/create_screen.dart';
+import 'package:memoloop/constants.dart';
 
 class AddScreen extends StatefulWidget {
   final Map<String, dynamic> titleFilename;
@@ -39,26 +28,6 @@ class _AddScreenState extends State<AddScreen> {
       });
     });
 
-    printJsonFiles();
-  }
-
-  Future<void> printJsonFiles() async {
-    final dir = await getApplicationDocumentsDirectory();
-    final dataDir = Directory('${dir.path}/data');
-    if (!await dataDir.exists()) {
-      print('ディレクトリが存在しません: ${dataDir.path}');
-      return;
-    }
-
-    final entities = dataDir.listSync();
-    for (var entity in entities) {
-      if (entity is File && entity.path.endsWith('.json')) {
-        print(entity.path);
-      }
-    }
-    print("////////////////");
-    print(globals.titleFilenames);
-    print("");
   }
 
   Future<void> showAddDialog() async {
@@ -153,7 +122,7 @@ class _AddScreenState extends State<AddScreen> {
                       ),
                     ),
                     SizedBox(height: 10),
-                    Divider(thickness: 1, color: Color(0xFF27AE60), height: 1),
+                    Divider(thickness: 1, color: AppColors.addAccent, height: 1),
                   ],
                 ),
               ),

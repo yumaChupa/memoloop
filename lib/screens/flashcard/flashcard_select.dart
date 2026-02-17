@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'flashcard_screen.dart';
 import '../../globals.dart' as globals;
 import '../../utils/functions.dart';
+import 'package:memoloop/constants.dart';
+import 'package:memoloop/widgets/common_widgets.dart';
 
 class FlashCardSelect extends StatefulWidget {
   @override
@@ -9,63 +11,22 @@ class FlashCardSelect extends StatefulWidget {
 }
 
 class _FlashCardSelectState extends State<FlashCardSelect> {
-  //////////////////
-  ///// 変数定義 /////
-  //////////////////
-  globals.QuizOrder selectedOrder = globals.currentOrder;
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
   String? _selectedTag;
 
-  List<Map<String, dynamic>> get _filteredTitleFilenames {
-    var list = globals.titleFilenames.toList();
-    if (_searchQuery.isNotEmpty) {
-      list = list.where((item) {
-        final title = (item['title'] ?? '').toString().toLowerCase();
-        return title.contains(_searchQuery.toLowerCase());
-      }).toList();
-    }
-    if (_selectedTag != null) {
-      list = list.where((item) {
-        final tags = (item['tags'] as List<dynamic>?)?.cast<String>() ?? [];
-        return tags.contains(_selectedTag);
-      }).toList();
-    }
-    return list;
-  }
+  List<Map<String, dynamic>> get _filteredTitleFilenames =>
+      filterTitleFilenames(
+        source: globals.titleFilenames,
+        searchQuery: _searchQuery,
+        selectedTag: _selectedTag,
+      );
 
-  ////////////////////////
-  ///// ライフサイクル /////
-  ///////////////////////
-
-  /////////////////////
-  //////// UI ////////
-  ////////////////////
   String _formatAvgTime(dynamic seconds) {
     if (seconds == null || seconds == 0) return '-';
     final s = (seconds as num).toDouble();
     if (s < 60) return '${s.toStringAsFixed(1)}s/問';
     return '${(s / 60).toStringAsFixed(1)}m/問';
-  }
-
-  Widget _buildOrderChip(globals.QuizOrder order, String? label, IconData icon) {
-    final isActive = globals.currentOrder == order;
-    return GestureDetector(
-      onTap: () => setState(() => globals.currentOrder = order),
-      child: AnimatedContainer(
-        duration: Duration(milliseconds: 200),
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-        decoration: BoxDecoration(
-          color: isActive ? Color(0xFFE05555) : Colors.transparent,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Icon(
-          icon,
-          size: 16,
-          color: isActive ? Colors.white : Colors.grey[500],
-        ),
-      ),
-    );
   }
 
   @override
@@ -74,25 +35,10 @@ class _FlashCardSelectState extends State<FlashCardSelect> {
       appBar: AppBar(
         title: const Text("Flashcard"),
         scrolledUnderElevation: 0.2,
-
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.grey[100],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _buildOrderChip(globals.QuizOrder.original, 'A-Z', Icons.sort_by_alpha),
-                  _buildOrderChip(globals.QuizOrder.wrongFirst, '!', Icons.priority_high),
-                  _buildOrderChip(globals.QuizOrder.random, null, Icons.shuffle),
-                ],
-              ),
-            ),
+          buildOrderChipBar(
+            accentColor: AppColors.flashcardAccent,
+            onChanged: () => setState(() {}),
           ),
         ],
       ),
@@ -100,74 +46,19 @@ class _FlashCardSelectState extends State<FlashCardSelect> {
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              child: SizedBox(
-                height: 36,
-                child: TextField(
-                  controller: _searchController,
-                  style: TextStyle(fontSize: 13),
-                  decoration: InputDecoration(
-                    hintText: '検索...',
-                    hintStyle: TextStyle(fontSize: 13),
-                    prefixIcon: Icon(Icons.search, size: 18),
-                    prefixIconConstraints: BoxConstraints(minWidth: 36),
-                    suffixIcon: _searchQuery.isNotEmpty
-                        ? IconButton(
-                            icon: Icon(Icons.clear, size: 16),
-                            onPressed: () {
-                              _searchController.clear();
-                              setState(() => _searchQuery = '');
-                            },
-                          )
-                        : null,
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade200)),
-                    enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade200)),
-                    focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Colors.grey.shade300)),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                  ),
-                  onChanged: (value) => setState(() => _searchQuery = value),
-                ),
-              ),
+            buildSearchTextField(
+              controller: _searchController,
+              searchQuery: _searchQuery,
+              onChanged: (value) => setState(() => _searchQuery = value),
+              onClear: () {
+                _searchController.clear();
+                setState(() => _searchQuery = '');
+              },
             ),
-            SizedBox(
-              height: 36,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                children: globals.availableTags.map((tag) {
-                  final isSelected = _selectedTag == tag;
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 16),
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _selectedTag = isSelected ? null : tag;
-                        });
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            tag,
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                              color: isSelected ? Color(0xFFE05555) : Colors.grey[500],
-                            ),
-                          ),
-                          SizedBox(height: 4),
-                          Container(
-                            height: 2,
-                            width: 24,
-                            color: isSelected ? Color(0xFFE05555) : Colors.transparent,
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
+            buildTagFilterBar(
+              selectedTag: _selectedTag,
+              accentColor: AppColors.flashcardAccent,
+              onTagSelected: (tag) => setState(() => _selectedTag = tag),
             ),
             Expanded(
               child: CustomScrollView(
@@ -176,85 +67,62 @@ class _FlashCardSelectState extends State<FlashCardSelect> {
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {
                         final item = _filteredTitleFilenames[index];
-                        return Container(
-                          margin: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.05),
-                                blurRadius: 4,
-                                offset: Offset(0, 1),
-                              ),
-                            ],
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  left: BorderSide(color: Color(0xFFE05555), width: 4),
-                                ),
-                              ),
-                              child: ListTile(
-                                key: ValueKey(item["filename"]),
-                                dense: true,
-                                minVerticalPadding: 16,
-                                contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                                title: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        item["title"].toString(),
-                                        style: TextStyle(
-                                          color: Colors.grey[850],
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
+                        return buildSelectListItem(
+                          accentColor: AppColors.flashcardAccent,
+                          child: ListTile(
+                            key: ValueKey(item["filename"]),
+                            dense: true,
+                            minVerticalPadding: 16,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    item["title"].toString(),
+                                    style: TextStyle(
+                                      color: Colors.grey[850],
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
                                     ),
-                                    SizedBox(width: 8),
-                                    Text(
-                                      updatedAtTrans(item['updatedAt'].toString()),
-                                      style: TextStyle(color: Colors.grey[400], fontSize: 11),
-                                    ),
-                                  ],
-                                ),
-                                subtitle: Padding(
-                                  padding: const EdgeInsets.only(top: 6),
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.replay, size: 13, color: Colors.grey[400]),
-                                      SizedBox(width: 3),
-                                      Text(
-                                        '${item['completionCount'] ?? 0}回',
-                                        style: TextStyle(fontSize: 11, color: Colors.grey[400]),
-                                      ),
-                                      SizedBox(width: 12),
-                                      Icon(Icons.timer_outlined, size: 13, color: Colors.grey[400]),
-                                      SizedBox(width: 3),
-                                      Text(
-                                        _formatAvgTime(item['avgTimePerQuestion']),
-                                        style: TextStyle(fontSize: 11, color: Colors.grey[400]),
-                                      ),
-                                    ],
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => FlashCard(titleFilename: item),
-                                    ),
-                                  ).then((_) {
-                                    setState(() {});
-                                  });
-                                },
+                                const SizedBox(width: 8),
+                                Text(
+                                  updatedAtTrans(item['updatedAt'].toString()),
+                                  style: TextStyle(color: Colors.grey[400], fontSize: 11),
+                                ),
+                              ],
+                            ),
+                            subtitle: Padding(
+                              padding: const EdgeInsets.only(top: 6),
+                              child: Row(
+                                children: [
+                                  Icon(Icons.replay, size: 13, color: Colors.grey[400]),
+                                  const SizedBox(width: 3),
+                                  Text(
+                                    '${item['completionCount'] ?? 0}回',
+                                    style: TextStyle(fontSize: 11, color: Colors.grey[400]),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  Icon(Icons.timer_outlined, size: 13, color: Colors.grey[400]),
+                                  const SizedBox(width: 3),
+                                  Text(
+                                    _formatAvgTime(item['avgTimePerQuestion']),
+                                    style: TextStyle(fontSize: 11, color: Colors.grey[400]),
+                                  ),
+                                ],
                               ),
                             ),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => FlashCard(titleFilename: item),
+                                ),
+                              ).then((_) => setState(() {}));
+                            },
                           ),
                         );
                       },

@@ -1,18 +1,7 @@
-// 1. Dart標準ライブラリ
-import 'dart:convert';
-import 'dart:io';
-
-// 2. Flutter SDKのパッケージ
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
-
-// 3. サードパーティパッケージ
-import 'package:path_provider/path_provider.dart';
-
-// 4. プロジェクト内部のパッケージ
-// import '../../globals.dart' as globals;
 import '../../utils/functions.dart';
 import 'package:memoloop/screens/create/create_screen.dart';
+import 'package:memoloop/constants.dart';
 
 class OverviewScreen extends StatefulWidget {
   final Map<String, dynamic> titleFilename;
@@ -161,7 +150,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                 ? Center(
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFE8913A),
+                      backgroundColor: AppColors.overviewMain,
                       foregroundColor: Colors.white,
                       padding: EdgeInsets.symmetric(
                         vertical: 16,
@@ -237,7 +226,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                             SizedBox(height: 10),
                             Divider(
                               thickness: 1,
-                              color: Color(0xFFE8913A),
+                              color: AppColors.overviewAccent,
                               height: 1,
                             ),
                           ],

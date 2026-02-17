@@ -11,6 +11,7 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import '../../globals.dart' as globals;
 import 'package:memoloop/utils/functions.dart';
 import 'package:memoloop/screens/create/create_screen.dart';
+import 'package:memoloop/constants.dart';
 
 // ステートフル
 class FlashCard extends StatefulWidget {
@@ -155,6 +156,193 @@ class _FlashCardState extends State<FlashCard> {
   ////////////////////
   // UI（メイン画面） //
   ////////////////////
+
+  /// カードスワイパー部分
+  Widget _buildCardSwiper() {
+    return Container(
+      height: 500,
+      padding: EdgeInsets.only(top: 140),
+      child: CardSwiper(
+        controller: controller,
+        cardsCount: contents.length,
+        maxAngle: 10,
+        isLoop: false,
+        scale: 0.9,
+        duration: Duration(milliseconds: 60),
+        isDisabled: !isSwipable,
+        onSwipe: handleSwipe,
+        onEnd: () async {
+          setState(() {
+            finished = true;
+            answerDuration = DateTime.now().difference(startTime);
+            accuracy =
+                contents.isEmpty
+                    ? 0.0
+                    : countCorrect / contents.length;
+          });
+          await saveContents(
+            contents,
+            widget.titleFilename["filename"],
+          );
+          // 統計情報を更新
+          if (contents.isNotEmpty) {
+            final prevCount = (widget.titleFilename['completionCount'] ?? 0) as int;
+            final newCount = prevCount + 1;
+            final newAvg = answerDuration.inSeconds / contents.length;
+            widget.titleFilename['completionCount'] = newCount;
+            widget.titleFilename['avgTimePerQuestion'] = newAvg;
+            await saveTitleFilenames();
+          }
+        },
+        numberOfCardsDisplayed:
+            contents.isEmpty
+                ? 1
+                : (contents.length < 3 ? contents.length : 3),
+        cardBuilder: (context, index, percentX, percentY) {
+          currentIndex = index;
+          final card = contents[index];
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                showAnswer[index] = !showAnswer[index];
+                if (!isSwipable) isSwipable = true;
+              });
+            },
+            child: Card(
+              color: Color(0xFFFFFFFF),
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: AppColors.flashcardAccent, width: 4),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: 30,
+                        left: 0,
+                        child: Text(
+                          "${card['index']}.",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                      Positioned(
+                        top: 30,
+                        right: 10,
+                        child: Text("${index + 1}/${contents.length}"),
+                      ),
+                      Positioned(
+                        top: 90,
+                        left: 0,
+                        right: 0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              card['Answer'],
+                              style: TextStyle(
+                                fontSize: 19,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            SizedBox(height: 16),
+                            showAnswer[index]
+                                ? Text(
+                                  card['Question'],
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                )
+                                : SizedBox(height: 20),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        top: 250,
+                        right: 10,
+                        child: Text(
+                          'Correct: ${card['good']}   Wrong: ${card['bad']}',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  /// 結果表示部分
+  Widget _buildResultView() {
+    return Expanded(
+      child: Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "結果",
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 12),
+              Text("正解数: $countCorrect", style: TextStyle(fontSize: 24)),
+              SizedBox(height: 12),
+              Text("正答率: ${_formatAccuracy(accuracy)}", style: TextStyle(fontSize: 24)),
+              SizedBox(height: 12),
+              Text("タイム: ${_formatDuration(answerDuration)}", style: TextStyle(fontSize: 24)),
+              SizedBox(height: 40),
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: Colors.black87,
+                        minimumSize: Size.fromHeight(60),
+                        side: BorderSide(color: Colors.grey[400]!),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(Icons.home_outlined),
+                      label: Text('ホームに戻る'),
+                    ),
+                  ),
+                  SizedBox(width: 16),
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.flashcardMain,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                      ),
+                      onPressed: resetCards,
+                      icon: Icon(Icons.refresh),
+                      label: Text('もう一度'),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // contentsがからの時
@@ -167,7 +355,7 @@ class _FlashCardState extends State<FlashCard> {
         body: Center(
           child: ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFFE05555),
+              backgroundColor: AppColors.flashcardMain,
               foregroundColor: Colors.white,
               padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
               shape: RoundedRectangleBorder(
@@ -235,131 +423,7 @@ class _FlashCardState extends State<FlashCard> {
         ),
         body: Column(
           children: [
-            // CardSwiper（finishedで非表示）
-            if (!finished)
-              Container(
-                height: 500,
-                padding: EdgeInsets.only(top: 140),
-                child: CardSwiper(
-                  controller: controller,
-                  cardsCount: contents.length,
-                  maxAngle: 10,
-                  isLoop: false,
-                  scale: 0.9,
-                  duration: Duration(milliseconds: 60),
-                  isDisabled: !isSwipable,
-                  onSwipe: handleSwipe,
-                  onEnd: () async {
-                    setState(() {
-                      finished = true;
-                      answerDuration = DateTime.now().difference(startTime);
-                      accuracy =
-                          contents.isEmpty
-                              ? 0.0
-                              : countCorrect / contents.length;
-                    });
-                    await saveContents(
-                      contents,
-                      widget.titleFilename["filename"],
-                    );
-                    // 統計情報を更新
-                    if (contents.isNotEmpty) {
-                      final prevCount = (widget.titleFilename['completionCount'] ?? 0) as int;
-                      final newCount = prevCount + 1;
-                      final newAvg = answerDuration.inSeconds / contents.length;
-                      widget.titleFilename['completionCount'] = newCount;
-                      widget.titleFilename['avgTimePerQuestion'] = newAvg;
-                      await saveTitleFilenames();
-                    }
-                  },
-                  numberOfCardsDisplayed:
-                      contents.isEmpty
-                          ? 1
-                          : (contents.length < 3 ? contents.length : 3),
-                  cardBuilder: (context, index, percentX, percentY) {
-                    currentIndex = index;
-                    final card = contents[index];
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          showAnswer[index] = !showAnswer[index];
-                          if (!isSwipable) isSwipable = true;
-                        });
-                      },
-                      child: Card(
-                        color: Color(0xFFFFFFFF),
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Color(0xFFE05555), width: 4),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 24),
-                            child: Stack(
-                              children: [
-                                Positioned(
-                                  top: 30,
-                                  left: 0,
-                                  child: Text(
-                                    "${card['index']}.",
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 30,
-                                  right: 10,
-                                  child: Text(
-                                    "${index + 1}/${contents.length}",
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 90,
-                                  left: 0,
-                                  right: 0,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        card['Answer'],
-                                        style: TextStyle(
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                      SizedBox(height: 16),
-                                      showAnswer[index]
-                                          ? Text(
-                                            card['Question'],
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          )
-                                          : SizedBox(height: 20),
-                                    ],
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 250,
-                                  right: 10,
-                                  child: Text(
-                                    'Correct: ${card['good']}   Wrong: ${card['bad']}',
-                                    style: TextStyle(fontSize: 14),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-
-            // CardSwiper下のテキスト（finishedで非表示）
+            if (!finished) _buildCardSwiper(),
             if (!finished)
               Container(
                 padding: EdgeInsets.all(40),
@@ -368,81 +432,7 @@ class _FlashCardState extends State<FlashCard> {
                   style: TextStyle(fontSize: 16),
                 ),
               ),
-
-            // finished後の結果表示
-            if (finished)
-              Expanded(
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          "結果",
-                          style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 12),
-                        Text(
-                          "正解数: $countCorrect",
-                          style: TextStyle(fontSize: 24),
-                        ),
-                        SizedBox(height: 12),
-                        Text(
-                          "正答率: ${_formatAccuracy(accuracy)}",
-                          style: TextStyle(fontSize: 24),
-                        ),
-                        SizedBox(height: 12),
-                        Text(
-                          "タイム: ${_formatDuration(answerDuration)}",
-                          style: TextStyle(fontSize: 24),
-                        ),
-                        SizedBox(height: 40),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: OutlinedButton.icon(
-                                style: OutlinedButton.styleFrom(
-                                  foregroundColor: Colors.black87,
-                                  minimumSize: Size.fromHeight(60),
-                                  side: BorderSide(color: Colors.grey[400]!),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(24),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                  Navigator.pop(context);
-                                },
-                                icon: Icon(Icons.home_outlined),
-                                label: Text('ホームに戻る'),
-                              ),
-                            ),
-                            SizedBox(width: 16),
-                            Expanded(
-                              child: ElevatedButton.icon(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFFE05555),
-                                  foregroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(24),
-                                  ),
-                                ),
-                                onPressed: resetCards,
-                                icon: Icon(Icons.refresh),
-                                label: Text('もう一度'),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+            if (finished) _buildResultView(),
           ],
         ),
       ),

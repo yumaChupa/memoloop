@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:memoloop/utils/functions.dart';
+import 'package:memoloop/constants.dart';
 
 class Create extends StatefulWidget {
   late final Map<String, dynamic> titleFilename;
@@ -56,7 +57,7 @@ class _CreateState extends State<Create> {
                   padding: EdgeInsets.all(40),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Color(0xFF4A90D9), width: 4),
+                    border: Border.all(color: AppColors.createAccent, width: 4),
                   ),
                   child: TextFormField(
                     minLines: 1,    // 初期1行
@@ -78,7 +79,7 @@ class _CreateState extends State<Create> {
                   padding: EdgeInsets.all(40),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Color(0xFF4A90D9), width: 4),
+                    border: Border.all(color: AppColors.createAccent, width: 4),
                   ),
                   child: TextFormField(
                     minLines: 1,    // 初期1行
@@ -98,7 +99,7 @@ class _CreateState extends State<Create> {
                   width: double.infinity,
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF4A90D9),
+                      backgroundColor: AppColors.createMain,
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(24),

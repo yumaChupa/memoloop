@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:memoloop/utils/functions.dart' show renameKey;
 
 const int currentSchemaVersion = 2;
 
@@ -22,13 +23,6 @@ Future<int> _readSchemaVersion(Directory dir) async {
 Future<void> _writeSchemaVersion(Directory dir, int version) async {
   final file = File('${dir.path}/schema_version.json');
   await file.writeAsString(jsonEncode({'schemaVersion': version}));
-}
-
-void _renameKey(Map<String, dynamic> map, String oldKey, String newKey) {
-  if (map.containsKey(oldKey) && !map.containsKey(newKey)) {
-    map[newKey] = map[oldKey];
-    map.remove(oldKey);
-  }
 }
 
 /// メインエントリポイント。schemaVersionに基づき必要なマイグレーションを順次実行。
@@ -153,19 +147,19 @@ Future<void> _migrateV2(Directory dir) async {
         if (item is! Map<String, dynamic>) continue;
 
         if (item.containsKey('Japanese') && !item.containsKey('Answer')) {
-          _renameKey(item, 'Japanese', 'Answer');
+          renameKey(item, 'Japanese', 'Answer');
           changed = true;
         }
         if (item.containsKey('English') && !item.containsKey('Question')) {
-          _renameKey(item, 'English', 'Question');
+          renameKey(item, 'English', 'Question');
           changed = true;
         }
         if (item.containsKey('done') && !item.containsKey('good')) {
-          _renameKey(item, 'done', 'good');
+          renameKey(item, 'done', 'good');
           changed = true;
         }
         if (item.containsKey('more') && !item.containsKey('bad')) {
-          _renameKey(item, 'more', 'bad');
+          renameKey(item, 'more', 'bad');
           changed = true;
         }
       }

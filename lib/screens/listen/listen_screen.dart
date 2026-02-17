@@ -6,6 +6,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:memoloop/globals.dart' as globals;
 import 'package:memoloop/utils/functions.dart';
 import 'package:memoloop/utils/tts_function.dart';
+import 'package:memoloop/constants.dart';
 
 enum AudioState { idle, loading, playing, stopping }
 
@@ -221,7 +222,7 @@ class _ListenScreenState extends State<ListenScreen> {
                   width: double.infinity,
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: isIdle ? Color(0xFFBB79D6) : Colors.grey[300],
+                      backgroundColor: isIdle ? AppColors.listenMain : Colors.grey[300],
                       foregroundColor: isIdle ? Colors.white : Colors.black87,
                       disabledBackgroundColor: Colors.grey[200],
                       disabledForegroundColor: Colors.grey[400],

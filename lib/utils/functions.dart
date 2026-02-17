@@ -3,16 +3,14 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart' show rootBundle;
-
 import 'package:share_plus/share_plus.dart';
-import 'package:path_provider/path_provider.dart';
-
 import 'package:memoloop/globals.dart' as globals;
 
 /////////////////
 // データ処理系 ///
 /////////////////
-void _renameKey(Map<String, dynamic> map, String oldKey, String newKey) {
+/// マップのキーをリネームする（旧キーが存在し、新キーが未存在の場合のみ）
+void renameKey(Map<String, dynamic> map, String oldKey, String newKey) {
   if (map.containsKey(oldKey) && !map.containsKey(newKey)) {
     map[newKey] = map[oldKey];
     map.remove(oldKey);
@@ -33,10 +31,10 @@ Future<List<Map<String, dynamic>>> loadJson(String filename) async {
     final List<dynamic> rawData = jsonDecode(jsonStr);
     for (var item in rawData) {
       if (item is Map<String, dynamic>) {
-        _renameKey(item, 'Japanese', 'Answer');
-        _renameKey(item, 'English', 'Question');
-        _renameKey(item, 'done', 'good');
-        _renameKey(item, 'more', 'bad');
+        renameKey(item, 'Japanese', 'Answer');
+        renameKey(item, 'English', 'Question');
+        renameKey(item, 'done', 'good');
+        renameKey(item, 'more', 'bad');
       }
     }
     await localFile.writeAsString(jsonEncode(rawData));
@@ -47,10 +45,10 @@ Future<List<Map<String, dynamic>>> loadJson(String filename) async {
   final List<dynamic> data = jsonDecode(jsonStr);
   final result = List<Map<String, dynamic>>.from(data);
   for (var item in result) {
-    _renameKey(item, 'Japanese', 'Answer');
-    _renameKey(item, 'English', 'Question');
-    _renameKey(item, 'done', 'good');
-    _renameKey(item, 'more', 'bad');
+    renameKey(item, 'Japanese', 'Answer');
+    renameKey(item, 'English', 'Question');
+    renameKey(item, 'done', 'good');
+    renameKey(item, 'more', 'bad');
   }
   return result;
 }
@@ -100,13 +98,11 @@ Future<void> loadTitleFilenames() async {
   }
 }
 
-//titleFilenamesの最終更新日時を更新
-void updateAndSortByDate(titleFilename) {
+/// titleFilenamesの最終更新日時を更新し、日付降順でソート
+void updateAndSortByDate(Map<String, dynamic> titleFilename) {
   final now = DateTime.now().toIso8601String();
-  int index = globals.titleFilenames.indexWhere((item) => item == titleFilename);
-  if (index==-1) {
-    false;
-  }else{
+  final index = globals.titleFilenames.indexWhere((item) => item == titleFilename);
+  if (index != -1) {
     globals.titleFilenames[index]["updatedAt"] = now;
   }
   //最終更新日時でソート（降順）
@@ -127,7 +123,7 @@ Future<void> saveTitleFilenames() async {
   await file.writeAsString(jsonStr);
 }
 
-Future<void> createNewfile(filename) async{
+Future<void> createNewfile(String filename) async {
   final dir = await getApplicationDocumentsDirectory();
   final dataDir = Directory('${dir.path}/data');
   if (!await dataDir.exists()) {
