@@ -27,8 +27,10 @@ void main() async {
   await loadTitleFilenames(); // 必ずMyApp実行前に呼び出す
   runApp(const MyApp());
 
-  // Firebase初期化をバックグラウンドで実行
-  _initFirebaseInBackground();
+  // 最初のフレーム描画後にFirebaseをバックグラウンド初期化
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    _initFirebaseInBackground();
+  });
 }
 
 /// Firebaseをバックグラウンドで初期化する

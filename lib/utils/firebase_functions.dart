@@ -6,7 +6,8 @@ import 'package:crypto/crypto.dart';
 
 import 'package:memoloop/globals.dart' as globals;
 
-final FirebaseFirestore firestore = FirebaseFirestore.instance;
+/// Firestoreインスタンスは遅延取得（Firebase.initializeApp()後に安全にアクセス）
+FirebaseFirestore get firestore => FirebaseFirestore.instance;
 
 // レート制限: 最後のアップロード時刻を保持
 DateTime? _lastUploadTime;
