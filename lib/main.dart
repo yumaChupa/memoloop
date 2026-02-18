@@ -11,7 +11,7 @@ import 'package:memoloop/globals.dart' as globals;
 import 'package:memoloop/utils/functions.dart';
 import 'package:memoloop/utils/tts_function.dart';
 import 'package:memoloop/utils/migration.dart';
-import 'package:memoloop/utils/firebase_functions.dart';
+import 'package:memoloop/firebase_options.dart';
 
 // プロジェクトのローカルファイル（アルファベット順）
 import 'screens/create/create_select.dart';
@@ -25,21 +25,21 @@ void main() async {
   await initTtsClient(); // TTS初期化
   await runMigrations(); // マイグレーション（schemaVersionで制御）
   await loadTitleFilenames(); // 必ずMyApp実行前に呼び出す
-  runApp(const MyApp());
 
-  // 最初のフレーム描画後にFirebaseをバックグラウンド初期化
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    _initFirebaseInBackground();
-  });
+  // Firebase初期化をFutureとして開始（awaitしない＝ノンブロッキング）
+  // 各画面でFirestoreを使う前に globals.firebaseInitFuture を await する
+  globals.firebaseInitFuture = _initFirebase();
+
+  runApp(const MyApp());
 }
 
-/// Firebaseをバックグラウンドで初期化する
-Future<void> _initFirebaseInBackground() async {
+/// Firebase初期化（Futureとしてglobalsに保持される）
+Future<void> _initFirebase() async {
   try {
-    await Firebase.initializeApp();
-    await firebaseInit(globals.titleFilenames);
-    globals.isFirebaseReady = true;
-    debugPrint('Firebase initialized successfully in background');
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    debugPrint('Firebase initialized successfully');
   } catch (e) {
     debugPrint('Firebase initialization failed: $e');
   }

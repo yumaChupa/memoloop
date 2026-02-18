@@ -2,9 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crypto/crypto.dart';
-
-import 'package:memoloop/globals.dart' as globals;
 
 /// Firestoreインスタンスは遅延取得（Firebase.initializeApp()後に安全にアクセス）
 FirebaseFirestore get firestore => FirebaseFirestore.instance;
