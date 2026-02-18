@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.memoloop.memoloop</string>
+	<string>com.memoloop.myapp</string>
 	<key>PROJECT_ID</key>
 	<string>memoloop-tts</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:191084660359:ios:5c8ecba665b6f2aecf9a22</string>
+	<string>1:191084660359:ios:a93565074b0efc09cf9a22</string>
 </dict>
 </plist>
