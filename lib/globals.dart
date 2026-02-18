@@ -2,7 +2,11 @@ import 'package:uuid/uuid.dart';
 
 final uuid = Uuid().v4();
 
+<<<<<<< HEAD
 // Firebase初期化のFuture（main()で開始、Firebase使用箇所でawait）
+=======
+// Firebase初期化Futureの管理（使用箇所でawaitして初期化完了を待つ）
+>>>>>>> main
 late Future<void> firebaseInitFuture;
 
 List<Map<String, dynamic>> titleFilenames = [

@@ -20,14 +20,19 @@ class _AddScreenState extends State<AddScreen> {
   @override
   void initState() {
     super.initState();
-
     filename = widget.titleFilename["filename"];
-    getProblemSet(filename).then((data) async {
+    _loadProblemSet();
+  }
+
+  /// Firebase初期化完了を待ってからFirestoreの問題セットを取得
+  Future<void> _loadProblemSet() async {
+    await globals.firebaseInitFuture;
+    final data = await getProblemSet(filename);
+    if (mounted) {
       setState(() {
         contents = data;
       });
-    });
-
+    }
   }
 
   Future<void> showAddDialog() async {
@@ -69,6 +74,7 @@ class _AddScreenState extends State<AddScreen> {
         globals.titleFilenames.add(newItem);
         updateAndSortByDate(newItem);
         await saveContents(contents, filename);
+        await globals.firebaseInitFuture;
         await incrementDownloadCount(filename);
         ScaffoldMessenger.of(
           context,
