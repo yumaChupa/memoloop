@@ -167,6 +167,7 @@ class _OverviewSelectState extends State<OverviewSelect> {
     );
 
     if (confirmed == true) {
+      await globals.firebaseInitFuture; // Firebase初期化完了を保証
       final tags = (item['tags'] as List<dynamic>?)?.cast<String>() ?? [];
       final remaining = await uploadProblemSetWithReset(
         item["title"]!.toString(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'add_screen.dart';
+import 'package:memoloop/globals.dart' as globals;
 import 'package:memoloop/utils/functions.dart';
 import 'package:memoloop/utils/firebase_functions.dart';
 import 'package:memoloop/constants.dart';
@@ -45,12 +46,19 @@ class _AddSelectState extends State<AddSelect> {
   @override
   void initState() {
     super.initState();
-    getSetsList().then((setsList) {
+    _loadSets();
+  }
+
+  /// Firebase初期化完了を待ってからFirestoreのデータを取得
+  Future<void> _loadSets() async {
+    await globals.firebaseInitFuture;
+    final setsList = await getSetsList();
+    if (mounted) {
       setState(() {
         titleFilenamesFs = setsList;
         isLoading = false;
       });
-    });
+    }
   }
 
   Widget _buildSortTab(String label, _AddSortOrder order) {
