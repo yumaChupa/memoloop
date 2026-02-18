@@ -49,11 +49,7 @@ class _AddSelectState extends State<AddSelect> {
     _loadSets();
   }
 
-<<<<<<< HEAD
   /// Firebase初期化完了を待ってからFirestoreのデータを取得
-=======
-  /// Firebase初期化完了を待ってからFirestoreのセット一覧を取得
->>>>>>> main
   Future<void> _loadSets() async {
     await globals.firebaseInitFuture;
     final setsList = await getSetsList();

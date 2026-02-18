@@ -12,10 +12,7 @@ import 'package:memoloop/globals.dart' as globals;
 import 'package:memoloop/utils/functions.dart';
 import 'package:memoloop/utils/tts_function.dart';
 import 'package:memoloop/utils/migration.dart';
-<<<<<<< HEAD
-=======
 import 'package:memoloop/firebase_options.dart';
->>>>>>> main
 
 // プロジェクトのローカルファイル（アルファベット順）
 import 'screens/create/create_select.dart';
@@ -30,22 +27,13 @@ void main() async {
   await runMigrations(); // マイグレーション（schemaVersionで制御）
   await loadTitleFilenames(); // 必ずMyApp実行前に呼び出す
 
-<<<<<<< HEAD
   // Firebase初期化を開始（awaitせずバックグラウンドで進行）
-=======
-  // Firebase初期化をFutureとして開始（awaitしない＝ノンブロッキング）
-  // 各画面でFirestoreを使う前に globals.firebaseInitFuture を await する
->>>>>>> main
   globals.firebaseInitFuture = _initFirebase();
 
   runApp(const MyApp());
 }
 
-<<<<<<< HEAD
 /// Firebase初期化（globalsのFutureとして保持し、使用箇所でawait）
-=======
-/// Firebase初期化（Futureとしてglobalsに保持される）
->>>>>>> main
 Future<void> _initFirebase() async {
   try {
     await Firebase.initializeApp(
