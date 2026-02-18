@@ -147,7 +147,7 @@ class _AddSelectState extends State<AddSelect> {
                               item["title"].toString(),
                               style: TextStyle(
                                 color: Colors.grey[850],
-                                fontSize: 20,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                               overflow: TextOverflow.ellipsis,
