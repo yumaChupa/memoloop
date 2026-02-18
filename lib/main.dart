@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'firebase_options.dart';
-
 // プロジェクト内のパッケージ（アルファベット順、階層深い順でもOK）
 import 'package:memoloop/globals.dart' as globals;
 import 'package:memoloop/utils/functions.dart';

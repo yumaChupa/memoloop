@@ -156,10 +156,6 @@ Future<void> uploadFilesInit(Map<String, dynamic> titleFilename) async {
   final dir = await getApplicationDocumentsDirectory();
   final file = File('${dir.path}/data/$filename.json');
 
-
-  if (!await file.exists()) return print(title+" not exists"); ;
-  print(title);
-
   final jsonStr = await file.readAsString();
   final List<dynamic> questions = jsonDecode(jsonStr);
 
