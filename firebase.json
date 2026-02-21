@@ -1,1 +1,38 @@
-{"flutter":{"platforms":{"ios":{"default":{"projectId":"memoloop-tts","appId":"1:191084660359:ios:5c8ecba665b6f2aecf9a22","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"memoloop-tts","configurations":{"ios":"1:191084660359:ios:5c8ecba665b6f2aecf9a22"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "ios": {
+        "default": {
+          "projectId": "memoloop-tts",
+          "appId": "1:191084660359:ios:5c8ecba665b6f2aecf9a22",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "memoloop-tts",
+          "configurations": {
+            "ios": "1:191084660359:ios:5c8ecba665b6f2aecf9a22"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint"
+      ]
+    }
+  ]
+}
