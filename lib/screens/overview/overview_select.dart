@@ -177,7 +177,9 @@ class _OverviewSelectState extends State<OverviewSelect> {
       if (remaining != null) {
         final message = remaining == -1
             ? '問題数が$maxQuestionCount問を超えています。公開できる問題数は$maxQuestionCount問までです'
-            : 'アップロードの間隔が短すぎます。$remaining秒後に再試行してください';
+            : remaining == -2
+                ? '本日のアクセス上限に達しました。明日再度お試しください'
+                : 'アップロードの間隔が短すぎます。$remaining秒後に再試行してください';
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
       }
     }

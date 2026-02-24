@@ -1,3 +1,4 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'add_screen.dart';
 import 'package:memoloop/globals.dart' as globals;
@@ -49,15 +50,27 @@ class _AddSelectState extends State<AddSelect> {
     _loadSets();
   }
 
-  /// Firebase初期化完了を待ってからFirestoreのデータを取得
+  /// Firebase初期化完了を待ってからCloud Functionsでデータを取得
   Future<void> _loadSets() async {
     await globals.firebaseInitFuture;
-    final setsList = await getSetsList();
-    if (mounted) {
-      setState(() {
-        titleFilenamesFs = setsList;
-        isLoading = false;
-      });
+    try {
+      final setsList = await getSetsList();
+      if (mounted) {
+        setState(() {
+          titleFilenamesFs = setsList;
+          isLoading = false;
+        });
+      }
+    } on FirebaseFunctionsException catch (e) {
+      if (mounted) {
+        setState(() {
+          titleFilenamesFs = [];
+          isLoading = false;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.message ?? 'データ取得に失敗しました')),
+        );
+      }
     }
   }
 

@@ -8,6 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 // プロジェクト内のパッケージ（アルファベット順、階層深い順でもOK）
 import 'package:memoloop/globals.dart' as globals;
+import 'package:memoloop/utils/device_id_service.dart';
 import 'package:memoloop/utils/functions.dart';
 import 'package:memoloop/utils/tts_function.dart';
 import 'package:memoloop/utils/migration.dart';
@@ -22,6 +23,7 @@ import 'screens/add/add_select.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  globals.deviceUuid = await DeviceIdService.getOrCreate(); // 端末UUIDを永続化
   await initTtsClient(); // TTS初期化
   await runMigrations(); // マイグレーション（schemaVersionで制御）
   await loadTitleFilenames(); // 必ずMyApp実行前に呼び出す

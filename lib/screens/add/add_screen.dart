@@ -1,3 +1,4 @@
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import '../../globals.dart' as globals;
 import '../../utils/functions.dart';
@@ -24,14 +25,22 @@ class _AddScreenState extends State<AddScreen> {
     _loadProblemSet();
   }
 
-  /// Firebase初期化完了を待ってからFirestoreの問題セットを取得
+  /// Firebase初期化完了を待ってからCloud Functionsで問題セットを取得
   Future<void> _loadProblemSet() async {
     await globals.firebaseInitFuture;
-    final data = await getProblemSet(filename);
-    if (mounted) {
-      setState(() {
-        contents = data;
-      });
+    try {
+      final data = await getProblemSet(filename);
+      if (mounted) {
+        setState(() {
+          contents = data;
+        });
+      }
+    } on FirebaseFunctionsException catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.message ?? 'データ取得に失敗しました')),
+        );
+      }
     }
   }
 
