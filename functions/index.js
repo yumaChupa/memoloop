@@ -144,9 +144,7 @@ exports.createProblem = onCall(
 /**
  * 公開されている問題セット一覧を取得
  */
-exports.getSetsList = onCall(
-  { enforceAppCheck: true },
-  async (request) => {
+exports.getSetsList = onCall({ enforceAppCheck: true }, async (request) => {
     const db = admin.firestore();
     const { deviceUuid } = request.data;
 
@@ -165,9 +163,7 @@ exports.getSetsList = onCall(
 /**
  * 特定の問題セットの問題一覧を取得
  */
-exports.getProblemSet = onCall(
-  { enforceAppCheck: true },
-  async (request) => {
+exports.getProblemSet = onCall({ enforceAppCheck: true }, async (request) => {
     const db = admin.firestore();
     const { deviceUuid, filename } = request.data;
 
@@ -193,9 +189,7 @@ exports.getProblemSet = onCall(
 /**
  * ダウンロード数をインクリメント
  */
-exports.incrementDownload = onCall(
-  { enforceAppCheck: true },
-  async (request) => {
+exports.incrementDownload = onCall({ enforceAppCheck: true }, async (request) => {
     const db = admin.firestore();
     const { deviceUuid, filename } = request.data;
 
@@ -216,9 +210,7 @@ exports.incrementDownload = onCall(
 /**
  * 問題セットをアップロード（新規 or 更新）
  */
-exports.uploadProblemSet = onCall(
-  { enforceAppCheck: true },
-  async (request) => {
+exports.uploadProblemSet = onCall({ enforceAppCheck: true }, async (request) => {
     const db = admin.firestore();
     const { deviceUuid, title, filename, tags, questions } = request.data;
 
