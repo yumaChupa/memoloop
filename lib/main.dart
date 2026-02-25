@@ -1,5 +1,6 @@
 // 標準の Flutter パッケージ（最優先）
 import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // サードパーティパッケージ（アルファベット順）
@@ -41,7 +42,12 @@ Future<void> _initFirebase() async {
       options: DefaultFirebaseOptions.currentPlatform,
     );
     await FirebaseAppCheck.instance.activate(
-      appleProvider: AppleProvider.appAttest,
+      // デバッグビルド（シミュレーター・エミュレーター）はデバッグプロバイダー
+      // リリースビルドは実機検証プロバイダー
+      appleProvider:
+          kDebugMode ? AppleProvider.debug : AppleProvider.appAttest,
+      androidProvider:
+          kDebugMode ? AndroidProvider.debug : AndroidProvider.playIntegrity,
     );
     debugPrint('Firebase initialized successfully');
   } catch (e) {
