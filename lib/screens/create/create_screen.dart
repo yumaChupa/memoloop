@@ -52,7 +52,7 @@ class _CreateState extends State<Create> {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                //　日本語フレーズの入力窓
+                //　Questionの入力窓
                 Container(
                   padding: EdgeInsets.all(40),
                   decoration: BoxDecoration(
