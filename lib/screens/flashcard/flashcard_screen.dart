@@ -201,13 +201,14 @@ class _FlashCardState extends State<FlashCard> {
         cardBuilder: (context, index, percentX, percentY) {
           currentIndex = index;
           final card = contents[index];
-          // switchMode: Question を先に表示し Answer をタップで表示
+          // デフォルト: Question（日本語）を表示し Answer（英語）をタップで表示
+          // switchMode ON: Answer（英語）を先に表示し Question（日本語）をタップで表示
           final promptText = globals.switchMode
-              ? card['Question'].toString()
-              : card['Answer'].toString();
-          final revealText = globals.switchMode
               ? card['Answer'].toString()
               : card['Question'].toString();
+          final revealText = globals.switchMode
+              ? card['Question'].toString()
+              : card['Answer'].toString();
           return GestureDetector(
             onTap: () {
               setState(() {

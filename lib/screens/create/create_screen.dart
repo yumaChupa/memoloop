@@ -13,8 +13,9 @@ class Create extends StatefulWidget {
 }
 
 class _CreateState extends State<Create> {
-  final TextEditingController _controllerJap = TextEditingController();
-  final TextEditingController _controllerEng = TextEditingController();
+  // Question = Japanese（日本語）, Answer = English（英語フレーズ）
+  final TextEditingController _controllerQuestion = TextEditingController();
+  final TextEditingController _controllerAnswer = TextEditingController();
 
   late final String filename;
   late List<Map<String, dynamic>> contents = [];
@@ -60,7 +61,7 @@ class _CreateState extends State<Create> {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                //　Questionの入力窓
+                // Question（日本語）の入力窓 — フラッシュカードで最初に表示される側
                 Container(
                   padding: EdgeInsets.all(40),
                   decoration: BoxDecoration(
@@ -68,11 +69,11 @@ class _CreateState extends State<Create> {
                     border: Border.all(color: AppColors.createAccent, width: 4),
                   ),
                   child: TextFormField(
-                    minLines: 1,    // 初期1行
-                    maxLines: 5,    // 最大5行まで拡張
+                    minLines: 1,
+                    maxLines: 5,
                     keyboardType: TextInputType.multiline,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                    controller: _controllerJap,
+                    controller: _controllerQuestion,
                     decoration: const InputDecoration(
                       hintText: "Question",
                       hintStyle: TextStyle(color: Colors.black54),
@@ -82,7 +83,7 @@ class _CreateState extends State<Create> {
                 ),
                 SizedBox(height: 20),
 
-                // 英語フレーズの入力窓
+                // Answer（英語フレーズ）の入力窓 — タップで表示される側
                 Container(
                   padding: EdgeInsets.all(40),
                   decoration: BoxDecoration(
@@ -90,13 +91,13 @@ class _CreateState extends State<Create> {
                     border: Border.all(color: AppColors.createAccent, width: 4),
                   ),
                   child: TextFormField(
-                    minLines: 1,    // 初期1行
-                    maxLines: 5,    // 最大5行まで拡張
+                    minLines: 1,
+                    maxLines: 5,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                    controller: _controllerEng,
+                    controller: _controllerAnswer,
                     decoration: const InputDecoration(
                       hintStyle: TextStyle(color: Colors.black54),
-                      hintText: "English phrase",
+                      hintText: "Answer",
                       border: InputBorder.none,
                     ),
                   ),
@@ -116,15 +117,15 @@ class _CreateState extends State<Create> {
                     onPressed: () {
                       final newItem = {
                         "index": contents.length + 1,
-                        "Answer": _controllerJap.text,
-                        "Question": _controllerEng.text,
+                        "Question": _controllerQuestion.text,
+                        "Answer": _controllerAnswer.text,
                         "good": 0,
                         "bad": 0,
                       };
                       setState(() {
                         contents.add(newItem);
-                        _controllerJap.text = "";
-                        _controllerEng.text = "";
+                        _controllerQuestion.text = "";
+                        _controllerAnswer.text = "";
                       });
                       saveContents(contents, filename);
                     },

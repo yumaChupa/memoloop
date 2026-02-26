@@ -31,8 +31,8 @@ Future<List<Map<String, dynamic>>> loadJson(String filename) async {
     final List<dynamic> rawData = jsonDecode(jsonStr);
     for (var item in rawData) {
       if (item is Map<String, dynamic>) {
-        renameKey(item, 'Japanese', 'Answer');
-        renameKey(item, 'English', 'Question');
+        renameKey(item, 'Japanese', 'Question');
+        renameKey(item, 'English', 'Answer');
         renameKey(item, 'done', 'good');
         renameKey(item, 'more', 'bad');
       }
