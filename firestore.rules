@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 問題セット: クライアントは読み取りのみ。書き込みはFunctions（Admin SDK）のみ。
+    match /sets/{setId} {
+      allow read: if true;
+      allow write: if false;
+
+      match /questions/{questionId} {
+        allow read: if true;
+        allow write: if false;
+      }
+    }
+
+    // その他すべて（problems, uploadRateLimits 等）: クライアントから全禁止
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
