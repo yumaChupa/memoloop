@@ -59,7 +59,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                   TextField(
                     controller: japaneseController,
                     decoration: InputDecoration(
-                      labelText: '日本語',
+                      labelText: 'Question',
                       labelStyle: TextStyle(color: Colors.black45),
                     ),
                   ),

@@ -1,359 +1,352 @@
 [
   {
     "index": 1,
-    "Japanese": "誰も悪くないよ",
-    "English": "It’s nobody’s fault.",
-    "done": 0,
-    "more": 0
+    "Question": "誰も悪くないよ",
+    "Answer": "It's nobody's fault.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 2,
-    "Japanese": "それ以上言わないで",
-    "English": "Don't say any more.",
-    "done": 0,
-    "more": 0
+    "Question": "それ以上言わないで",
+    "Answer": "Don't say any more.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 3,
-    "Japanese": "それは残念",
-    "English": "That's too bad.",
-    "done": 0,
-    "more": 0
+    "Question": "それは残念",
+    "Answer": "That's too bad.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 4,
-    "Japanese": "参加するよ",
-    "English": "I’m down.",
-    "done": 0,
-    "more": 0
+    "Question": "参加するよ",
+    "Answer": "I'm down.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 5,
-    "Japanese": "そうかもなー",
-    "English": "I guess so.",
-    "done": 0,
-    "more": 0
+    "Question": "そうかもな",
+    "Answer": "I guess so.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 6,
-    "Japanese": "それヤバい",
-    "English": "That’s wild.",
-    "done": 0,
-    "more": 0
+    "Question": "それヤバい",
+    "Answer": "That's wild.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 7,
-    "Japanese": "私は大丈夫",
-    "English": "Don’t worry about me.",
-    "done": 0,
-    "more": 0
+    "Question": "私は大丈夫",
+    "Answer": "Don't worry about me.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 8,
-    "Japanese": "どのみち",
-    "English": "Either way",
-    "done": 0,
-    "more": 0
+    "Question": "どのみち",
+    "Answer": "Either way",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 9,
-    "Japanese": "結構です（断る時）",
-    "English": "I’m good.",
-    "done": 0,
-    "more": 0
+    "Question": "結構です（断る時）",
+    "Answer": "I'm good.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 10,
-    "Japanese": "わかった",
-    "English": "I got it",
-    "done": 0,
-    "more": 0
+    "Question": "わかった",
+    "Answer": "I got it.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 11,
-    "Japanese": "まじで？",
-    "English": "For real?",
-    "done": 0,
-    "more": 0
+    "Question": "まじで？",
+    "Answer": "For real?",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 12,
-    "Japanese": "すごいやん",
-    "English": "That's awesome!",
-    "done": 0,
-    "more": 0
+    "Question": "すごいやん",
+    "Answer": "That's awesome!",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 13,
-    "Japanese": "他にある？",
-    "English": "You have anything else?",
-    "done": 0,
-    "more": 0
+    "Question": "他にある？",
+    "Answer": "Do you have anything else?",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 14,
-    "Japanese": "（会話中）それいいね",
-    "English": "Sounds great.",
-    "done": 0,
-    "more": 0
+    "Question": "それいいね",
+    "Answer": "Sounds great.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 15,
-    "Japanese": "どうしたの？何か問題でも？",
-    "English": "What's the matter?",
-    "done": 0,
-    "more": 0
+    "Question": "どうしたの？何か問題でも？",
+    "Answer": "What's the matter?",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 16,
-    "Japanese": "いっしょ",
-    "English": "Same here",
-    "done": 0,
-    "more": 0
+    "Question": "いっしょ",
+    "Answer": "Same here.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 17,
-    "Japanese": "ちょっと考えていただけ",
-    "English": "I was just thinking",
-    "done": 0,
-    "more": 0
+    "Question": "ちょっと考えていただけ",
+    "Answer": "I was just thinking.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 18,
-    "Japanese": "続けて",
-    "English": "Carry on.",
-    "done": 0,
-    "more": 0
+    "Question": "続けて",
+    "Answer": "Carry on.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 19,
-    "Japanese": "それな",
-    "English": "You can say that again",
-    "done": 0,
-    "more": 0
+    "Question": "それな",
+    "Answer": "You can say that again.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 20,
-    "Japanese": "元気で",
-    "English": "Take care",
-    "done": 0,
-    "more": 0
+    "Question": "元気で",
+    "Answer": "Take care.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 21,
-    "Japanese": "わざとじゃない",
-    "English": "I didn't do it on purpose",
-    "done": 0,
-    "more": 0
+    "Question": "わざとじゃない",
+    "Answer": "I didn't do it on purpose.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 22,
-    "Japanese": "今回だけだよ",
-    "English": "Only this time, not next time",
-    "done": 0,
-    "more": 0
+    "Question": "今回だけだよ",
+    "Answer": "Only this time, not next time.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 23,
-    "Japanese": "素晴らしい",
-    "English": "Terrific!",
-    "done": 0,
-    "more": 0
+    "Question": "素晴らしい",
+    "Answer": "Terrific!",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 24,
-    "Japanese": "まさかぁ",
-    "English": "You don’t say.",
-    "done": 0,
-    "more": 0
+    "Question": "まさかぁ",
+    "Answer": "You don't say.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 25,
-    "Japanese": "怖いんだけど",
-    "English": "This thing is freaking me out.",
-    "done": 0,
-    "more": 0
+    "Question": "何が起きた！？",
+    "Answer": "What happened!?",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 26,
-    "Japanese": "うそだありえない",
-    "English": "No way",
-    "done": 0,
-    "more": 0
+    "Question": "嘘だ、ありえない",
+    "Answer": "No way.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 27,
-    "Japanese": "全くその通り",
-    "English": "Exactly / Indeed",
-    "done": 0,
-    "more": 0
+    "Question": "全くその通り",
+    "Answer": "Exactly / Indeed.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 28,
-    "Japanese": "〇〇だったと思う",
-    "English": "〇〇, I guess.",
-    "done": 0,
-    "more": 0
+    "Question": "〇〇だったと思う",
+    "Answer": "〇〇, I guess.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 29,
-    "Japanese": "話変わるけどさ",
-    "English": "By the way,",
-    "done": 0,
-    "more": 0
+    "Question": "話変わるけどさ",
+    "Answer": "By the way,",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 30,
-    "Japanese": "今度お礼させて",
-    "English": "I owe you one.",
-    "done": 0,
-    "more": 0
+    "Question": "今度お礼させて",
+    "Answer": "I owe you one.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 31,
-    "Japanese": "そうなんですか？",
-    "English": "Is that so? / Is that right?",
-    "done": 0,
-    "more": 0
+    "Question": "そうなんですか？",
+    "Answer": "Is that so?",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 32,
-    "Japanese": "それはちょっと、、、",
-    "English": "I don't know about that.",
-    "done": 0,
-    "more": 0
+    "Question": "それはちょっと、、、",
+    "Answer": "I don't know about that.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 33,
-    "Japanese": "ちょっと待って",
-    "English": "Hang on. / Hold on.",
-    "done": 0,
-    "more": 0
+    "Question": "ちょっと待って",
+    "Answer": "Hang on. / Hold on.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 34,
-    "Japanese": "他には？",
-    "English": "What else?",
-    "done": 0,
-    "more": 0
+    "Question": "他には？",
+    "Answer": "What else?",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 35,
-    "Japanese": "大変に違いない",
-    "English": "It must be tough.",
-    "done": 0,
-    "more": 0
+    "Question": "大変に違いない",
+    "Answer": "It must be tough.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 36,
-    "Japanese": "メールちょうだい",
-    "English": "Text me",
-    "done": 0,
-    "more": 0
+    "Question": "メールちょうだい",
+    "Answer": "Text me.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 37,
-    "Japanese": "連絡するね",
-    "English": "I'll be in touch",
-    "done": 0,
-    "more": 0
+    "Question": "連絡するね",
+    "Answer": "I'll be in touch.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 38,
-    "Japanese": "あってる、正しい",
-    "English": "That’s true.",
-    "done": 0,
-    "more": 0
+    "Question": "あってる、正しい",
+    "Answer": "That's true.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 39,
-    "Japanese": "多分そう",
-    "English": "Probably so.",
-    "done": 0,
-    "more": 0
+    "Question": "多分そう",
+    "Answer": "Probably so.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 40,
-    "Japanese": "楽しいに違いない",
-    "English": "It must be fun.",
-    "done": 0,
-    "more": 0
+    "Question": "楽しいに違いない",
+    "Answer": "It must be fun.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 41,
-    "Japanese": "頑張ってきたことが報われたね",
-    "English": "You deserve this.",
-    "done": 0,
-    "more": 0
+    "Question": "頑張ってきたことが報われたね",
+    "Answer": "You deserve this.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 42,
-    "Japanese": "マジ？",
-    "English": "Are you serious?",
-    "done": 0,
-    "more": 0
+    "Question": "マジ？",
+    "Answer": "Are you serious?",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 43,
-    "Japanese": "冗談やろ",
-    "English": "You must be kidding",
-    "done": 0,
-    "more": 0
+    "Question": "冗談やろ",
+    "Answer": "You must be kidding.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 44,
-    "Japanese": "気にしないで",
-    "English": "Never mind",
-    "done": 0,
-    "more": 0
+    "Question": "気にしないで",
+    "Answer": "Never mind.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 45,
-    "Japanese": "メールするね",
-    "English": "I'll text you",
-    "done": 0,
-    "more": 0
+    "Question": "メールするね",
+    "Answer": "I'll text you.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 46,
-    "Japanese": "ほんまそれ！",
-    "English": "Totally",
-    "done": 0,
-    "more": 0
+    "Question": "ほんまそれ！",
+    "Answer": "Totally.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 47,
-    "Japanese": "それで？",
-    "English": "And then?",
-    "done": 0,
-    "more": 0
+    "Question": "それで？",
+    "Answer": "And then?",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 48,
-    "Japanese": "なるほどなぁ",
-    "English": "That makes sense.",
-    "done": 0,
-    "more": 0
+    "Question": "なるほどなぁ",
+    "Answer": "That makes sense.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 49,
-    "Japanese": "よかったなー",
-    "English": "Good for you!",
-    "done": 0,
-    "more": 0
+    "Question": "よかったな",
+    "Answer": "Good for you!",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 50,
-    "Japanese": "何が起きてんの！？",
-    "English": "What's going on!?",
-    "done": 0,
-    "more": 0
+    "Question": "何が起きてんの！？",
+    "Answer": "What's going on!?",
+    "good": 0,
+    "bad": 0
   },
-  {
-    "index": 51,
-    "Japanese": "何が起きた！？",
-    "English": "What happened!?",
-    "done": 0,
-    "more": 0
-  }
 ]

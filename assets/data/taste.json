@@ -1,324 +1,324 @@
 [
   {
     "index": 1,
-    "Japanese": "甘い ",
-    "English": "sweet",
-    "done": 0,
-    "more": 0
+    "Question": "甘い",
+    "Answer": "sweet",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 2,
-    "Japanese": "酸っぱい",
-    "English": "sour",
-    "done": 0,
-    "more": 0
+    "Question": "酸っぱい",
+    "Answer": "sour",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 3,
-    "Japanese": "苦い ",
-    "English": "bitter",
-    "done": 0,
-    "more": 0
+    "Question": "苦い",
+    "Answer": "bitter",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 4,
-    "Japanese": "塩辛い",
-    "English": " salty",
-    "done": 0,
-    "more": 0
+    "Question": "塩辛い",
+    "Answer": "salty",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 5,
-    "Japanese": "辛い ",
-    "English": "spicy",
-    "done": 0,
-    "more": 0
+    "Question": "辛い",
+    "Answer": "spicy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 6,
-    "Japanese": "渋い ",
-    "English": "astringent",
-    "done": 0,
-    "more": 0
+    "Question": "渋い",
+    "Answer": "astringent",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 7,
-    "Japanese": "まろやか",
-    "English": "mellow",
-    "done": 0,
-    "more": 0
+    "Question": "まろやか",
+    "Answer": "mellow",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 8,
-    "Japanese": "さっぱり",
-    "English": "refreshing",
-    "done": 0,
-    "more": 0
+    "Question": "さっぱり",
+    "Answer": "refreshing",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 9,
-    "Japanese": "濃厚 ",
-    "English": "rich",
-    "done": 0,
-    "more": 0
+    "Question": "濃厚",
+    "Answer": "rich",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 10,
-    "Japanese": "淡白 ",
-    "English": "bland",
-    "done": 0,
-    "more": 0
+    "Question": "淡白",
+    "Answer": "bland",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 11,
-    "Japanese": "香ばしい",
-    "English": "fragrant",
-    "done": 0,
-    "more": 0
+    "Question": "香ばしい",
+    "Answer": "fragrant",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 12,
-    "Japanese": "焦げた",
-    "English": "charred",
-    "done": 0,
-    "more": 0
+    "Question": "焦げた",
+    "Answer": "charred",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 13,
-    "Japanese": "焼きたて",
-    "English": "freshly baked",
-    "done": 0,
-    "more": 0
+    "Question": "焼きたて",
+    "Answer": "freshly baked",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 14,
-    "Japanese": "冷たい",
-    "English": "cold",
-    "done": 0,
-    "more": 0
+    "Question": "冷たい",
+    "Answer": "cold",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 15,
-    "Japanese": "熱い ",
-    "English": "hot",
-    "done": 0,
-    "more": 0
+    "Question": "熱い",
+    "Answer": "hot",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 16,
-    "Japanese": "温かい",
-    "English": "warm",
-    "done": 0,
-    "more": 0
+    "Question": "温かい",
+    "Answer": "warm",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 17,
-    "Japanese": "ぬるい",
-    "English": "lukewarm",
-    "done": 0,
-    "more": 0
+    "Question": "ぬるい",
+    "Answer": "lukewarm",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 18,
-    "Japanese": "とろとろ",
-    "English": "gooey",
-    "done": 0,
-    "more": 0
+    "Question": "とろとろ",
+    "Answer": "gooey",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 19,
-    "Japanese": "ねばねば",
-    "English": "sticky",
-    "done": 0,
-    "more": 0
+    "Question": "ねばねば",
+    "Answer": "sticky",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 20,
-    "Japanese": "パリパリ",
-    "English": "crispy",
-    "done": 0,
-    "more": 0
+    "Question": "パリパリ",
+    "Answer": "crispy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 21,
-    "Japanese": "サクサク",
-    "English": "crunchy",
-    "done": 0,
-    "more": 0
+    "Question": "サクサク",
+    "Answer": "crunchy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 22,
-    "Japanese": "もちもち",
-    "English": "chewy",
-    "done": 0,
-    "more": 0
+    "Question": "もちもち",
+    "Answer": "chewy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 23,
-    "Japanese": "ふわふわ",
-    "English": "fluffy",
-    "done": 0,
-    "more": 0
+    "Question": "ふわふわ",
+    "Answer": "fluffy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 24,
-    "Japanese": "ジューシー",
-    "English": "juicy",
-    "done": 0,
-    "more": 0
+    "Question": "ジューシー",
+    "Answer": "juicy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 25,
-    "Japanese": "シャキシャキ",
-    "English": "crisp",
-    "done": 0,
-    "more": 0
+    "Question": "シャキシャキ",
+    "Answer": "crisp",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 26,
-    "Japanese": "カリカリ",
-    "English": "crackly",
-    "done": 0,
-    "more": 0
+    "Question": "カリカリ",
+    "Answer": "crackly",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 27,
-    "Japanese": "しっとり",
-    "English": "moist",
-    "done": 0,
-    "more": 0
+    "Question": "しっとり",
+    "Answer": "moist",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 28,
-    "Japanese": "ざらざら",
-    "English": "grainy",
-    "done": 0,
-    "more": 0
+    "Question": "ざらざら",
+    "Answer": "grainy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 29,
-    "Japanese": "なめらか",
-    "English": "smooth",
-    "done": 0,
-    "more": 0
+    "Question": "なめらか",
+    "Answer": "smooth",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 30,
-    "Japanese": "つるつる",
-    "English": "slippery",
-    "done": 0,
-    "more": 0
+    "Question": "つるつる",
+    "Answer": "slippery",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 31,
-    "Japanese": "ほろほろ",
-    "English": "crumbly",
-    "done": 0,
-    "more": 0
+    "Question": "ほろほろ",
+    "Answer": "crumbly",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 32,
-    "Japanese": "ぷりぷり",
-    "English": "springy",
-    "done": 0,
-    "more": 0
+    "Question": "ぷりぷり",
+    "Answer": "springy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 33,
-    "Japanese": "こってり",
-    "English": "heavy",
-    "done": 0,
-    "more": 0
+    "Question": "こってり",
+    "Answer": "heavy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 34,
-    "Japanese": "あっさり",
-    "English": "light",
-    "done": 0,
-    "more": 0
+    "Question": "あっさり",
+    "Answer": "light",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 35,
-    "Japanese": "濃い ",
-    "English": "strong",
-    "done": 0,
-    "more": 0
+    "Question": "濃い",
+    "Answer": "strong",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 36,
-    "Japanese": "薄い ",
-    "English": "weak",
-    "done": 0,
-    "more": 0
+    "Question": "薄い",
+    "Answer": "weak",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 37,
-    "Japanese": "酸味がある",
-    "English": "tangy",
-    "done": 0,
-    "more": 0
+    "Question": "酸味がある",
+    "Answer": "tangy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 38,
-    "Japanese": "辛口 ",
-    "English": "hot (spicy)",
-    "done": 0,
-    "more": 0
+    "Question": "辛口",
+    "Answer": "hot (spicy)",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 39,
-    "Japanese": "甘口 ",
-    "English": "mild (sweet)",
-    "done": 0,
-    "more": 0
+    "Question": "甘口",
+    "Answer": "mild (sweet)",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 40,
-    "Japanese": "脂っこい",
-    "English": "greasy",
-    "done": 0,
-    "more": 0
+    "Question": "脂っこい",
+    "Answer": "greasy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 41,
-    "Japanese": "爽やか",
-    "English": "refreshing",
-    "done": 0,
-    "more": 0
+    "Question": "爽やか",
+    "Answer": "refreshing",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 42,
-    "Japanese": "香りが高い",
-    "English": "aromatic",
-    "done": 0,
-    "more": 0
+    "Question": "香りが高い",
+    "Answer": "aromatic",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 43,
-    "Japanese": "芳醇 ",
-    "English": "rich-flavored",
-    "done": 0,
-    "more": 0
+    "Question": "芳醇",
+    "Answer": "rich-flavored",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 44,
-    "Japanese": "コクがある",
-    "English": "full-bodied",
-    "done": 0,
-    "more": 0
+    "Question": "コクがある",
+    "Answer": "full-bodied",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 45,
-    "Japanese": "さくさく",
-    "English": "flaky",
-    "done": 0,
-    "more": 0
+    "Question": "さくさく",
+    "Answer": "flaky",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 46,
-    "Japanese": "もちもち",
-    "English": "chewy",
-    "done": 0,
-    "more": 0
+    "Question": "もちもち",
+    "Answer": "chewy",
+    "good": 0,
+    "bad": 0
   }
 ]
