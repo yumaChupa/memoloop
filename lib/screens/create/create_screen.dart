@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memoloop/utils/functions.dart';
 import 'package:memoloop/constants.dart';
+import 'package:memoloop/globals.dart' as globals;
 
 class Create extends StatefulWidget {
   late final Map<String, dynamic> titleFilename;
@@ -32,7 +33,14 @@ class _CreateState extends State<Create> {
     return PopScope(
       canPop: true,
       onPopInvoked: (didPop) async {
-         updateAndSortByDate(widget.titleFilename);
+        // questionCount を更新してから保存（updateAndSortByDate 内で saveTitleFilenames が呼ばれるため先に更新）
+        final idx = globals.titleFilenames.indexWhere(
+          (item) => item['filename'] == widget.titleFilename['filename'],
+        );
+        if (idx != -1) {
+          globals.titleFilenames[idx]['questionCount'] = contents.length;
+        }
+        updateAndSortByDate(widget.titleFilename);
         saveContents(contents, widget.titleFilename["filename"]);
         return;
       },

@@ -12,6 +12,7 @@ List<Map<String, dynamic>> titleFilenames = [
     "tags": <String>['短文'],
     "completionCount": 0,
     "avgTimePerQuestion": 0.0,
+    "questionCount": 0,
     "isMine": false,
   },
   {
@@ -21,6 +22,7 @@ List<Map<String, dynamic>> titleFilenames = [
     "tags": <String>['短文'],
     "completionCount": 0,
     "avgTimePerQuestion": 0.0,
+    "questionCount": 0,
     "isMine": false,
   },
   {
@@ -30,6 +32,7 @@ List<Map<String, dynamic>> titleFilenames = [
     "tags": <String>['短文'],
     "completionCount": 0,
     "avgTimePerQuestion": 0.0,
+    "questionCount": 0,
     "isMine": false,
   },
   {
@@ -39,6 +42,7 @@ List<Map<String, dynamic>> titleFilenames = [
     "tags": <String>['短文'],
     "completionCount": 0,
     "avgTimePerQuestion": 0.0,
+    "questionCount": 0,
     "isMine": false,
   },
   {
@@ -48,6 +52,7 @@ List<Map<String, dynamic>> titleFilenames = [
     "tags": <String>['短文'],
     "completionCount": 0,
     "avgTimePerQuestion": 0.0,
+    "questionCount": 0,
     "isMine": false,
   },
   {
@@ -57,6 +62,7 @@ List<Map<String, dynamic>> titleFilenames = [
     "tags": <String>['英単語'],
     "completionCount": 0,
     "avgTimePerQuestion": 0.0,
+    "questionCount": 0,
     "isMine": false,
   },
   {
@@ -66,6 +72,7 @@ List<Map<String, dynamic>> titleFilenames = [
     "tags": <String>['英単語'],
     "completionCount": 0,
     "avgTimePerQuestion": 0.0,
+    "questionCount": 0,
     "isMine": false,
   },
 ];

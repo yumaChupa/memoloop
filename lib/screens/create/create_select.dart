@@ -94,6 +94,7 @@ class _CreateSelectState extends State<CreateSelect> {
                     "filename": filename,
                     "updatedAt": DateTime.now().toIso8601String(),
                     "tags": selectedTags.toList(),
+                    "questionCount": 0,
                     "isMine": true,
                   };
 

@@ -78,6 +78,7 @@ class _AddScreenState extends State<AddScreen> {
           'filename': widget.titleFilename['filename']?.toString() ?? '',
           'updatedAt': widget.titleFilename['updatedAt']?.toString() ?? '',
           'tags': (widget.titleFilename['tags'] as List<dynamic>?)?.cast<String>() ?? <String>[],
+          'questionCount': contents.length,
           'isMine': false,
         };
         globals.titleFilenames.add(newItem);
