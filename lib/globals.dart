@@ -1,9 +1,8 @@
-import 'package:uuid/uuid.dart';
-
-final uuid = Uuid().v4();
-
 // Firebase初期化のFuture（main()で開始、Firebase使用箇所でawait）
 late Future<void> firebaseInitFuture;
+
+// 端末固有UUID（main()でDeviceIdServiceにより初期化・永続化）
+String deviceUuid = '';
 
 List<Map<String, dynamic>> titleFilenames = [
   {

@@ -123,7 +123,7 @@ class _CreateSelectState extends State<CreateSelect> {
         .replaceAll(RegExp(r'^_|_$'), '');
     final truncatedSlug = slug.length > 20 ? slug.substring(0, 20) : slug;
     final shortHash = md5
-        .convert(utf8.encode(title + globals.uuid))
+        .convert(utf8.encode(title + globals.deviceUuid))
         .toString()
         .substring(0, 8);
     return '${truncatedSlug}_$shortHash';

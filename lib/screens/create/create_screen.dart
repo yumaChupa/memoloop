@@ -118,6 +118,7 @@ class _CreateState extends State<Create> {
                         _controllerJap.text = "";
                         _controllerEng.text = "";
                       });
+                      saveContents(contents, filename);
                     },
                     icon: Icon(Icons.add),
                     label: const Text("作成"),

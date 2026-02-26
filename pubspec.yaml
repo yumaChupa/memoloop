@@ -2,7 +2,7 @@ name: memoloop
 description: "memoloop"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.1.0+11  # 更新したらflutter cleanとflutter pub get, pod installを実行
+version: 1.1.0+12  # 更新したらflutter cleanとflutter pub get, pod installを実行
 
 environment:
   sdk: 3.11.0
@@ -24,7 +24,7 @@ dependencies:
   firebase_app_check: ^0.3.2
   cupertino_icons: ^1.0.8
   flutter_secure_storage: ^9.0.0
-  cloud_functions: ^4.0.0
+  cloud_functions: ^5.6.2
 
 dev_dependencies:
   flutter_test:
