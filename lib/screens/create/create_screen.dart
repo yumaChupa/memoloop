@@ -52,7 +52,7 @@ class _CreateState extends State<Create> {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                //　日本語フレーズの入力窓
+                //　Questionの入力窓
                 Container(
                   padding: EdgeInsets.all(40),
                   decoration: BoxDecoration(
@@ -66,7 +66,7 @@ class _CreateState extends State<Create> {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     controller: _controllerJap,
                     decoration: const InputDecoration(
-                      hintText: "日本語フレーズ",
+                      hintText: "Question",
                       hintStyle: TextStyle(color: Colors.black54),
                       border: InputBorder.none,
                     ),

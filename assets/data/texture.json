@@ -1,177 +1,177 @@
 [
   {
     "index": 1,
-    "Japanese": "ふわふわ",
-    "English": "fluffy",
-    "done": 0,
-    "more": 0
+    "Question": "ふわふわ",
+    "Answer": "fluffy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 2,
-    "Japanese": "もちもち",
-    "English": "chewy",
-    "done": 0,
-    "more": 0
+    "Question": "もちもち",
+    "Answer": "chewy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 3,
-    "Japanese": "ねばねば",
-    "English": "sticky",
-    "done": 0,
-    "more": 0
+    "Question": "ねばねば",
+    "Answer": "sticky",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 4,
-    "Japanese": "サラサラ",
-    "English": "smooth",
-    "done": 0,
-    "more": 0
+    "Question": "サラサラ",
+    "Answer": "smooth",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 5,
-    "Japanese": "水っぽい",
-    "English": "watery",
-    "done": 0,
-    "more": 0
+    "Question": "水っぽい",
+    "Answer": "watery",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 6,
-    "Japanese": "ざらざら",
-    "English": "rough",
-    "done": 0,
-    "more": 0
+    "Question": "ざらざら",
+    "Answer": "rough",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 7,
-    "Japanese": "つるつる",
-    "English": "slippery",
-    "done": 0,
-    "more": 0
+    "Question": "つるつる",
+    "Answer": "slippery",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 8,
-    "Japanese": "カリカリ",
-    "English": "crispy",
-    "done": 0,
-    "more": 0
+    "Question": "カリカリ",
+    "Answer": "crispy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 9,
-    "Japanese": "パリパリ",
-    "English": "crunchy",
-    "done": 0,
-    "more": 0
+    "Question": "パリパリ",
+    "Answer": "crunchy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 10,
-    "Japanese": "しっとり",
-    "English": "moist",
-    "done": 0,
-    "more": 0
+    "Question": "しっとり",
+    "Answer": "moist",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 11,
-    "Japanese": "ほろほろ",
-    "English": "crumbly",
-    "done": 0,
-    "more": 0
+    "Question": "ほろほろ",
+    "Answer": "crumbly",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 12,
-    "Japanese": "ぷりぷり",
-    "English": "springy",
-    "done": 0,
-    "more": 0
+    "Question": "ぷりぷり",
+    "Answer": "springy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 13,
-    "Japanese": "もろもろ",
-    "English": "crumbly",
-    "done": 0,
-    "more": 0
+    "Question": "もろもろ",
+    "Answer": "crumbly",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 14,
-    "Japanese": "ごつごつ",
-    "English": "bumpy",
-    "done": 0,
-    "more": 0
+    "Question": "ごつごつ",
+    "Answer": "bumpy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 15,
-    "Japanese": "ざくざく",
-    "English": "coarse",
-    "done": 0,
-    "more": 0
+    "Question": "ざくざく",
+    "Answer": "coarse",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 16,
-    "Japanese": "ぬるぬる",
-    "English": "slimy",
-    "done": 0,
-    "more": 0
+    "Question": "ぬるぬる",
+    "Answer": "slimy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 17,
-    "Japanese": "ねちねち",
-    "English": "tacky",
-    "done": 0,
-    "more": 0
+    "Question": "ねちねち",
+    "Answer": "tacky",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 18,
-    "Japanese": "ふかふか",
-    "English": "soft",
-    "done": 0,
-    "more": 0
+    "Question": "ふかふか",
+    "Answer": "soft",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 19,
-    "Japanese": "ざらざら感のある",
-    "English": "grainy",
-    "done": 0,
-    "more": 0
+    "Question": "ざらざら感のある",
+    "Answer": "grainy",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 20,
-    "Japanese": "ゴワゴワ",
-    "English": "stiff",
-    "done": 0,
-    "more": 0
+    "Question": "ゴワゴワ",
+    "Answer": "stiff",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 21,
-    "Japanese": "しなやか",
-    "English": "supple",
-    "done": 0,
-    "more": 0
+    "Question": "しなやか",
+    "Answer": "supple",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 22,
-    "Japanese": "こしがある",
-    "English": "firm",
-    "done": 0,
-    "more": 0
+    "Question": "こしがある",
+    "Answer": "firm",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 23,
-    "Japanese": "弾力がある",
-    "English": "elastic",
-    "done": 0,
-    "more": 0
+    "Question": "弾力がある",
+    "Answer": "elastic",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 24,
-    "Japanese": "かたく",
-    "English": "hard",
-    "done": 0,
-    "more": 0
+    "Question": "かたく",
+    "Answer": "hard",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 25,
-    "Japanese": "やわらかい",
-    "English": "soft",
-    "done": 0,
-    "more": 0
+    "Question": "やわらかい",
+    "Answer": "soft",
+    "good": 0,
+    "bad": 0
   }
 ]

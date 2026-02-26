@@ -1,65 +1,65 @@
 [
   {
     "index": 1,
-    "Japanese": "2人です",
-    "English": "Do you have a  seat for two?",
-    "done": 0,
-    "more": 0
+    "Question": "2人です",
+    "Answer": "Do you have a seat for two?",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 2,
-    "Japanese": "私はこれにします",
-    "English": "I’ll have this.",
-    "done": 0,
-    "more": 0
+    "Question": "私はこれにします",
+    "Answer": "I’ll have this.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 3,
-    "Japanese": "もうちょっと時間ください",
-    "English": "Give me  a couple of minutes, please.",
-    "done": 0,
-    "more": 0
+    "Question": "もうちょっと時間ください",
+    "Answer": "Give me a couple of minutes, please.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 4,
-    "Japanese": "レシートは必要ですか？",
-    "English": "Do you need a receipt?",
-    "done": 0,
-    "more": 0
+    "Question": "レシートは必要ですか？",
+    "Answer": "Do you need a receipt?",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 5,
-    "Japanese": "はい、ください。/いいえ、大丈夫です",
-    "English": "Yes, please. / I’m good.",
-    "done": 0,
-    "more": 0
+    "Question": "はい、ください。/いいえ、大丈夫です",
+    "Answer": "Yes, please. / I'm good.",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 6,
-    "Japanese": "(注文時)〇〇お願いします",
-    "English": "Can I get 〇〇?",
-    "done": 0,
-    "more": 0
+    "Question": "(注文時)〇〇お願いします",
+    "Answer": "Can I get 〇〇?",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 7,
-    "Japanese": "(注文時)〇〇もお願いします",
-    "English": "Can I also get 〇〇?",
-    "done": 0,
-    "more": 0
+    "Question": "(注文時)〇〇もお願いします",
+    "Answer": "Can I also get 〇〇?",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 8,
-    "Japanese": "お会計お願いします",
-    "English": "Can I get the bill?",
-    "done": 0,
-    "more": 0
+    "Question": "お会計お願いします",
+    "Answer": "Can I get the bill?",
+    "good": 0,
+    "bad": 0
   },
   {
     "index": 9,
-    "Japanese": "トイレ行ってくる",
-    "English": "I need to go to washroom.",
-    "done": 0,
-    "more": 0
+    "Question": "トイレ行ってくる",
+    "Answer": "I need to go to the washroom.",
+    "good": 0,
+    "bad": 0
   }
 ]
