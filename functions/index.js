@@ -202,7 +202,7 @@ exports.incrementDownload = onCall({ enforceAppCheck: true }, async (request) =>
 /**
  * 問題セットをアップロード（新規 or 更新）
  */
-exports.uploadProblemSet = onCall({ enforceAppCheck: true }, async (request) => {
+exports.uploadProblemSet = onCall({ enforceAppCheck: false }, async (request) => { // TODO: 診断後に true に戻す
   const db = admin.firestore();
   const { deviceUuid, title, filename, tags, questions } = request.data;
 
