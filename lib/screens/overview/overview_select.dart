@@ -167,7 +167,17 @@ class _OverviewSelectState extends State<OverviewSelect> {
     );
 
     if (confirmed == true) {
-      await globals.firebaseInitFuture; // Firebase初期化完了を保証
+      try {
+        await globals.firebaseInitFuture; // Firebase初期化完了を保証（失敗時は例外）
+      } catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Firebase初期化に失敗しました: $e')),
+          );
+        }
+        return;
+      }
+
       final tags = (item['tags'] as List<dynamic>?)?.cast<String>() ?? [];
       final remaining = await uploadProblemSetWithReset(
         item["title"]!.toString(),
@@ -180,7 +190,9 @@ class _OverviewSelectState extends State<OverviewSelect> {
             : remaining == -2
                 ? '本日のアクセス上限に達しました。明日再度お試しください'
                 : 'アップロードの間隔が短すぎます。$remaining秒後に再試行してください';
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+        }
       }
     }
   }

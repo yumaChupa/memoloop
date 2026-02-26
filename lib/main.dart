@@ -41,17 +41,19 @@ Future<void> _initFirebase() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+    // App Check 初期化失敗は確実に検知するため try-catch から外す
+    // ※ appAttestWithDeviceCheckFallback: AppAttest 非対応端末を DeviceCheck でカバー
     await FirebaseAppCheck.instance.activate(
-      // デバッグビルド（シミュレーター・エミュレーター）はデバッグプロバイダー
-      // リリースビルドは実機検証プロバイダー
-      appleProvider:
-          kDebugMode ? AppleProvider.debug : AppleProvider.appAttest,
+      appleProvider: kDebugMode
+          ? AppleProvider.debug
+          : AppleProvider.appAttestWithDeviceCheckFallback,
       androidProvider:
           kDebugMode ? AndroidProvider.debug : AndroidProvider.playIntegrity,
     );
     debugPrint('Firebase initialized successfully');
-  } catch (e) {
-    debugPrint('Firebase initialization failed: $e');
+  } catch (e, st) {
+    debugPrint('Firebase initialization failed: $e\n$st');
+    rethrow; // 呼び出し元（globals.firebaseInitFuture）にエラーを伝播させる
   }
 }
 
