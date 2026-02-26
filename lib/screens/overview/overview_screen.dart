@@ -34,96 +34,96 @@ class _OverviewScreenState extends State<OverviewScreen> {
   //////////////
   void showEditDialog(BuildContext context, int index) {
     final original = contents[index];
-    TextEditingController japaneseController = TextEditingController(
-      text: original["Answer"],
-    );
-    TextEditingController englishController = TextEditingController(
+    TextEditingController questionController = TextEditingController(
       text: original["Question"],
+    );
+    TextEditingController answerController = TextEditingController(
+      text: original["Answer"],
     );
 
     showDialog(
       context: context,
       builder:
           (_) => AlertDialog(
-            backgroundColor: Colors.grey[50],
-            title: Text("フレーズを更新", style: TextStyle(fontSize: 20)),
-            // タイトル非表示
-            content: GestureDetector(
-              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-              child: SizedBox(
-                width: 500,
-                child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextField(
-                    controller: japaneseController,
-                    decoration: InputDecoration(
-                      labelText: 'Question',
-                      labelStyle: TextStyle(color: Colors.black45),
-                    ),
+        backgroundColor: Colors.grey[50],
+        title: Text("フレーズを更新", style: TextStyle(fontSize: 20)),
+        // タイトル非表示
+        content: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: SizedBox(
+            width: 500,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextField(
+                  controller: questionController,
+                  decoration: InputDecoration(
+                    labelText: 'Question',
+                    labelStyle: TextStyle(color: Colors.black45),
                   ),
-                  SizedBox(height: 12),
-                  TextField(
-                    controller: englishController,
-                    decoration: InputDecoration(
-                      labelText: 'Answer',
-                      labelStyle: TextStyle(color: Colors.black45),
-                    ),
-                  ),
-                ],
                 ),
-              ),
+                SizedBox(height: 12),
+                TextField(
+                  controller: answerController,
+                  decoration: InputDecoration(
+                    labelText: 'Answer',
+                    labelStyle: TextStyle(color: Colors.black45),
+                  ),
+                ),
+              ],
             ),
-
-            //　「フレーズを削除」を押した時の確認ダイアログ
-            actions: [
-              TextButton(
-                onPressed: () async {
-                  final confirm = await showDialog<bool>(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        backgroundColor: Colors.grey[50],
-                        title: Text("確認", style: TextStyle(fontSize: 18)),
-                        content: Text("このフレーズを消去しますか？"),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, false),
-                            child: Text("キャンセル"),
-                          ),
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, true),
-                            child: Text(
-                              "消去",
-                              style: TextStyle(color: Colors.red),
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                  if (confirm == true) {
-                    saveContents(contents, filename);
-                    contents.removeAt(index);
-                    Navigator.pop(context);
-                    setState(() {});
-                  }
-                },
-                child: Text("フレーズを削除", style: TextStyle(color: Colors.red)),
-              ),
-              TextButton(
-                onPressed: () {
-                  setState(() {
-                    contents[index]["Answer"] = japaneseController.text;
-                    contents[index]["Question"] = englishController.text;
-                  });
-                  Navigator.pop(context);
-                },
-                child: Text("変更を保存"),
-              ),
-            ],
           ),
+        ),
+
+        //　「フレーズを削除」を押した時の確認ダイアログ
+        actions: [
+          TextButton(
+            onPressed: () async {
+              final confirm = await showDialog<bool>(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    backgroundColor: Colors.grey[50],
+                    title: Text("確認", style: TextStyle(fontSize: 18)),
+                    content: Text("このフレーズを消去しますか？"),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, false),
+                        child: Text("キャンセル"),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, true),
+                        child: Text(
+                          "消去",
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+              if (confirm == true) {
+                saveContents(contents, filename);
+                contents.removeAt(index);
+                Navigator.pop(context);
+                setState(() {});
+              }
+            },
+            child: Text("フレーズを削除", style: TextStyle(color: Colors.red)),
+          ),
+          TextButton(
+            onPressed: () {
+              setState(() {
+                contents[index]["Answer"] = answerController.text;
+                contents[index]["Question"] = questionController.text;
+              });
+              Navigator.pop(context);
+            },
+            child: Text("変更を保存"),
+          ),
+        ],
+      ),
     );
   }
 
@@ -145,95 +145,95 @@ class _OverviewScreenState extends State<OverviewScreen> {
           scrolledUnderElevation: 0.2,
         ),
         body:
-            (contents.isEmpty)
-                // contentsの中身がない時
-                ? Center(
-                  child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.overviewMain,
-                      foregroundColor: Colors.white,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 16,
-                        horizontal: 24,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder:
-                              (context) =>
-                                  Create(titleFilename: widget.titleFilename),
-                        ),
-                      );
-                    },
-                    icon: Icon(Icons.add),
-                    label: const Text(
-                      '"create"で問題を作成',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                )
-                // contentsの中身がある時
-                : ReorderableListView(
-                  onReorder: (oldIndex, newIndex) {
-                    setState(() {
-                      if (oldIndex < newIndex) newIndex -= 1;
-                      final item = contents.removeAt(oldIndex);
-                      contents.insert(newIndex, item);
-                    });
-                  },
+        (contents.isEmpty)
+        // contentsの中身がない時
+            ? Center(
+          child: ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.overviewMain,
+              foregroundColor: Colors.white,
+              padding: EdgeInsets.symmetric(
+                vertical: 16,
+                horizontal: 24,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100),
+              ),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:
+                      (context) =>
+                      Create(titleFilename: widget.titleFilename),
+                ),
+              );
+            },
+            icon: Icon(Icons.add),
+            label: const Text(
+              '"create"で問題を作成',
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+        )
+        // contentsの中身がある時
+            : ReorderableListView(
+          onReorder: (oldIndex, newIndex) {
+            setState(() {
+              if (oldIndex < newIndex) newIndex -= 1;
+              final item = contents.removeAt(oldIndex);
+              contents.insert(newIndex, item);
+            });
+          },
+          children: [
+            for (final item in contents)
+              ListTile(
+                key: ValueKey(item['index']),
+                minVerticalPadding: 0,
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 0,
+                  horizontal: 0,
+                ),
+                onTap:
+                    () =>
+                    showEditDialog(context, contents.indexOf(item)),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    for (final item in contents)
-                      ListTile(
-                        key: ValueKey(item['index']),
-                        minVerticalPadding: 0,
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 0,
-                          horizontal: 0,
-                        ),
-                        onTap:
-                            () =>
-                                showEditDialog(context, contents.indexOf(item)),
-                        title: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 12),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 24),
-                              child: Text(
-                                item["Answer"] ?? "",
-                                style: TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
-                            // SizedBox(height: 2),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 24),
-                              child: Text(
-                                item["Question"] ?? "",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black87,
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Divider(
-                              thickness: 1,
-                              color: AppColors.overviewAccent,
-                              height: 1,
-                            ),
-                          ],
+                    SizedBox(height: 12),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      child: Text(
+                        item["Question"] ?? "",
+                        style: TextStyle(
+                          color: Colors.black87,
+                          fontSize: 16,
                         ),
                       ),
+                    ),
+                    // SizedBox(height: 2),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      child: Text(
+                        item["Answer"] ?? "",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Divider(
+                      thickness: 1,
+                      color: AppColors.overviewAccent,
+                      height: 1,
+                    ),
                   ],
                 ),
+              ),
+          ],
+        ),
       ),
     );
   }
