@@ -1,422 +1,137 @@
 [
-  {
-    "index": 1,
-    "Question": "一口食べる",
-    "Answer": "take a bite",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 2,
-    "Question": "怪しい",
-    "Answer": "That's sketchy",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 3,
-    "Question": "怯える",
-    "Answer": "get frightened",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 4,
-    "Question": "問題を起こす",
-    "Answer": "make waves",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 5,
-    "Question": "急ごう",
-    "Answer": "Step on it.",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 6,
-    "Question": "手こずる",
-    "Answer": "have a hard time",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 7,
-    "Question": "もういくね",
-    "Answer": "I'm off",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 8,
-    "Question": "寝る",
-    "Answer": "get some sleep",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 9,
-    "Question": "返す",
-    "Answer": "give it back",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 10,
-    "Question": "全力を尽くせ！",
-    "Answer": "Give it your all!",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 11,
-    "Question": "気だるい",
-    "Answer": "languid",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 12,
-    "Question": "取り乱す",
-    "Answer": "get upset",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 13,
-    "Question": "一か八かやってみる",
-    "Answer": "take a chance",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 14,
-    "Question": "しくった",
-    "Answer": "Shoot",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 15,
-    "Question": "似ている",
-    "Answer": "take after",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 16,
-    "Question": "濡れる",
-    "Answer": "get wet",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 17,
-    "Question": "準備する",
-    "Answer": "get ready",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 18,
-    "Question": "二度寝した",
-    "Answer": "I went back to sleep",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 19,
-    "Question": "参加するよ",
-    "Answer": "Count me in.",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 20,
-    "Question": "わかる（have）",
-    "Answer": "have a clue",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 21,
-    "Question": "軽視する",
-    "Answer": "take lightly",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 22,
-    "Question": "嫌じゃなければ",
-    "Answer": "If you don't mind",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 23,
-    "Question": "電話に出る",
-    "Answer": "get a call",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 24,
-    "Question": "一休みする",
-    "Answer": "have a rest",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 25,
-    "Question": "仲直りする",
-    "Answer": "make up",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 26,
-    "Question": "どうもありがとう",
-    "Answer": "Many thanks",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 27,
-    "Question": "からかう",
-    "Answer": "make fun of",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 28,
-    "Question": "検討する",
-    "Answer": "go over it",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 29,
-    "Question": "どっちでもいいよ",
-    "Answer": "Both are good",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 30,
-    "Question": "黙って",
-    "Answer": "Zip your lip.",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 31,
-    "Question": "どうしよう",
-    "Answer": "I'm lost",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 32,
-    "Question": "オファーをする",
-    "Answer": "make an offer",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 33,
-    "Question": "どうして？",
-    "Answer": "How come?",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 34,
-    "Question": "取り外す",
-    "Answer": "take it off",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 35,
-    "Question": "分解する",
-    "Answer": "take apart",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 36,
-    "Question": "何となく",
-    "Answer": "Just because.",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 37,
-    "Question": "手術する",
-    "Answer": "have an operation",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 38,
-    "Question": "間に合う",
-    "Answer": "make it",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 39,
-    "Question": "例えば？",
-    "Answer": "Like what?",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 40,
-    "Question": "引き継ぐ",
-    "Answer": "take it over",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 41,
-    "Question": "風邪をひく",
-    "Answer": "get a cold",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 42,
-    "Question": "話し合う",
-    "Answer": "have a talk",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 43,
-    "Question": "選択肢がある",
-    "Answer": "have an option",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 44,
-    "Question": "家に帰る",
-    "Answer": "get home",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 45,
-    "Question": "ぜひ！",
-    "Answer": "By all means",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 46,
-    "Question": "お大事に",
-    "Answer": "Take care",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 47,
-    "Question": "みる",
-    "Answer": "have a look",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 48,
-    "Question": "わからない",
-    "Answer": "I have no idea",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 49,
-    "Question": "頭痛がする",
-    "Answer": "have a headache",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 50,
-    "Question": "自信がある",
-    "Answer": "have confidence",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 51,
-    "Question": "できれば",
-    "Answer": "If possible",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 52,
-    "Question": "着替える",
-    "Answer": "get changed",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 53,
-    "Question": "散歩する",
-    "Answer": "take a walk",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 54,
-    "Question": "久しぶり",
-    "Answer": "It's been a while",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 55,
-    "Question": "ふりをする",
-    "Answer": "make believe",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 56,
-    "Question": "もしよければ",
-    "Answer": "If you want",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 57,
-    "Question": "もうやってられない",
-    "Answer": "I'm done!",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 58,
-    "Question": "早く良くなってね",
-    "Answer": "Get well soon!",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 59,
-    "Question": "小便する",
-    "Answer": "make water",
-    "good": 0,
-    "bad": 0
-  },
-  {
-    "index": 60,
-    "Question": "座る",
-    "Answer": "have a seat",
-    "good": 0,
-    "bad": 0
-  }
+  {"index":1,"Question":"一口食べる","Answer":"take a bite"},
+  {"index":2,"Question":"怪しい","Answer":"That's sketchy"},
+  {"index":3,"Question":"怯える","Answer":"get frightened"},
+  {"index":4,"Question":"問題を起こす","Answer":"make waves"},
+  {"index":5,"Question":"急ごう","Answer":"Step on it."},
+  {"index":6,"Question":"手こずる","Answer":"have a hard time"},
+  {"index":7,"Question":"もういくね","Answer":"I'm off"},
+  {"index":8,"Question":"寝る","Answer":"get some sleep"},
+  {"index":9,"Question":"返す","Answer":"give it back"},
+  {"index":10,"Question":"全力を尽くせ！","Answer":"Give it your all!"},
+  {"index":11,"Question":"気だるい","Answer":"languid"},
+  {"index":12,"Question":"取り乱す","Answer":"get upset"},
+  {"index":13,"Question":"一か八かやってみる","Answer":"take a chance"},
+  {"index":14,"Question":"しくった","Answer":"Shoot"},
+  {"index":15,"Question":"似ている","Answer":"take after"},
+  {"index":16,"Question":"濡れる","Answer":"get wet"},
+  {"index":17,"Question":"準備する","Answer":"get ready"},
+  {"index":18,"Question":"二度寝した","Answer":"I went back to sleep"},
+  {"index":19,"Question":"参加するよ","Answer":"Count me in."},
+  {"index":20,"Question":"わかる(have)","Answer":"have a clue"},
+  {"index":21,"Question":"軽視する","Answer":"take lightly"},
+  {"index":22,"Question":"嫌じゃなければ","Answer":"If you don't mind"},
+  {"index":23,"Question":"電話に出る","Answer":"get a call"},
+  {"index":24,"Question":"一休みする","Answer":"have a rest"},
+  {"index":25,"Question":"仲直りする","Answer":"make up"},
+  {"index":26,"Question":"どうもありがとう","Answer":"Many thanks"},
+  {"index":27,"Question":"からかう","Answer":"make fun of"},
+  {"index":28,"Question":"検討する","Answer":"go over it"},
+  {"index":29,"Question":"どっちでもいいよ","Answer":"Both are good"},
+  {"index":30,"Question":"黙って","Answer":"Zip your lip."},
+  {"index":31,"Question":"どうしよう","Answer":"I'm lost"},
+  {"index":32,"Question":"オファーをする","Answer":"make an offer"},
+  {"index":33,"Question":"どうして？","Answer":"How come?"},
+  {"index":34,"Question":"取り外す","Answer":"take it off"},
+  {"index":35,"Question":"分解する","Answer":"take apart"},
+  {"index":36,"Question":"何となく","Answer":"Just because."},
+  {"index":37,"Question":"手術する","Answer":"have an operation"},
+  {"index":38,"Question":"間に合う","Answer":"make it"},
+  {"index":39,"Question":"例えば？","Answer":"Like what?"},
+  {"index":40,"Question":"引き継ぐ","Answer":"take it over"},
+  {"index":41,"Question":"風邪をひく","Answer":"get a cold"},
+  {"index":42,"Question":"話し合う","Answer":"have a talk"},
+  {"index":43,"Question":"選択肢がある","Answer":"have an option"},
+  {"index":44,"Question":"家に帰る","Answer":"get home"},
+  {"index":45,"Question":"ぜひ！","Answer":"By all means"},
+  {"index":46,"Question":"お大事に","Answer":"Take care"},
+  {"index":47,"Question":"みる","Answer":"have a look"},
+  {"index":48,"Question":"わからない","Answer":"I have no idea"},
+  {"index":49,"Question":"頭痛がする","Answer":"have a headache"},
+  {"index":50,"Question":"自信がある","Answer":"have confidence"},
+  {"index":51,"Question":"できれば","Answer":"If possible"},
+  {"index":52,"Question":"着替える","Answer":"get changed"},
+  {"index":53,"Question":"散歩する","Answer":"take a walk"},
+  {"index":54,"Question":"久しぶり","Answer":"It's been a while"},
+  {"index":55,"Question":"ふりをする","Answer":"make believe"},
+  {"index":56,"Question":"もしよければ","Answer":"If you want"},
+  {"index":57,"Question":"もうやってられない","Answer":"I'm done!"},
+  {"index":58,"Question":"早く良くなってね","Answer":"Get well soon!"},
+  {"index":59,"Question":"小便する","Answer":"make water"},
+  {"index":60,"Question":"座る","Answer":"have a seat"},
+  {"index":61,"Question":"難しい","Answer":"have difficulty"},
+  {"index":62,"Question":"私機嫌が悪い","Answer":"I am in a bad mood"},
+  {"index":63,"Question":"クビになる","Answer":"get fired"},
+  {"index":64,"Question":"もう一度言って？","Answer":"Come again"},
+  {"index":65,"Question":"酔っ払う","Answer":"get drunk"},
+  {"index":66,"Question":"〇〇を思い切り楽しむ","Answer":"make the most of 〇〇"},
+  {"index":67,"Question":"シャワーを浴びる","Answer":"take a shower"},
+  {"index":68,"Question":"暗くなる","Answer":"get dark"},
+  {"index":69,"Question":"怪我ない？","Answer":"Are you injured?"},
+  {"index":70,"Question":"機会を得る","Answer":"get a chance"},
+  {"index":71,"Question":"決断する","Answer":"make a decision"},
+  {"index":72,"Question":"意味をなす","Answer":"make sense"},
+  {"index":73,"Question":"落ち着いて","Answer":"calm down"},
+  {"index":74,"Question":"お腹が空く","Answer":"get hungry"},
+  {"index":75,"Question":"コメントする","Answer":"make a comment"},
+  {"index":76,"Question":"間違える","Answer":"make a mistake"},
+  {"index":77,"Question":"危ない！","Answer":"watch out!"},
+  {"index":78,"Question":"結婚する","Answer":"get married"},
+  {"index":79,"Question":"メモを取る","Answer":"take notes"},
+  {"index":80,"Question":"影響がある","Answer":"have an effect"},
+  {"index":81,"Question":"怒る","Answer":"get angry"},
+  {"index":82,"Question":"試験を受ける","Answer":"take an exam"},
+  {"index":83,"Question":"道に迷う","Answer":"get lost"},
+  {"index":84,"Question":"確かめる、必ず〇〇する","Answer":"make sure"},
+  {"index":85,"Question":"気軽に行こうよ","Answer":"Take it easy"},
+  {"index":86,"Question":"離婚する","Answer":"get divorced"},
+  {"index":87,"Question":"薬を飲む","Answer":"take medicine"},
+  {"index":88,"Question":"寝坊した","Answer":"I overslept."},
+  {"index":89,"Question":"休憩する","Answer":"take a break"},
+  {"index":90,"Question":"きも","Answer":"Eww"},
+  {"index":91,"Question":"昼寝をする","Answer":"take a nap"},
+  {"index":92,"Question":"評判","Answer":"reputation"},
+  {"index":93,"Question":"かゆい","Answer":"itchy"},
+  {"index":94,"Question":"可能性","Answer":"possibility"},
+  {"index":95,"Question":"さっき","Answer":"just now"},
+  {"index":96,"Question":"要求","Answer":"request"},
+  {"index":97,"Question":"一言言う","Answer":"have a word"},
+  {"index":98,"Question":"大事にする","Answer":"make much of"},
+  {"index":99,"Question":"もうちょっとやったのに","Answer":"I almost had it!"},
+  {"index":100,"Question":"需要","Answer":"demand"},
+  {"index":101,"Question":"専門知識","Answer":"expertise"},
+  {"index":102,"Question":"変だ","Answer":"weird / odd"},
+  {"index":103,"Question":"さすが！","Answer":"As expected"},
+  {"index":104,"Question":"へ向かう","Answer":"I head to"},
+  {"index":105,"Question":"いい雰囲気","Answer":"have a nice vibe"},
+  {"index":106,"Question":"気まずい","Answer":"awkward"},
+  {"index":107,"Question":"まじで、ほんまに","Answer":"literally"},
+  {"index":108,"Question":"〇〇に向き合う","Answer":"face"},
+  {"index":109,"Question":"何となく","Answer":"Just because."},
+  {"index":110,"Question":"意外と","Answer":"than I thought"},
+  {"index":111,"Question":"どうしたらいい？","Answer":"What should I do?"},
+  {"index":112,"Question":"お先どうぞ","Answer":"Go ahead"},
+  {"index":113,"Question":"気にしないで","Answer":"Don't sweat it."},
+  {"index":114,"Question":"それなら","Answer":"In that case,"},
+  {"index":115,"Question":"〇〇しないで、","Answer":"Instead of"},
+  {"index":116,"Question":"行かなきゃ","Answer":"Gotta go."},
+  {"index":117,"Question":"音上げて","Answer":"Turn it up"},
+  {"index":118,"Question":"同感","Answer":"I’m with you."},
+  {"index":119,"Question":"別に","Answer":"Nah"},
+  {"index":120,"Question":"注目の話題","Answer":"hot topic"},
+  {"index":121,"Question":"柔軟な考え方","Answer":"open mind"},
+  {"index":122,"Question":"優しい嘘","Answer":"white lie"},
+  {"index":123,"Question":"街の男","Answer":"local guy"},
+  {"index":124,"Question":"たまたま〇〇する","Answer":"happen to 〇〇"},
+  {"index":125,"Question":"一応言っておく","Answer":"just saying"},
+  {"index":126,"Question":"念の為にね","Answer":"Just in case."},
+  {"index":127,"Question":"取り返す","Answer":"get it back"},
+  {"index":128,"Question":"やり遂げる","Answer":"go through with it"},
+  {"index":129,"Question":"全体的に、総じて","Answer":"altogether"},
+  {"index":130,"Question":"火をつける","Answer":"light the fire"},
+  {"index":131,"Question":"間違って","Answer":"by mistake"},
+  {"index":132,"Question":"承知しました","Answer":"Noted."},
+  {"index":133,"Question":"承知しました","Answer":"Certainly"},
+  {"index":134,"Question":"もちろん！","Answer":"Absolutely!"},
+  {"index":135,"Question":"まさにそう","Answer":"Exactly"}
 ]

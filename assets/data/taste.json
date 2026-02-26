@@ -2,323 +2,231 @@
   {
     "index": 1,
     "Question": "甘い",
-    "Answer": "sweet",
-    "good": 0,
-    "bad": 0
+    "Answer": "sweet"
   },
   {
     "index": 2,
     "Question": "酸っぱい",
-    "Answer": "sour",
-    "good": 0,
-    "bad": 0
+    "Answer": "sour"
   },
   {
     "index": 3,
     "Question": "苦い",
-    "Answer": "bitter",
-    "good": 0,
-    "bad": 0
+    "Answer": "bitter"
   },
   {
     "index": 4,
     "Question": "塩辛い",
-    "Answer": "salty",
-    "good": 0,
-    "bad": 0
+    "Answer": "salty"
   },
   {
     "index": 5,
     "Question": "辛い",
-    "Answer": "spicy",
-    "good": 0,
-    "bad": 0
+    "Answer": "spicy"
   },
   {
     "index": 6,
     "Question": "渋い",
-    "Answer": "astringent",
-    "good": 0,
-    "bad": 0
+    "Answer": "astringent"
   },
   {
     "index": 7,
     "Question": "まろやか",
-    "Answer": "mellow",
-    "good": 0,
-    "bad": 0
+    "Answer": "mellow"
   },
   {
     "index": 8,
     "Question": "さっぱり",
-    "Answer": "refreshing",
-    "good": 0,
-    "bad": 0
+    "Answer": "refreshing"
   },
   {
     "index": 9,
     "Question": "濃厚",
-    "Answer": "rich",
-    "good": 0,
-    "bad": 0
+    "Answer": "rich"
   },
   {
     "index": 10,
     "Question": "淡白",
-    "Answer": "bland",
-    "good": 0,
-    "bad": 0
+    "Answer": "bland"
   },
   {
     "index": 11,
     "Question": "香ばしい",
-    "Answer": "fragrant",
-    "good": 0,
-    "bad": 0
+    "Answer": "fragrant"
   },
   {
     "index": 12,
     "Question": "焦げた",
-    "Answer": "charred",
-    "good": 0,
-    "bad": 0
+    "Answer": "charred"
   },
   {
     "index": 13,
     "Question": "焼きたて",
-    "Answer": "freshly baked",
-    "good": 0,
-    "bad": 0
+    "Answer": "freshly baked"
   },
   {
     "index": 14,
     "Question": "冷たい",
-    "Answer": "cold",
-    "good": 0,
-    "bad": 0
+    "Answer": "cold"
   },
   {
     "index": 15,
     "Question": "熱い",
-    "Answer": "hot",
-    "good": 0,
-    "bad": 0
+    "Answer": "hot"
   },
   {
     "index": 16,
     "Question": "温かい",
-    "Answer": "warm",
-    "good": 0,
-    "bad": 0
+    "Answer": "warm"
   },
   {
     "index": 17,
     "Question": "ぬるい",
-    "Answer": "lukewarm",
-    "good": 0,
-    "bad": 0
+    "Answer": "lukewarm"
   },
   {
     "index": 18,
     "Question": "とろとろ",
-    "Answer": "gooey",
-    "good": 0,
-    "bad": 0
+    "Answer": "gooey"
   },
   {
     "index": 19,
     "Question": "ねばねば",
-    "Answer": "sticky",
-    "good": 0,
-    "bad": 0
+    "Answer": "sticky"
   },
   {
     "index": 20,
     "Question": "パリパリ",
-    "Answer": "crispy",
-    "good": 0,
-    "bad": 0
+    "Answer": "crispy"
   },
   {
     "index": 21,
     "Question": "サクサク",
-    "Answer": "crunchy",
-    "good": 0,
-    "bad": 0
+    "Answer": "crunchy"
   },
   {
     "index": 22,
     "Question": "もちもち",
-    "Answer": "chewy",
-    "good": 0,
-    "bad": 0
+    "Answer": "chewy"
   },
   {
     "index": 23,
     "Question": "ふわふわ",
-    "Answer": "fluffy",
-    "good": 0,
-    "bad": 0
+    "Answer": "fluffy"
   },
   {
     "index": 24,
     "Question": "ジューシー",
-    "Answer": "juicy",
-    "good": 0,
-    "bad": 0
+    "Answer": "juicy"
   },
   {
     "index": 25,
     "Question": "シャキシャキ",
-    "Answer": "crisp",
-    "good": 0,
-    "bad": 0
+    "Answer": "crisp"
   },
   {
     "index": 26,
     "Question": "カリカリ",
-    "Answer": "crackly",
-    "good": 0,
-    "bad": 0
+    "Answer": "crackly"
   },
   {
     "index": 27,
     "Question": "しっとり",
-    "Answer": "moist",
-    "good": 0,
-    "bad": 0
+    "Answer": "moist"
   },
   {
     "index": 28,
     "Question": "ざらざら",
-    "Answer": "grainy",
-    "good": 0,
-    "bad": 0
+    "Answer": "grainy"
   },
   {
     "index": 29,
     "Question": "なめらか",
-    "Answer": "smooth",
-    "good": 0,
-    "bad": 0
+    "Answer": "smooth"
   },
   {
     "index": 30,
     "Question": "つるつる",
-    "Answer": "slippery",
-    "good": 0,
-    "bad": 0
+    "Answer": "slippery"
   },
   {
     "index": 31,
     "Question": "ほろほろ",
-    "Answer": "crumbly",
-    "good": 0,
-    "bad": 0
+    "Answer": "crumbly"
   },
   {
     "index": 32,
     "Question": "ぷりぷり",
-    "Answer": "springy",
-    "good": 0,
-    "bad": 0
+    "Answer": "springy"
   },
   {
     "index": 33,
     "Question": "こってり",
-    "Answer": "heavy",
-    "good": 0,
-    "bad": 0
+    "Answer": "heavy"
   },
   {
     "index": 34,
     "Question": "あっさり",
-    "Answer": "light",
-    "good": 0,
-    "bad": 0
+    "Answer": "light"
   },
   {
     "index": 35,
     "Question": "濃い",
-    "Answer": "strong",
-    "good": 0,
-    "bad": 0
+    "Answer": "strong"
   },
   {
     "index": 36,
     "Question": "薄い",
-    "Answer": "weak",
-    "good": 0,
-    "bad": 0
+    "Answer": "weak"
   },
   {
     "index": 37,
     "Question": "酸味がある",
-    "Answer": "tangy",
-    "good": 0,
-    "bad": 0
+    "Answer": "tangy"
   },
   {
     "index": 38,
     "Question": "辛口",
-    "Answer": "hot (spicy)",
-    "good": 0,
-    "bad": 0
+    "Answer": "hot (spicy)"
   },
   {
     "index": 39,
     "Question": "甘口",
-    "Answer": "mild (sweet)",
-    "good": 0,
-    "bad": 0
+    "Answer": "mild (sweet)"
   },
   {
     "index": 40,
     "Question": "脂っこい",
-    "Answer": "greasy",
-    "good": 0,
-    "bad": 0
+    "Answer": "greasy"
   },
   {
     "index": 41,
     "Question": "爽やか",
-    "Answer": "refreshing",
-    "good": 0,
-    "bad": 0
+    "Answer": "refreshing"
   },
   {
     "index": 42,
     "Question": "香りが高い",
-    "Answer": "aromatic",
-    "good": 0,
-    "bad": 0
+    "Answer": "aromatic"
   },
   {
     "index": 43,
     "Question": "芳醇",
-    "Answer": "rich-flavored",
-    "good": 0,
-    "bad": 0
+    "Answer": "rich-flavored"
   },
   {
     "index": 44,
     "Question": "コクがある",
-    "Answer": "full-bodied",
-    "good": 0,
-    "bad": 0
+    "Answer": "full-bodied"
   },
   {
     "index": 45,
     "Question": "さくさく",
-    "Answer": "flaky",
-    "good": 0,
-    "bad": 0
+    "Answer": "flaky"
   },
   {
     "index": 46,
     "Question": "もちもち",
-    "Answer": "chewy",
-    "good": 0,
-    "bad": 0
+    "Answer": "chewy"
   }
 ]

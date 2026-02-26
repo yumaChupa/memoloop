@@ -2,176 +2,126 @@
   {
     "index": 1,
     "Question": "ふわふわ",
-    "Answer": "fluffy",
-    "good": 0,
-    "bad": 0
+    "Answer": "fluffy"
   },
   {
     "index": 2,
     "Question": "もちもち",
-    "Answer": "chewy",
-    "good": 0,
-    "bad": 0
+    "Answer": "chewy"
   },
   {
     "index": 3,
     "Question": "ねばねば",
-    "Answer": "sticky",
-    "good": 0,
-    "bad": 0
+    "Answer": "sticky"
   },
   {
     "index": 4,
     "Question": "サラサラ",
-    "Answer": "smooth",
-    "good": 0,
-    "bad": 0
+    "Answer": "smooth"
   },
   {
     "index": 5,
     "Question": "水っぽい",
-    "Answer": "watery",
-    "good": 0,
-    "bad": 0
+    "Answer": "watery"
   },
   {
     "index": 6,
     "Question": "ざらざら",
-    "Answer": "rough",
-    "good": 0,
-    "bad": 0
+    "Answer": "rough"
   },
   {
     "index": 7,
     "Question": "つるつる",
-    "Answer": "slippery",
-    "good": 0,
-    "bad": 0
+    "Answer": "slippery"
   },
   {
     "index": 8,
     "Question": "カリカリ",
-    "Answer": "crispy",
-    "good": 0,
-    "bad": 0
+    "Answer": "crispy"
   },
   {
     "index": 9,
     "Question": "パリパリ",
-    "Answer": "crunchy",
-    "good": 0,
-    "bad": 0
+    "Answer": "crunchy"
   },
   {
     "index": 10,
     "Question": "しっとり",
-    "Answer": "moist",
-    "good": 0,
-    "bad": 0
+    "Answer": "moist"
   },
   {
     "index": 11,
     "Question": "ほろほろ",
-    "Answer": "crumbly",
-    "good": 0,
-    "bad": 0
+    "Answer": "crumbly"
   },
   {
     "index": 12,
     "Question": "ぷりぷり",
-    "Answer": "springy",
-    "good": 0,
-    "bad": 0
+    "Answer": "springy"
   },
   {
     "index": 13,
     "Question": "もろもろ",
-    "Answer": "crumbly",
-    "good": 0,
-    "bad": 0
+    "Answer": "crumbly"
   },
   {
     "index": 14,
     "Question": "ごつごつ",
-    "Answer": "bumpy",
-    "good": 0,
-    "bad": 0
+    "Answer": "bumpy"
   },
   {
     "index": 15,
     "Question": "ざくざく",
-    "Answer": "coarse",
-    "good": 0,
-    "bad": 0
+    "Answer": "coarse"
   },
   {
     "index": 16,
     "Question": "ぬるぬる",
-    "Answer": "slimy",
-    "good": 0,
-    "bad": 0
+    "Answer": "slimy"
   },
   {
     "index": 17,
     "Question": "ねちねち",
-    "Answer": "tacky",
-    "good": 0,
-    "bad": 0
+    "Answer": "tacky"
   },
   {
     "index": 18,
     "Question": "ふかふか",
-    "Answer": "soft",
-    "good": 0,
-    "bad": 0
+    "Answer": "soft"
   },
   {
     "index": 19,
     "Question": "ざらざら感のある",
-    "Answer": "grainy",
-    "good": 0,
-    "bad": 0
+    "Answer": "grainy"
   },
   {
     "index": 20,
     "Question": "ゴワゴワ",
-    "Answer": "stiff",
-    "good": 0,
-    "bad": 0
+    "Answer": "stiff"
   },
   {
     "index": 21,
     "Question": "しなやか",
-    "Answer": "supple",
-    "good": 0,
-    "bad": 0
+    "Answer": "supple"
   },
   {
     "index": 22,
     "Question": "こしがある",
-    "Answer": "firm",
-    "good": 0,
-    "bad": 0
+    "Answer": "firm"
   },
   {
     "index": 23,
     "Question": "弾力がある",
-    "Answer": "elastic",
-    "good": 0,
-    "bad": 0
+    "Answer": "elastic"
   },
   {
     "index": 24,
     "Question": "かたく",
-    "Answer": "hard",
-    "good": 0,
-    "bad": 0
+    "Answer": "hard"
   },
   {
     "index": 25,
     "Question": "やわらかい",
-    "Answer": "soft",
-    "good": 0,
-    "bad": 0
+    "Answer": "soft"
   }
 ]
