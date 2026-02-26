@@ -112,6 +112,13 @@ class _FlashCardSelectState extends State<FlashCardSelect> {
                                     _formatAvgTime(item['avgTimePerQuestion']),
                                     style: TextStyle(fontSize: 11, color: Colors.grey[400]),
                                   ),
+                                  const SizedBox(width: 12),
+                                  Icon(Icons.quiz_outlined, size: 13, color: Colors.grey[400]),
+                                  const SizedBox(width: 3),
+                                  Text(
+                                    '${item['questionCount'] ?? 0}問',
+                                    style: TextStyle(fontSize: 11, color: Colors.grey[400]),
+                                  ),
                                 ],
                               ),
                             ),

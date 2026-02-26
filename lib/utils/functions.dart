@@ -90,12 +90,35 @@ Future<void> loadTitleFilenames() async {
       if (!item.containsKey('isMine')) {
         item['isMine'] = false;
       }
+      if (!item.containsKey('questionCount')) {
+        item['questionCount'] = 0;
+      }
     }
   } else {
     // 初回起動時 → globalsの値を保存
     final jsonStr = jsonEncode(globals.titleFilenames);
     await file.writeAsString(jsonStr);
   }
+
+  // questionCount が 0 の項目をローカル JSON ファイルの実件数で補完する
+  // （初回起動後、またはマイグレーション直後の補完として機能する）
+  final dataDir = Directory('${dir.path}/data');
+  bool updated = false;
+  for (var item in globals.titleFilenames) {
+    if ((item['questionCount'] ?? 0) == 0) {
+      try {
+        final jsonFile = File('${dataDir.path}/${item['filename']}.json');
+        if (await jsonFile.exists()) {
+          final qs = jsonDecode(await jsonFile.readAsString()) as List<dynamic>;
+          if (qs.isNotEmpty) {
+            item['questionCount'] = qs.length;
+            updated = true;
+          }
+        }
+      } catch (_) {}
+    }
+  }
+  if (updated) await saveTitleFilenames();
 }
 
 /// titleFilenamesの最終更新日時を更新し、日付降順でソート
