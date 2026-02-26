@@ -146,12 +146,12 @@ Future<void> _migrateV2(Directory dir) async {
       for (var item in decoded) {
         if (item is! Map<String, dynamic>) continue;
 
-        if (item.containsKey('Japanese') && !item.containsKey('Answer')) {
-          renameKey(item, 'Japanese', 'Answer');
+        if (item.containsKey('Japanese') && !item.containsKey('Question')) {
+          renameKey(item, 'Japanese', 'Question');
           changed = true;
         }
-        if (item.containsKey('English') && !item.containsKey('Question')) {
-          renameKey(item, 'English', 'Question');
+        if (item.containsKey('English') && !item.containsKey('Answer')) {
+          renameKey(item, 'English', 'Answer');
           changed = true;
         }
         if (item.containsKey('done') && !item.containsKey('good')) {

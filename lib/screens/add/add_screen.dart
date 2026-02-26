@@ -131,14 +131,14 @@ class _AddScreenState extends State<AddScreen> {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 24),
                             child: Text(
-                              item["Answer"] ?? item["Japanese"] ?? "",
+                              item["Question"] ?? item["Japanese"] ?? "",
                               style: const TextStyle(color: Colors.black87, fontSize: 16),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 24),
                             child: Text(
-                              item["Question"] ?? item["English"] ?? "",
+                              item["Answer"] ?? item["English"] ?? "",
                               style: const TextStyle(fontSize: 18, color: Colors.black87),
                             ),
                           ),

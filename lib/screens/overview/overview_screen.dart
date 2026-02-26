@@ -67,7 +67,7 @@ class _OverviewScreenState extends State<OverviewScreen> {
                   TextField(
                     controller: englishController,
                     decoration: InputDecoration(
-                      labelText: 'English',
+                      labelText: 'Answer',
                       labelStyle: TextStyle(color: Colors.black45),
                     ),
                   ),
