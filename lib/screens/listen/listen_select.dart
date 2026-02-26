@@ -27,6 +27,7 @@ class _ListenSelectState extends State<ListenSelect> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Audio"),
+        centerTitle: true,
         scrolledUnderElevation: 0.2,
         actions: [
           buildSwitchModeButton(

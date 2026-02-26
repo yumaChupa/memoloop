@@ -40,7 +40,7 @@ class _ListenScreenState extends State<ListenScreen> {
         contents = List<Map<String, dynamic>>.from(data);
         switch (globals.currentOrder) {
           case globals.QuizOrder.original:
-            contents.sort((a, b) => a["index"].compareTo(b["index"]));
+            contents.sort((a, b) => b["index"].compareTo(a["index"])); // 降順（最近登録したものを先頭に）
             break;
           case globals.QuizOrder.wrongFirst:
             contents.sort((a, b) {

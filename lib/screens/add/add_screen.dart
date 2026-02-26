@@ -17,6 +17,7 @@ class AddScreen extends StatefulWidget {
 class _AddScreenState extends State<AddScreen> {
   late List<Map<String, dynamic>> contents = [];
   late String filename;
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -33,10 +34,12 @@ class _AddScreenState extends State<AddScreen> {
       if (mounted) {
         setState(() {
           contents = data;
+          _isLoading = false;
         });
       }
     } on FirebaseFunctionsException catch (e) {
       if (mounted) {
+        setState(() => _isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(e.message ?? 'データ取得に失敗しました')),
         );
@@ -109,41 +112,43 @@ class _AddScreenState extends State<AddScreen> {
             IconButton(icon: Icon(Icons.download), onPressed: showAddDialog),
           ],
         ),
-        body: ListView(
-          children: [
-            for (final item in contents)
-              ListTile(
-                key: ValueKey(item['index']),
-                minVerticalPadding: 0,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 0,
-                  horizontal: 0,
-                ),
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 12),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24),
-                      child: Text(
-                        item["Answer"] ?? item["Japanese"] ?? "",
-                        style: TextStyle(color: Colors.black87, fontSize: 16),
+        body: _isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : ListView(
+                children: [
+                  for (final item in contents)
+                    ListTile(
+                      key: ValueKey(item['index']),
+                      minVerticalPadding: 0,
+                      contentPadding: const EdgeInsets.symmetric(
+                        vertical: 0,
+                        horizontal: 0,
+                      ),
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 12),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                            child: Text(
+                              item["Answer"] ?? item["Japanese"] ?? "",
+                              style: const TextStyle(color: Colors.black87, fontSize: 16),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                            child: Text(
+                              item["Question"] ?? item["English"] ?? "",
+                              style: const TextStyle(fontSize: 18, color: Colors.black87),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Divider(thickness: 1, color: AppColors.addAccent, height: 1),
+                        ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24),
-                      child: Text(
-                        item["Question"] ?? item["English"] ?? "",
-                        style: TextStyle(fontSize: 18, color: Colors.black87),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Divider(thickness: 1, color: AppColors.addAccent, height: 1),
-                  ],
-                ),
+                ],
               ),
-          ],
-        ),
       ),
     );
   }

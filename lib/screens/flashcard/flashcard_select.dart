@@ -34,6 +34,7 @@ class _FlashCardSelectState extends State<FlashCardSelect> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Flashcard"),
+        centerTitle: true,
         scrolledUnderElevation: 0.2,
         actions: [
           buildSwitchModeButton(
