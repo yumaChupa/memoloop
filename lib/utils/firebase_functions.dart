@@ -23,7 +23,8 @@ Future<List<Map<String, dynamic>>> getSetsList() async {
     'deviceUuid': globals.deviceUuid,
   });
   final list = result.data['sets'] as List<dynamic>;
-  return list.cast<Map<String, dynamic>>();
+  // Functions から返る Map は Map<Object?, Object?> のため深い変換が必要
+  return list.map((item) => _deepCast(item as Map)).toList();
 }
 
 ////////////////////////////////////////////////
@@ -35,7 +36,16 @@ Future<List<Map<String, dynamic>>> getProblemSet(String filename) async {
     'filename': filename,
   });
   final list = result.data['questions'] as List<dynamic>;
-  return list.cast<Map<String, dynamic>>();
+  return list.map((item) => _deepCast(item as Map)).toList();
+}
+
+/// Functions / Firestore から返る Map<Object?, Object?> を
+/// Map<String, dynamic> に再帰的に変換する
+Map<String, dynamic> _deepCast(Map src) {
+  return src.map((key, value) {
+    final v = value is Map ? _deepCast(value) : value;
+    return MapEntry(key.toString(), v);
+  });
 }
 
 ////////////////////////////////////////////////

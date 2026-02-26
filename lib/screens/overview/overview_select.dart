@@ -1,4 +1,3 @@
-import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 import 'overview_screen.dart';
 import '../../globals.dart' as globals;
@@ -178,15 +177,6 @@ class _OverviewSelectState extends State<OverviewSelect> {
         }
         return;
       }
-
-      // ===== App Check トークン診断ログ（確認後に削除）=====
-      try {
-        final token = await FirebaseAppCheck.instance.getToken(true);
-        debugPrint('[AppCheck] token obtained: ${token?.token != null}, value: ${token?.token?.substring(0, 20)}...');
-      } catch (e) {
-        debugPrint('[AppCheck] getToken FAILED: $e');
-      }
-      // =====================================================
 
       final tags = (item['tags'] as List<dynamic>?)?.cast<String>() ?? [];
       final remaining = await uploadProblemSetWithReset(
