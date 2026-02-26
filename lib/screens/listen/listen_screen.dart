@@ -78,6 +78,9 @@ class _ListenScreenState extends State<ListenScreen> {
 
       final textQuestion = contents[i]["Question"].toString();
       final textAnswer = contents[i]["Answer"].toString();
+      // switchMode: Question を読み上げ、Answer を表示
+      final textToSpeak = globals.switchMode ? textQuestion : textAnswer;
+      final textToDisplay = globals.switchMode ? textAnswer : textQuestion;
 
       if (mounted) {
         setState(() {
@@ -98,7 +101,7 @@ class _ListenScreenState extends State<ListenScreen> {
           setState(() => _audioState = AudioState.playing);
         }
 
-        await speakText(textAnswer, player: _currentPlayer!);
+        await speakText(textToSpeak, player: _currentPlayer!);
       } catch (_) {
         // 停止やdisposeによるエラーは無視して抜ける
         if (_audioState == AudioState.stopping || !mounted) break;
@@ -109,7 +112,7 @@ class _ListenScreenState extends State<ListenScreen> {
 
       if (mounted) {
         setState(() {
-          displayedText = textQuestion;
+          displayedText = textToDisplay;
         });
       }
 

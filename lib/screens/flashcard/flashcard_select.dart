@@ -36,6 +36,10 @@ class _FlashCardSelectState extends State<FlashCardSelect> {
         title: const Text("Flashcard"),
         scrolledUnderElevation: 0.2,
         actions: [
+          buildSwitchModeButton(
+            accentColor: AppColors.flashcardAccent,
+            onChanged: () => setState(() {}),
+          ),
           buildOrderChipBar(
             accentColor: AppColors.flashcardAccent,
             onChanged: () => setState(() {}),

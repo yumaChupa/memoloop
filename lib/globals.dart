@@ -89,3 +89,6 @@ const List<String> availableTags = [
 enum QuizOrder { original, wrongFirst, random }
 
 QuizOrder currentOrder = QuizOrder.original;
+
+// Q/A 切り替えモード（true のとき Question を先に表示）
+bool switchMode = false;

@@ -201,6 +201,13 @@ class _FlashCardState extends State<FlashCard> {
         cardBuilder: (context, index, percentX, percentY) {
           currentIndex = index;
           final card = contents[index];
+          // switchMode: Question を先に表示し Answer をタップで表示
+          final promptText = globals.switchMode
+              ? card['Question'].toString()
+              : card['Answer'].toString();
+          final revealText = globals.switchMode
+              ? card['Answer'].toString()
+              : card['Question'].toString();
           return GestureDetector(
             onTap: () {
               setState(() {
@@ -241,7 +248,7 @@ class _FlashCardState extends State<FlashCard> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              card['Answer'],
+                              promptText,
                               style: TextStyle(
                                 fontSize: 19,
                                 fontWeight: FontWeight.w500,
@@ -250,7 +257,7 @@ class _FlashCardState extends State<FlashCard> {
                             SizedBox(height: 16),
                             showAnswer[index]
                                 ? Text(
-                                  card['Question'],
+                                  revealText,
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w700,

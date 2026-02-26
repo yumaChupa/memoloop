@@ -29,6 +29,10 @@ class _ListenSelectState extends State<ListenSelect> {
         title: const Text("Audio"),
         scrolledUnderElevation: 0.2,
         actions: [
+          buildSwitchModeButton(
+            accentColor: AppColors.listenAccent,
+            onChanged: () => setState(() {}),
+          ),
           buildOrderChipBar(
             accentColor: AppColors.listenAccent,
             onChanged: () => setState(() {}),
