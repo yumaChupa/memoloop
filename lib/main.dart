@@ -158,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           mainButton(
             color: Colors.redAccent.shade100,
-            text: 'Flashcards',
+            text: 'Flashcard',
             onPressed: () {
               Navigator.push(
                 context,
