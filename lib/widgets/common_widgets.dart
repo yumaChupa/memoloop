@@ -122,69 +122,86 @@ Widget buildSelectListItem({
   );
 }
 
-/// 出題順チップバー（listen_select, flashcard_selectで共通）
+/// 出題順サイクルボタン（listen_select, flashcard_selectで共通）
+/// タップするたびに index順 → ミス順 → ランダム → index順 と循環する
 Widget buildOrderChipBar({
   required Color accentColor,
   required VoidCallback onChanged,
 }) {
+  final IconData icon;
+  switch (globals.currentOrder) {
+    case globals.QuizOrder.original:
+      icon = Icons.sort_by_alpha;
+      break;
+    case globals.QuizOrder.wrongFirst:
+      icon = Icons.priority_high;
+      break;
+    case globals.QuizOrder.random:
+      icon = Icons.shuffle;
+      break;
+  }
+
   return Padding(
-    padding: const EdgeInsets.only(right: 12),
-    child: Container(
-      decoration: BoxDecoration(
-        color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(20),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _buildSingleOrderChip(
-            order: globals.QuizOrder.original,
-            icon: Icons.sort_by_alpha,
-            accentColor: accentColor,
-            onChanged: onChanged,
-          ),
-          _buildSingleOrderChip(
-            order: globals.QuizOrder.wrongFirst,
-            icon: Icons.priority_high,
-            accentColor: accentColor,
-            onChanged: onChanged,
-          ),
-          _buildSingleOrderChip(
-            order: globals.QuizOrder.random,
-            icon: Icons.shuffle,
-            accentColor: accentColor,
-            onChanged: onChanged,
-          ),
-        ],
+    padding: const EdgeInsets.only(right: 8),
+    child: GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        switch (globals.currentOrder) {
+          case globals.QuizOrder.original:
+            globals.currentOrder = globals.QuizOrder.wrongFirst;
+            break;
+          case globals.QuizOrder.wrongFirst:
+            globals.currentOrder = globals.QuizOrder.random;
+            break;
+          case globals.QuizOrder.random:
+            globals.currentOrder = globals.QuizOrder.original;
+            break;
+        }
+        onChanged();
+      },
+      child: Container(
+        width: 44,
+        height: 44,
+        decoration: BoxDecoration(
+          color: accentColor.withValues(alpha: 0.12),
+          shape: BoxShape.circle,
+        ),
+        child: Icon(icon, size: 22, color: accentColor),
       ),
     ),
   );
 }
 
-Widget _buildSingleOrderChip({
-  required globals.QuizOrder order,
-  required IconData icon,
+/// Q/A 切り替えモードボタン（listen_select, flashcard_selectで共通）
+/// アクティブ時はアクセントカラー、非アクティブ時はグレー
+Widget buildSwitchModeButton({
   required Color accentColor,
   required VoidCallback onChanged,
 }) {
-  final isActive = globals.currentOrder == order;
-  return GestureDetector(
-    onTap: () {
-      globals.currentOrder = order;
-      onChanged();
-    },
-    child: AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: isActive ? accentColor : Colors.transparent,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Icon(
-        icon,
-        size: 16,
-        color: isActive ? Colors.white : Colors.grey[500],
+  final isActive = globals.switchMode;
+  return Padding(
+    padding: const EdgeInsets.only(right: 4),
+    child: GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        globals.switchMode = !globals.switchMode;
+        onChanged();
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        width: 44,
+        height: 44,
+        decoration: BoxDecoration(
+          color: isActive
+              ? accentColor.withValues(alpha: 0.12)
+              : Colors.grey.withValues(alpha: 0.12),
+          shape: BoxShape.circle,
+        ),
+        child: Icon(
+          Icons.swap_horiz,
+          size: 22,
+          color: isActive ? accentColor : Colors.grey[500],
+        ),
       ),
     ),
   );
