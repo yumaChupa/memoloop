@@ -66,9 +66,9 @@ class _FlashCardState extends State<FlashCard> {
             contents.sort((a, b) {
               int aIndex = a["index"];
               int bIndex = b["index"];
-              return aIndex.compareTo(bIndex);
+              return bIndex.compareTo(aIndex); // 降順（最近登録したものを先頭に）
             });
-            break; // 並び替えなし
+            break;
           case globals.QuizOrder.wrongFirst:
             contents.sort((a, b) {
               int aTotal = a["bad"] + a["good"];

@@ -131,7 +131,7 @@ Widget buildOrderChipBar({
   final IconData icon;
   switch (globals.currentOrder) {
     case globals.QuizOrder.original:
-      icon = Icons.sort_by_alpha;
+      icon = Icons.format_list_numbered;
       break;
     case globals.QuizOrder.wrongFirst:
       icon = Icons.priority_high;
@@ -142,7 +142,7 @@ Widget buildOrderChipBar({
   }
 
   return Padding(
-    padding: const EdgeInsets.only(right: 8),
+    padding: const EdgeInsets.only(right: 16),
     child: GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
