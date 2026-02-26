@@ -115,8 +115,8 @@ class _OverviewScreenState extends State<OverviewScreen> {
           TextButton(
             onPressed: () {
               setState(() {
-                contents[index]["Answer"] = answerController.text;
                 contents[index]["Question"] = questionController.text;
+                contents[index]["Answer"] = answerController.text;
               });
               Navigator.pop(context);
             },

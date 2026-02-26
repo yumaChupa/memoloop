@@ -80,8 +80,8 @@ class _ListenScreenState extends State<ListenScreen> {
       final textAnswer = contents[i]["Answer"].toString();
       // デフォルト: Question（日本語）を読み上げ、Answer（英語）を表示
       // switchMode ON: Answer（英語）を読み上げ、Question（日本語）を表示
-      final textToSpeak = globals.switchMode ? textQuestion : textAnswer;
-      final textToDisplay = globals.switchMode ? textAnswer : textQuestion;
+      final textToSpeak = globals.switchMode ? textAnswer : textQuestion;
+      final textToDisplay = globals.switchMode ? textQuestion : textAnswer;
 
       if (mounted) {
         setState(() {
