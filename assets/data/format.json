@@ -2,358 +2,256 @@
   {
     "index": 1,
     "Question": "私のこと待っててくれてもよかったのに",
-    "Answer": "You could have waited for me.",
-    "good": 0,
-    "bad": 0
+    "Answer": "You could have waited for me."
   },
   {
     "index": 2,
     "Question": "もう少しで諦めるところだった",
-    "Answer": "I was about to give up.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I was about to give up."
   },
   {
     "index": 3,
     "Question": "将来スポーツができなくなるかもしれない",
-    "Answer": "I might not be able to play sports in the future.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I might not be able to play sports in the future."
   },
   {
     "index": 4,
     "Question": "〇〇が間違いなわけないね",
-    "Answer": "〇〇 can't go wrong.",
-    "good": 0,
-    "bad": 0
+    "Answer": "〇〇 can't go wrong."
   },
   {
     "index": 5,
     "Question": "外出する気分じゃないな",
-    "Answer": "I don't feel like going out.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I don't feel like going out."
   },
   {
     "index": 6,
     "Question": "もしうまくいかなかったらどうする？",
-    "Answer": "What if it doesn't work?",
-    "good": 0,
-    "bad": 0
+    "Answer": "What if it doesn't work?"
   },
   {
     "index": 7,
     "Question": "バスを逃しそうだった",
-    "Answer": "I almost missed the bus.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I almost missed the bus."
   },
   {
     "index": 8,
     "Question": "脚どうしたの！？",
-    "Answer": "What happened to your leg?",
-    "good": 0,
-    "bad": 0
+    "Answer": "What happened to your leg?"
   },
   {
     "index": 9,
     "Question": "当時料理にハマっていた",
-    "Answer": "I was into cooking at that time.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I was into cooking at that time."
   },
   {
     "index": 10,
     "Question": "もう寝る時間だ",
-    "Answer": "It's time to go to bed.",
-    "good": 0,
-    "bad": 0
+    "Answer": "It's time to go to bed."
   },
   {
     "index": 11,
     "Question": "面接に合格するのに苦労したよ",
-    "Answer": "I struggled to pass the job interview.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I struggled to pass the job interview."
   },
   {
     "index": 12,
     "Question": "早めに出発した方がいいかも",
-    "Answer": "You might wanna leave early.",
-    "good": 0,
-    "bad": 0
+    "Answer": "You might wanna leave early."
   },
   {
     "index": 13,
     "Question": "ずっとやってみたかった",
-    "Answer": "I've always wanted to try it.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I've always wanted to try it."
   },
   {
     "index": 14,
     "Question": "私たちは一度電話で話したことがある",
-    "Answer": "We've talked on the phone once.",
-    "good": 0,
-    "bad": 0
+    "Answer": "We've talked on the phone once."
   },
   {
     "index": 15,
     "Question": "ここから最も近い食料品店はどこ？",
-    "Answer": "Where is the nearest grocery store?",
-    "good": 0,
-    "bad": 0
+    "Answer": "Where is the nearest grocery store?"
   },
   {
     "index": 16,
     "Question": "早起きにはもう慣れた",
-    "Answer": "I've gotten used to getting up early.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I've gotten used to getting up early."
   },
   {
     "index": 17,
     "Question": "今は洋画を見ることに夢中です",
-    "Answer": "I'm crazy about watching English movies.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I'm crazy about watching English movies."
   },
   {
     "index": 18,
     "Question": "完全に無料です",
-    "Answer": "It's totally free.",
-    "good": 0,
-    "bad": 0
+    "Answer": "It's totally free."
   },
   {
     "index": 19,
     "Question": "むしろここに住みたい",
-    "Answer": "I'd rather live here.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I'd rather live here."
   },
   {
     "index": 20,
     "Question": "ルームシェアでもマンションでも大丈夫",
-    "Answer": "Whether it's a shared house or a condo, it's fine.",
-    "good": 0,
-    "bad": 0
+    "Answer": "Whether it's a shared house or a condo, it's fine."
   },
   {
     "index": 21,
     "Question": "ドアを閉めていただけませんか？",
-    "Answer": "Would you mind closing the door?",
-    "good": 0,
-    "bad": 0
+    "Answer": "Would you mind closing the door?"
   },
   {
     "index": 22,
     "Question": "ドアを閉めてもいいですか？",
-    "Answer": "Do you mind if I close the door?",
-    "good": 0,
-    "bad": 0
+    "Answer": "Do you mind if I close the door?"
   },
   {
     "index": 23,
     "Question": "面接は思っていたより簡単だった",
-    "Answer": "The interview was easier than I expected.",
-    "good": 0,
-    "bad": 0
+    "Answer": "The interview was easier than I expected."
   },
   {
     "index": 24,
     "Question": "〇〇を探してる（口語）",
-    "Answer": "I'm after 〇〇.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I'm after 〇〇."
   },
   {
     "index": 25,
     "Question": "もっと英語力があれば仕事を取れたかも",
-    "Answer": "I could have gotten the job if I were able to speak English.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I could have gotten the job if I were able to speak English."
   },
   {
     "index": 26,
     "Question": "パーティーのことはどうなってる？",
-    "Answer": "What happened to the party?",
-    "good": 0,
-    "bad": 0
+    "Answer": "What happened to the party?"
   },
   {
     "index": 27,
     "Question": "ちょっと緊張してる",
-    "Answer": "I'm kind of nervous.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I'm kind of nervous."
   },
   {
     "index": 28,
     "Question": "英語が話せるようになるためには",
-    "Answer": "To get good at English,",
-    "good": 0,
-    "bad": 0
+    "Answer": "To get good at English,"
   },
   {
     "index": 29,
     "Question": "面接に落ちるのはもううんざり",
-    "Answer": "I'm tired of failing the interview.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I'm tired of failing the interview."
   },
   {
     "index": 30,
     "Question": "ランチでもしながら話そう",
-    "Answer": "Let's talk about it over lunch.",
-    "good": 0,
-    "bad": 0
+    "Answer": "Let's talk about it over lunch."
   },
   {
     "index": 31,
     "Question": "ダイエットしようと思ってる",
-    "Answer": "I'm thinking of going on a diet.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I'm thinking of going on a diet."
   },
   {
     "index": 32,
     "Question": "今それを言っても仕方がない",
-    "Answer": "It doesn't help saying that now.",
-    "good": 0,
-    "bad": 0
+    "Answer": "It doesn't help saying that now."
   },
   {
     "index": 33,
     "Question": "締め切りに間に合えば大丈夫",
-    "Answer": "As long as it's finished within the deadline, it's fine.",
-    "good": 0,
-    "bad": 0
+    "Answer": "As long as it's finished within the deadline, it's fine."
   },
   {
     "index": 34,
     "Question": "一回聞いたことある気がする",
-    "Answer": "I feel like I've heard it before.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I feel like I've heard it before."
   },
   {
     "index": 35,
     "Question": "短髪に合いそう",
-    "Answer": "You would look good with short hair.",
-    "good": 0,
-    "bad": 0
+    "Answer": "You would look good with short hair."
   },
   {
     "index": 36,
     "Question": "甘いものは食べずにはいられない",
-    "Answer": "I can't help eating sweets.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I can't help eating sweets."
   },
   {
     "index": 37,
     "Question": "現金持ってたりしない？",
-    "Answer": "Do you happen to have any cash?",
-    "good": 0,
-    "bad": 0
+    "Answer": "Do you happen to have any cash?"
   },
   {
     "index": 38,
     "Question": "もっとお金があれば、もっと旅行しただろうなぁ",
-    "Answer": "I would have traveled more if I had had more money.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I would have traveled more if I had had more money."
   },
   {
     "index": 39,
     "Question": "この部屋についてどう思いますか",
-    "Answer": "What do you think of this room?",
-    "good": 0,
-    "bad": 0
+    "Answer": "What do you think of this room?"
   },
   {
     "index": 40,
     "Question": "彼を待った方がいいんじゃないかな",
-    "Answer": "I'd say we should wait for him.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I'd say we should wait for him."
   },
   {
     "index": 41,
     "Question": "もっと英語を話す練習をするべきだった",
-    "Answer": "I should have practiced speaking English more.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I should have practiced speaking English more."
   },
   {
     "index": 42,
     "Question": "iPhoneを置き忘れてきたかも",
-    "Answer": "I might have left my iPhone.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I might have left my iPhone."
   },
   {
     "index": 43,
     "Question": "ゲームにハマってる",
-    "Answer": "I'm addicted to the video game.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I'm addicted to the video game."
   },
   {
     "index": 44,
     "Question": "部屋探しがうまくいっていない",
-    "Answer": "I'm having trouble finding a place to live.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I'm having trouble finding a place to live."
   },
   {
     "index": 45,
     "Question": "心配せずにはいられない",
-    "Answer": "I can't help worrying.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I can't help worrying."
   },
   {
     "index": 46,
     "Question": "待つのは大丈夫ですよ",
-    "Answer": "I don't mind waiting.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I don't mind waiting."
   },
   {
     "index": 47,
     "Question": "ごめん間に合うかどうかわからない",
-    "Answer": "Sorry, I'm not sure if I can make it.",
-    "good": 0,
-    "bad": 0
+    "Answer": "Sorry, I'm not sure if I can make it."
   },
   {
     "index": 48,
     "Question": "締切まであと3日ってまじ？",
-    "Answer": "I can't believe there are only 3 days left until the deadline.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I can't believe there are only 3 days left until the deadline."
   },
   {
     "index": 49,
     "Question": "昨日の晩何があったか知らないけど",
-    "Answer": "I don't know if you have heard what happened last night.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I don't know if you have heard what happened last night."
   },
   {
     "index": 50,
     "Question": "忘れずに明日持ってきてね",
-    "Answer": "Make sure to bring it tomorrow",
-    "good": 0,
-    "bad": 0
+    "Answer": "Make sure to bring it tomorrow"
   },
   {
     "index": 51,
     "Question": "彼来るのかな",
-    "Answer": "I wonder if he's coming.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I wonder if he's coming."
   }
 ]

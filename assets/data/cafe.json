@@ -2,64 +2,46 @@
   {
     "index": 1,
     "Question": "2人です",
-    "Answer": "Do you have a seat for two?",
-    "good": 0,
-    "bad": 0
+    "Answer": "Do you have a seat for two?"
   },
   {
     "index": 2,
     "Question": "私はこれにします",
-    "Answer": "I’ll have this.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I’ll have this."
   },
   {
     "index": 3,
     "Question": "もうちょっと時間ください",
-    "Answer": "Give me a couple of minutes, please.",
-    "good": 0,
-    "bad": 0
+    "Answer": "Give me a couple of minutes, please."
   },
   {
     "index": 4,
     "Question": "レシートは必要ですか？",
-    "Answer": "Do you need a receipt?",
-    "good": 0,
-    "bad": 0
+    "Answer": "Do you need a receipt?"
   },
   {
     "index": 5,
     "Question": "はい、ください。/いいえ、大丈夫です",
-    "Answer": "Yes, please. / I'm good.",
-    "good": 0,
-    "bad": 0
+    "Answer": "Yes, please. / I'm good."
   },
   {
     "index": 6,
     "Question": "(注文時)〇〇お願いします",
-    "Answer": "Can I get 〇〇?",
-    "good": 0,
-    "bad": 0
+    "Answer": "Can I get 〇〇?"
   },
   {
     "index": 7,
     "Question": "(注文時)〇〇もお願いします",
-    "Answer": "Can I also get 〇〇?",
-    "good": 0,
-    "bad": 0
+    "Answer": "Can I also get 〇〇?"
   },
   {
     "index": 8,
     "Question": "お会計お願いします",
-    "Answer": "Can I get the bill?",
-    "good": 0,
-    "bad": 0
+    "Answer": "Can I get the bill?"
   },
   {
     "index": 9,
     "Question": "トイレ行ってくる",
-    "Answer": "I need to go to the washroom.",
-    "good": 0,
-    "bad": 0
+    "Answer": "I need to go to the washroom."
   }
 ]
