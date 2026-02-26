@@ -42,16 +42,12 @@ Future<void> _initFirebase() async {
       options: DefaultFirebaseOptions.currentPlatform,
     );
     await FirebaseAppCheck.instance.activate(
-<<<<<<< HEAD
-      appleProvider: kDebugMode ? AppleProvider.debug : AppleProvider.appAttest,
-=======
       // デバッグビルド（シミュレーター・エミュレーター）はデバッグプロバイダー
       // リリースビルドは実機検証プロバイダー
       appleProvider:
           kDebugMode ? AppleProvider.debug : AppleProvider.appAttest,
       androidProvider:
           kDebugMode ? AndroidProvider.debug : AndroidProvider.playIntegrity,
->>>>>>> main
     );
     debugPrint('Firebase initialized successfully');
   } catch (e) {

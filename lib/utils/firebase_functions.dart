@@ -1,17 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-<<<<<<< HEAD
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:uuid/uuid.dart';
-=======
-import 'package:cloud_functions/cloud_functions.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:memoloop/globals.dart' as globals;
->>>>>>> main
 
 /// Cloud Functions インスタンス（Firebase初期化後に安全にアクセス）
 FirebaseFunctions get _fn => FirebaseFunctions.instance;
@@ -19,47 +11,13 @@ FirebaseFunctions get _fn => FirebaseFunctions.instance;
 /// Firestoreインスタンス（開発用初期化のみ残す）
 FirebaseFirestore get firestore => FirebaseFirestore.instance;
 
-<<<<<<< HEAD
-FirebaseFunctions get _functions => FirebaseFunctions.instance;
-
-const _storage = FlutterSecureStorage();
-const _uuidKey = 'device_uuid';
-
-/// 端末固有UUID を取得、なければ生成して永続化する
-Future<String> getOrCreateDeviceUuid() async {
-  final existing = await _storage.read(key: _uuidKey);
-  if (existing != null) return existing;
-  final newUuid = const Uuid().v4();
-  await _storage.write(key: _uuidKey, value: newUuid);
-  return newUuid;
-}
-=======
 // ローカルクールダウン: 最後のアップロード時刻を保持
 DateTime? _lastUploadTime;
 const _uploadCooldown = Duration(seconds: 20);
->>>>>>> main
 
 ////////////////////////////////////////////////
 ////// 公開問題セット一覧をCloud Functionsで取得
 ////////////////////////////////////////////////
-<<<<<<< HEAD
-Future<List<Map<String, dynamic>>> getProblemSet(String filename) async {
-  final doc = await firestore.collection('sets').doc(filename).get();
-  final data = doc.data();
-  if (data == null) return [];
-
-  final snapshot =
-      await firestore
-          .collection('sets')
-          .doc(filename)
-          .collection('questions')
-          .get();
-  return snapshot.docs.map((doc) => doc.data()).toList();
-}
-
-////////////////////////////////////////////////
-// ローカルの問題セットjsonをFirebaseにアップロード（Function経由）
-=======
 Future<List<Map<String, dynamic>>> getSetsList() async {
   final result = await _fn.httpsCallable('getSetsList').call({
     'deviceUuid': globals.deviceUuid,
@@ -82,30 +40,18 @@ Future<List<Map<String, dynamic>>> getProblemSet(String filename) async {
 
 ////////////////////////////////////////////////
 // ローカルの問題セットjsonをCloud Functionsでアップロード
->>>>>>> main
 ////////////////////////////////////////////////
 
 /// 問題セットをアップロード。
 /// 戻り値: null=成功, -1=問題数超過, -2=1日の上限超過, >0=クールダウン残秒数
 const int maxQuestionCount = 310;
 
-<<<<<<< HEAD
-// クライアント側の簡易チェック用（サーバー側でも検証する）
-DateTime? _lastUploadTime;
-const _uploadCooldown = Duration(seconds: 20);
-
-=======
->>>>>>> main
 Future<int?> uploadProblemSetWithReset(
   String title,
   String filename, {
   List<String> tags = const [],
 }) async {
-<<<<<<< HEAD
-  // クライアント側レート制限チェック（サーバーへの無駄なリクエストを防ぐ）
-=======
   // ローカルクールダウンチェック
->>>>>>> main
   if (_lastUploadTime != null) {
     final elapsed = DateTime.now().difference(_lastUploadTime!);
     if (elapsed < _uploadCooldown) {
@@ -122,38 +68,6 @@ Future<int?> uploadProblemSetWithReset(
 
   if (questions.length > maxQuestionCount) return -1;
 
-<<<<<<< HEAD
-  final uuid = await getOrCreateDeviceUuid();
-
-  final callable = _functions.httpsCallable('uploadProblemSet');
-  final result = await callable.call({
-    'uuid': uuid,
-    'title': title,
-    'filename': filename,
-    'tags': tags,
-    'questions': questions,
-  });
-
-  final remaining = result.data['remaining'];
-  if (remaining != null) {
-    return remaining as int;
-  }
-
-  _lastUploadTime = DateTime.now();
-  return null;
-}
-
-////////////////////////////////////////////////
-// dbにある問題セットのタイトル、ファイル名をリストで取得
-////////////////////////////////////////////////
-Future<List<Map<String, dynamic>>> getSetsList() async {
-  final querySnapshot = await FirebaseFirestore.instance
-      .collection('sets')
-      .get();
-  return querySnapshot.docs.map((doc) => doc.data()).toList();
-}
-
-=======
   // good/bad はローカル専用フィールドのため除外
   final cleaned = questions.map((q) {
     final m = Map<String, dynamic>.from(q as Map);
@@ -178,22 +92,11 @@ Future<List<Map<String, dynamic>>> getSetsList() async {
   }
 }
 
->>>>>>> main
 ////////////////////////////////////////////////
 // ダウンロード数をインクリメント（Function経由）
 ////////////////////////////////////////////////
 Future<void> incrementDownloadCount(String filename) async {
   try {
-<<<<<<< HEAD
-    final callable = _functions.httpsCallable('incrementDownload');
-    await callable.call({'filename': filename});
-  } catch (e) {
-    // ダウンロード数の更新失敗はユーザー体験に影響しないためログのみ
-    // ignore: avoid_print
-    print('Failed to increment download count: $e');
-  }
-}
-=======
     await _fn.httpsCallable('incrementDownload').call({
       'deviceUuid': globals.deviceUuid,
       'filename': filename,
@@ -242,4 +145,3 @@ Future<void> uploadFilesInit(Map<String, dynamic> titleFilename) async {
   }
   await batchUpload.commit();
 }
->>>>>>> main

@@ -8,14 +8,6 @@ setGlobalOptions({
   maxInstances: 5,
 });
 
-<<<<<<< HEAD
-function isValidUuid(uuid) {
-  return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(uuid);
-}
-
-/**
- * 問題投稿API - UUID ベース 1日10件制限
-=======
 // ===== レート制限定数 =====
 const DAILY_CALL_LIMIT = 1000;       // 1日あたりの最大アクセス回数
 const DAILY_BYTES_LIMIT = 1048576;   // 1日あたりの最大データ転送量（1MB）
@@ -104,38 +96,25 @@ async function recordBytes(db, deviceUuid, payload) {
 // ===== 既存関数（互換維持） =====
 
 /**
- * 問題投稿API（既存・互換維持）
->>>>>>> main
+ * 問題投稿API - deviceUuid ベース 1日10件制限
  */
 exports.createProblem = onCall(
   { enforceAppCheck: true },
   async (request) => {
     const db = admin.firestore();
 
-<<<<<<< HEAD
-    const { uuid } = request.data;
-    if (!uuid || !isValidUuid(uuid)) {
-      throw new HttpsError("invalid-argument", "Valid UUID required");
-=======
-    const appId = request.app?.appId;
-    if (!appId) {
-      throw new HttpsError("failed-precondition", "App Check required");
->>>>>>> main
-    }
+    const { deviceUuid } = request.data;
+    validateDeviceUuid(deviceUuid);
 
     const rawSize = Buffer.byteLength(JSON.stringify(request.data), "utf8");
     if (rawSize > 200 * 1024) {
       throw new HttpsError("invalid-argument", "Payload too large");
     }
 
-<<<<<<< HEAD
-    const today = new Date().toISOString().split("T")[0];
-=======
     const today = todayStr();
->>>>>>> main
     const snapshot = await db
       .collection("problems")
-      .where("uuid", "==", uuid)
+      .where("deviceUuid", "==", deviceUuid)
       .where("date", "==", today)
       .get();
 
@@ -146,11 +125,7 @@ exports.createProblem = onCall(
     await db.collection("problems").add({
       title: request.data.title || "",
       content: request.data.content || "",
-<<<<<<< HEAD
-      uuid: uuid,
-=======
-      appId,
->>>>>>> main
+      deviceUuid,
       date: today,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
@@ -159,246 +134,133 @@ exports.createProblem = onCall(
   }
 );
 
-<<<<<<< HEAD
-/**
- * 問題セットアップロードAPI - UUID ベースレート制限（20秒）
- * 戻り値: { remaining: null } = 成功, { remaining: N } = N秒後に再試行, { remaining: -1 } = 問題数超過
- */
-const MAX_QUESTIONS = 310;
-const UPLOAD_COOLDOWN_SECONDS = 20;
-
-exports.uploadProblemSet = onCall(
-  { enforceAppCheck: true },
-  async (request) => {
-    const db = admin.firestore();
-    const { uuid, title, filename, tags, questions } = request.data;
-
-    if (!uuid || !isValidUuid(uuid)) {
-      throw new HttpsError("invalid-argument", "Valid UUID required");
-    }
-    if (!title || typeof title !== "string" || !filename || typeof filename !== "string") {
-      throw new HttpsError("invalid-argument", "title and filename required");
-    }
-    if (!Array.isArray(questions)) {
-      throw new HttpsError("invalid-argument", "questions must be an array");
-    }
-    if (questions.length > MAX_QUESTIONS) {
-      return { remaining: -1 };
-    }
-
-    // UUID ごとのレート制限チェック
-    const rateLimitRef = db.collection("uploadRateLimits").doc(uuid);
-    const rateLimitDoc = await rateLimitRef.get();
-    if (rateLimitDoc.exists) {
-      const lastUpload = rateLimitDoc.data().lastUploadAt?.toDate();
-      if (lastUpload) {
-        const elapsedSeconds = (Date.now() - lastUpload.getTime()) / 1000;
-        if (elapsedSeconds < UPLOAD_COOLDOWN_SECONDS) {
-          return { remaining: Math.ceil(UPLOAD_COOLDOWN_SECONDS - elapsedSeconds) };
-        }
-      }
-    }
-
-    const setRef = db.collection("sets").doc(filename);
-    const questionsRef = setRef.collection("questions");
-
-    // 既存 downloadCount を保持
-    const existingDoc = await setRef.get();
-    const currentDownloads = existingDoc.exists ? (existingDoc.data().downloadCount ?? 0) : 0;
-
-    // 既存 questions を削除
-    const existingQuestions = await questionsRef.get();
-    if (!existingQuestions.empty) {
-      const batchDelete = db.batch();
-      existingQuestions.docs.forEach((doc) => batchDelete.delete(doc.reference));
-      await batchDelete.commit();
-    }
-
-    // sets ドキュメント更新
-    await setRef.set({
-      title,
-      filename,
-      updatedAt: new Date().toISOString(),
-      tags: Array.isArray(tags) ? tags : [],
-      downloadCount: currentDownloads,
-      questionCount: questions.length,
-    });
-
-    // questions 再アップロード（good/bad はローカル専用のため除外）
-    const batchUpload = db.batch();
-    questions.forEach((q) => {
-      const cleaned = { ...q };
-      delete cleaned.good;
-      delete cleaned.bad;
-      batchUpload.set(questionsRef.doc(String(cleaned.index)), cleaned);
-    });
-    await batchUpload.commit();
-
-    // レート制限タイムスタンプ更新
-    await rateLimitRef.set(
-      { lastUploadAt: admin.firestore.FieldValue.serverTimestamp() },
-      { merge: true }
-    );
-
-    return { remaining: null };
-=======
 // ===== 新規関数（UUIDベースのレート制限付き） =====
 
 /**
  * 公開されている問題セット一覧を取得
  */
 exports.getSetsList = onCall({ enforceAppCheck: true }, async (request) => {
-    const db = admin.firestore();
-    const { deviceUuid } = request.data;
+  const db = admin.firestore();
+  const { deviceUuid } = request.data;
 
-    await checkAndIncrementCalls(db, deviceUuid);
+  await checkAndIncrementCalls(db, deviceUuid);
 
-    const snapshot = await db.collection("sets").get();
-    const sets = snapshot.docs.map((doc) => doc.data());
+  const snapshot = await db.collection("sets").get();
+  const sets = snapshot.docs.map((doc) => doc.data());
 
-    // バイト数を非同期で記録（エラーは無視）
-    recordBytes(db, deviceUuid, sets).catch(() => {});
+  // バイト数を非同期で記録（エラーは無視）
+  recordBytes(db, deviceUuid, sets).catch(() => {});
 
-    return { sets };
->>>>>>> main
-  }
-);
+  return { sets };
+});
 
 /**
-<<<<<<< HEAD
- * ダウンロード数インクリメントAPI
- */
-exports.incrementDownload = onCall(
-  { enforceAppCheck: true },
-  async (request) => {
-    const db = admin.firestore();
-    const { filename } = request.data;
-
-    if (!filename || typeof filename !== "string") {
-      throw new HttpsError("invalid-argument", "filename required");
-    }
-
-    const setRef = db.collection("sets").doc(filename);
-    const doc = await setRef.get();
-    if (!doc.exists) {
-      throw new HttpsError("not-found", "Problem set not found");
-    }
-
-    await setRef.update({
-=======
  * 特定の問題セットの問題一覧を取得
  */
 exports.getProblemSet = onCall({ enforceAppCheck: true }, async (request) => {
-    const db = admin.firestore();
-    const { deviceUuid, filename } = request.data;
+  const db = admin.firestore();
+  const { deviceUuid, filename } = request.data;
 
-    if (!filename || typeof filename !== "string") {
-      throw new HttpsError("invalid-argument", "filename が必要です");
-    }
-
-    await checkAndIncrementCalls(db, deviceUuid);
-
-    const snapshot = await db
-      .collection("sets")
-      .doc(filename)
-      .collection("questions")
-      .get();
-    const questions = snapshot.docs.map((doc) => doc.data());
-
-    recordBytes(db, deviceUuid, questions).catch(() => {});
-
-    return { questions };
+  if (!filename || typeof filename !== "string") {
+    throw new HttpsError("invalid-argument", "filename が必要です");
   }
-);
+
+  await checkAndIncrementCalls(db, deviceUuid);
+
+  const snapshot = await db
+    .collection("sets")
+    .doc(filename)
+    .collection("questions")
+    .get();
+  const questions = snapshot.docs.map((doc) => doc.data());
+
+  recordBytes(db, deviceUuid, questions).catch(() => {});
+
+  return { questions };
+});
 
 /**
  * ダウンロード数をインクリメント
  */
 exports.incrementDownload = onCall({ enforceAppCheck: true }, async (request) => {
-    const db = admin.firestore();
-    const { deviceUuid, filename } = request.data;
+  const db = admin.firestore();
+  const { deviceUuid, filename } = request.data;
 
-    if (!filename || typeof filename !== "string") {
-      throw new HttpsError("invalid-argument", "filename が必要です");
-    }
-
-    await checkAndIncrementCalls(db, deviceUuid);
-
-    await db.collection("sets").doc(filename).update({
->>>>>>> main
-      downloadCount: admin.firestore.FieldValue.increment(1),
-    });
-
-    return { success: true };
+  if (!filename || typeof filename !== "string") {
+    throw new HttpsError("invalid-argument", "filename が必要です");
   }
-);
-<<<<<<< HEAD
-=======
+
+  await checkAndIncrementCalls(db, deviceUuid);
+
+  await db.collection("sets").doc(filename).update({
+    downloadCount: admin.firestore.FieldValue.increment(1),
+  });
+
+  return { success: true };
+});
 
 /**
  * 問題セットをアップロード（新規 or 更新）
  */
 exports.uploadProblemSet = onCall({ enforceAppCheck: true }, async (request) => {
-    const db = admin.firestore();
-    const { deviceUuid, title, filename, tags, questions } = request.data;
+  const db = admin.firestore();
+  const { deviceUuid, title, filename, tags, questions } = request.data;
 
-    if (!title || !filename || !Array.isArray(questions)) {
-      throw new HttpsError(
-        "invalid-argument",
-        "title, filename, questions が必要です"
-      );
-    }
-    if (questions.length > 310) {
-      throw new HttpsError(
-        "invalid-argument",
-        "問題数が上限（310問）を超えています"
-      );
-    }
-
-    await checkAndIncrementCalls(db, deviceUuid);
-
-    const setRef = db.collection("sets").doc(filename);
-    const questionsRef = setRef.collection("questions");
-
-    // 既存 questions を削除
-    const existing = await questionsRef.get();
-    const batchDelete = db.batch();
-    existing.forEach((doc) => batchDelete.delete(doc.ref));
-    await batchDelete.commit();
-
-    // 既存の downloadCount を保持
-    const existingDoc = await setRef.get();
-    const currentDownloads = existingDoc.data()?.downloadCount || 0;
-    const now = new Date().toISOString();
-
-    // sets ドキュメントを更新
-    await setRef.set({
-      title,
-      filename,
-      updatedAt: now,
-      tags: tags || [],
-      downloadCount: currentDownloads,
-      questionCount: questions.length,
-    });
-
-    // questions をバッチアップロード（Firestore 500件制限対応）
-    const BATCH_SIZE = 400;
-    for (let i = 0; i < questions.length; i += BATCH_SIZE) {
-      const chunk = questions.slice(i, i + BATCH_SIZE);
-      const batchUpload = db.batch();
-      chunk.forEach((q) => {
-        const cleaned = { ...q };
-        delete cleaned.good;
-        delete cleaned.bad;
-        batchUpload.set(questionsRef.doc(String(q.index)), cleaned);
-      });
-      await batchUpload.commit();
-    }
-
-    // リクエストサイズをバイト数として記録
-    recordBytes(db, deviceUuid, request.data).catch(() => {});
-
-    return { success: true };
+  if (!title || !filename || !Array.isArray(questions)) {
+    throw new HttpsError(
+      "invalid-argument",
+      "title, filename, questions が必要です"
+    );
   }
-);
->>>>>>> main
+  if (questions.length > 310) {
+    throw new HttpsError(
+      "invalid-argument",
+      "問題数が上限（310問）を超えています"
+    );
+  }
+
+  await checkAndIncrementCalls(db, deviceUuid);
+
+  const setRef = db.collection("sets").doc(filename);
+  const questionsRef = setRef.collection("questions");
+
+  // 既存 questions を削除
+  const existing = await questionsRef.get();
+  const batchDelete = db.batch();
+  existing.forEach((doc) => batchDelete.delete(doc.ref));
+  await batchDelete.commit();
+
+  // 既存の downloadCount を保持
+  const existingDoc = await setRef.get();
+  const currentDownloads = existingDoc.data()?.downloadCount || 0;
+  const now = new Date().toISOString();
+
+  // sets ドキュメントを更新
+  await setRef.set({
+    title,
+    filename,
+    updatedAt: now,
+    tags: tags || [],
+    downloadCount: currentDownloads,
+    questionCount: questions.length,
+  });
+
+  // questions をバッチアップロード（Firestore 500件制限対応）
+  const BATCH_SIZE = 400;
+  for (let i = 0; i < questions.length; i += BATCH_SIZE) {
+    const chunk = questions.slice(i, i + BATCH_SIZE);
+    const batchUpload = db.batch();
+    chunk.forEach((q) => {
+      const cleaned = { ...q };
+      delete cleaned.good;
+      delete cleaned.bad;
+      batchUpload.set(questionsRef.doc(String(q.index)), cleaned);
+    });
+    await batchUpload.commit();
+  }
+
+  // リクエストサイズをバイト数として記録
+  recordBytes(db, deviceUuid, request.data).catch(() => {});
+
+  return { success: true };
+});
